@@ -1,8 +1,58 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:700,900,300,400);
+/*   Variables   */
+/*   General   */
 body {
   font-family: 'Lato', Helvetica, sans-serif;
   background-color: #0B1129;
   border-radius: 5px;
+  color: white;
+}
+/*   Navigation header   */
+.navbar-wrapper .navbar-inverse {
+  background: rgba(255, 255, 255, 0.1);
+}
+.navbar-wrapper .navbar-inverse #navbar {
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 999;
+}
+.navbar-wrapper .navbar-inverse #navbar li a {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+.navbar-wrapper .navbar-inverse #navbar li a:hover {
+  color: #c80e0e;
+}
+.navbar-wrapper .navbar-inverse #navbar li.active a {
+  background-color: transparent;
+  color: #c80e0e;
+}
+.navbar-wrapper .the-navbar {
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+.navbar-wrapper .the-navbar .navbar-brand {
+  position: fixed;
+  z-index: 1000;
+  top: 5px;
+}
+.navbar-wrapper .the-navbar .the-blur {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 888;
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
 }
 /*   Bike section   */
 #bike {
