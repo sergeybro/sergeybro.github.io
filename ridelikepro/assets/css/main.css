@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:700,900,300,400);
 /*   Variables   */
+/*   Mixins   */
 /*   General   */
 body {
   font-family: 'Lato', Helvetica, sans-serif;
@@ -15,6 +16,9 @@ body {
   background-color: rgba(0, 0, 0, 0);
   position: relative;
   z-index: 999;
+}
+.navbar-wrapper .navbar-inverse #navbar.collapse.in {
+  background-color: #222222;
 }
 .navbar-wrapper .navbar-inverse #navbar li a {
   font-size: 13px;
@@ -54,9 +58,70 @@ body {
   -ms-filter: blur(3px);
   filter: blur(3px);
 }
+.navbar-wrapper .the-navbar button {
+  z-index: 999;
+}
 /*   Bike section   */
 #bike {
   background: url('../img/proride_image.jpg') center center no-repeat;
   background-size: cover;
   height: 100vh;
+  position: relative;
+}
+#bike .in-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+#bike .in-center .bike-text .lead {
+  font-size: 18px;
+  line-height: 26px;
+}
+#bike .contacts {
+  position: absolute;
+  bottom: 0;
+  font-size: 15px;
+  line-height: 26px;
+  margin-bottom: 50px;
+}
+#bike .contacts .telephone,
+#bike .contacts .address {
+  height: 44px;
+  position: relative;
+  padding-left: 42px;
+  background: url("../img/red-rhomb.png") top left no-repeat;
+}
+#bike .contacts .telephone::before,
+#bike .contacts .address::before {
+  position: absolute;
+  display: block;
+  width: 30px;
+  height: 30px;
+  content: " ";
+}
+#bike .contacts .telephone::before {
+  background: url("../img/phone-icon.png") center center no-repeat;
+  left: -1px;
+}
+#bike .contacts .address::before {
+  background: url("../img/location-icon.png") center center no-repeat;
+  left: 0;
+}
+#bike .contacts .address span {
+  color: #c80e0e;
+}
+#bike .down-button {
+  position: absolute;
+  width: 48px;
+  height: 23px;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-image: url("../img/arrow.png"), url("../img/red-traingle.png");
+  background-position: center 10px, center;
+  background-repeat: no-repeat;
 }

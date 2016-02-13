@@ -4,6 +4,12 @@
 @dark-blue: #0B1129;
 @red: #c80e0e;
 
+/*   Mixins   */
+.font(@x; @y) {
+  font-size: @x;
+  line-height: @y;
+}
+
 /*   General   */
 
 body {
@@ -23,7 +29,9 @@ body {
       background-color: rgba(0,0,0,0);
       position: relative;
       z-index: 999;
-
+      &.collapse.in {
+        background-color: #222222;
+      }
       li {
         a {
           font-size: 13px;
@@ -70,6 +78,10 @@ body {
       -ms-filter: blur(3px);
       filter: blur(3px);
     }
+
+    button {
+      z-index: 999;
+    }
   }
 }
 
@@ -79,4 +91,61 @@ body {
   background: url('../img/proride_image.jpg') center center no-repeat;
   background-size: cover;
   height: 100vh;
+  position: relative;
+  .in-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    .bike-text {
+      .lead {
+        .font(18px; 26px);
+      }
+    }
+  }
+  .contacts {
+    position: absolute;
+    bottom: 0;
+    .font(15px; 26px);
+    margin-bottom: 50px;
+
+    .telephone,
+    .address {
+      height: 44px;
+      position: relative;
+      padding-left: 42px;
+      background: url("../img/red-rhomb.png") top left no-repeat;
+      &::before {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 30px;
+        content: " ";
+      }
+    }
+    .telephone::before {
+      background: url("../img/phone-icon.png") center center no-repeat;
+      left: -1px;
+    }
+    .address::before {
+      background: url("../img/location-icon.png") center center no-repeat;
+      left: 0;
+    }
+    .address {
+      span {
+        color: @red;
+      }
+    }
+  }
+
+  .down-button {
+    position: absolute;
+    width: 48px;
+    height: 23px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url("../img/arrow.png"), url("../img/red-traingle.png");
+    background-position: center 10px, center;
+    background-repeat: no-repeat;
+  }
 }
