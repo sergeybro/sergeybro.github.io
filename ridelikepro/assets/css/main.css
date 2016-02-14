@@ -75,6 +75,10 @@ body {
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+#bike .in-center .bike-text h1 {
+  font-size: 42px;
+  line-height: 50px;
+}
 #bike .in-center .bike-text .lead {
   font-size: 18px;
   line-height: 26px;
@@ -124,4 +128,69 @@ body {
   background-image: url("../img/arrow.png"), url("../img/red-traingle.png");
   background-position: center 10px, center;
   background-repeat: no-repeat;
+}
+#bike .sticky-social {
+  position: absolute;
+  right: 0;
+  bottom: 80px;
+}
+#bike .sticky-social ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+#bike .sticky-social ul li {
+  margin: 0;
+  padding: 0 0 0 5px;
+  height: 25px;
+  width: 70px;
+  position: relative;
+  left: 45px;
+  background-color: #c80e0e;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+}
+#bike .sticky-social ul li:hover {
+  -webkit-transform: translateX(-45px);
+      -ms-transform: translateX(-45px);
+          transform: translateX(-45px);
+}
+#bike .sticky-social ul li:first-child {
+  margin-bottom: 4px;
+}
+#bike .sticky-social ul li a {
+  position: relative;
+  color: white;
+  display: inline-block;
+  width: 100%;
+}
+#bike .sticky-social ul li a:hover {
+  text-decoration: none;
+}
+#bike .sticky-social ul li a span {
+  transition: opacity .4s;
+}
+#bike .sticky-social ul li a:before {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  opacity: 0;
+  transition: .4s, opacity .6s;
+  content: attr(data-hover);
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
+}
+#bike .sticky-social ul li:hover a span {
+  opacity: 0;
+}
+#bike .sticky-social ul li:hover a:before {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
 }
