@@ -60,6 +60,7 @@ body {
 .navbar-wrapper .the-navbar .the-blur {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   min-height: 50px;
   margin-bottom: 20px;
@@ -410,4 +411,14 @@ body {
 #news .news-header p {
   font-size: 18px;
   line-height: 26px;
+}
+#news .news-array img {
+  display: inline-block;
+  width: 130px;
+  height: 100px;
+  float: left;
+}
+#news .news-array .news-item-text {
+  display: inline-block;
+  float: right;
 }
