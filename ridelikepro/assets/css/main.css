@@ -20,6 +20,10 @@ a {
 body {
   background-color: #0B1129;
 }
+a:hover,
+a:active {
+  text-decoration: none;
+}
 /*   ======Navigation header======   */
 .navbar-wrapper .navbar-inverse {
   background: rgba(255, 255, 255, 0.1);
@@ -399,6 +403,7 @@ body {
 }
 #news .news-header {
   text-align: center;
+  margin-bottom: 90px;
 }
 #news .news-header h3 {
   font-size: 28px;
@@ -414,11 +419,60 @@ body {
 }
 #news .news-array img {
   display: inline-block;
-  width: 130px;
-  height: 100px;
+  width: 28%;
   float: left;
+  min-width: 130px;
 }
 #news .news-array .news-item-text {
   display: inline-block;
   float: right;
+  width: 67%;
+  height: 100px;
+  padding-top: 10px;
+}
+#news .news-array .news-item-text p {
+  font-size: 14px;
+  line-height: 21px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+#news .news-array .news-item-text a span {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+#news .news-array .news-item-text a:hover span {
+  color: #c80e0e;
+}
+#news .news-array .news-item-text > div {
+  border-top: 2px solid rgba(180, 180, 180, 0.25);
+  position: relative;
+  bottom: -15px;
+  padding-top: 3px;
+}
+#news .news-array-first {
+  margin-bottom: 50px;
+}
+#news .all-news-button {
+  display: block;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 3px solid #c80e0e;
+  width: 200px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 62px;
+}
+#news .all-news-button:hover {
+  color: #c80e0e;
+}
+/*   ====== footer ======   */
+footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #f1f1f1;
 }

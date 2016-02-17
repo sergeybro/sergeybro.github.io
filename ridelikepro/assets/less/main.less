@@ -21,6 +21,9 @@ body {
   background-color: @dark-blue;
 }
 
+a:hover, a:active {
+  text-decoration: none;
+}
 /*   ======Navigation header======   */
 
 .navbar-wrapper {
@@ -423,6 +426,7 @@ body {
 
   .news-header {
     text-align: center;
+    margin-bottom: 90px;
 
     h3 {
       .font(28px; 28px);
@@ -440,14 +444,69 @@ body {
   .news-array {
     img {
       display: inline-block;
-      width: 130px;
-      height: 100px;
+      width: 28%;
       float: left;
+      min-width: 130px;
     }
 
     .news-item-text {
       display: inline-block;
       float: right;
+      width: 67%;
+      height: 100px;
+      padding-top: 10px;
+
+      p {
+        .font(14px; 21px);
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      a {
+        span {
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: 400;
+        }
+        &:hover {
+          span {
+            color: @red;
+          }
+        }
+      }
+      & > div {
+        border-top: 2px solid rgba(180, 180, 180, 0.25);
+        position: relative;
+        bottom: -15px;
+        padding-top: 3px;
+      }
     }
   }
+  .news-array-first {
+    margin-bottom: 50px;
+  }
+
+  .all-news-button {
+    display: block;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid @red;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 62px;
+    &:hover {
+      color: @red;
+    }
+  }
+}
+
+/*   ====== footer ======   */
+footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #f1f1f1;
 }
