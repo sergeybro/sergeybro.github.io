@@ -10,6 +10,9 @@
   font-size: @x;
   line-height: @y;
 }
+.uppercase {
+  text-transform: uppercase;
+}
 
 /*   ======General======   */
 body, h1, h2, h3, h4, h5, h6, p, span, ul,li, a {
@@ -43,7 +46,7 @@ a:hover, a:active {
         a {
           font-size: 13px;
           font-weight: bold;
-          text-transform: uppercase;
+          .uppercase;
           color: white;
           &:hover {
             color: @red;
@@ -238,7 +241,7 @@ a:hover, a:active {
     h3 {
       .font(28px; 28px);
       font-weight: 700;
-      text-transform: uppercase;
+      .uppercase;
       letter-spacing: 2px;
       margin-bottom: 16px;
     }
@@ -252,7 +255,7 @@ a:hover, a:active {
    /* border-collapse: separate;*/
     thead {
       th {
-        text-transform: uppercase;
+        .uppercase;
         .font(13px; 26px);
         font-weight: 700;
         letter-spacing: 1px;
@@ -304,7 +307,7 @@ a:hover, a:active {
     text-align: center;
     .font(28px; 28px);
     color: @dark-grey;
-    text-transform: uppercase;
+    .uppercase;
     font-weight: 700;
     margin-top: 0;
   }
@@ -343,7 +346,7 @@ a:hover, a:active {
       background-color: transparent;
       .font(15px; 26px);
       text-align: center;
-      text-transform: uppercase;
+      .uppercase;
       &:hover {
         color: @red;
       }
@@ -365,7 +368,7 @@ a:hover, a:active {
     h3 {
       .font(28px; 28px);
       font-weight: 700;
-      text-transform: uppercase;
+      .uppercase;
       letter-spacing: 2px;
       margin-bottom: 16px;
       color: @dark-grey;
@@ -431,7 +434,7 @@ a:hover, a:active {
     h3 {
       .font(28px; 28px);
       font-weight: 700;
-      text-transform: uppercase;
+      .uppercase;
       letter-spacing: 2px;
       margin-bottom: 16px;
     }
@@ -442,11 +445,14 @@ a:hover, a:active {
   }
 
   .news-array {
+    /*width: 90%;
+    margin-left: auto;
+    margin-right: auto;*/
+
     img {
       display: inline-block;
       width: 28%;
       float: left;
-      min-width: 130px;
     }
 
     .news-item-text {
@@ -455,16 +461,20 @@ a:hover, a:active {
       width: 67%;
       height: 100px;
       padding-top: 10px;
+      @media (min-width: 768px) and (max-width: 991px) {
+        padding-top: 0;
+      }
 
       p {
         .font(14px; 21px);
-        text-transform: uppercase;
+        .uppercase;
         font-weight: 700;
+        margin-bottom: 0;
       }
       a {
         span {
           font-size: 12px;
-          text-transform: uppercase;
+          .uppercase;
           font-weight: 400;
         }
         &:hover {
@@ -476,10 +486,11 @@ a:hover, a:active {
       & > div {
         border-top: 2px solid rgba(180, 180, 180, 0.25);
         position: relative;
-        bottom: -15px;
+        bottom: -25px;
         padding-top: 3px;
       }
     }
+
   }
   .news-array-first {
     margin-bottom: 50px;
@@ -494,9 +505,9 @@ a:hover, a:active {
     border: 3px solid @red;
     width: 200px;
     text-align: center;
-    font-size: 15px;
+    .font(15px; 12px);
     font-weight: 700;
-    text-transform: uppercase;
+    .uppercase;
     margin-top: 62px;
     &:hover {
       color: @red;
@@ -509,4 +520,11 @@ footer {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: #f1f1f1;
+
+  .row {
+    div {
+      height: 130px;
+      border: 2px solid @red;
+    }
+  }
 }
