@@ -3,6 +3,7 @@
 /*   ======Variables======   */
 @dark-blue: #0B1129;
 @red: #c80e0e;
+@another-red: #b21414;
 @dark-grey: #484848;
 @mostly-dark: #212525;
 @desaturated-blue: #3e4f6a;
@@ -37,6 +38,19 @@ a:hover, a:active {
   text-decoration: none;
 }
 
+h2.page-head {
+  color: @mostly-dark;
+  font-weight: 700;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+section.not-front {
+  margin-top: 50px;
+  padding-bottom: 60px;
+  background-color: white;
+  border-bottom: 3px solid @another-red;
+}
 /*   ======Navigation header======   */
 
 .navbar-wrapper {
@@ -737,16 +751,6 @@ footer {
 /*   ======Services page styles======   */
 
 #services-inside {
-  margin-top: 50px;
-  background-color: white;
-
-  h2 {
-    color: @mostly-dark;
-    font-weight: 700;
-    margin-top: 35px;
-    margin-bottom: 35px;
-  }
-
   .course-card {
     text-align: center;
     border: 1px solid #eeeeee;
@@ -820,13 +824,80 @@ footer {
       }
 
       .course-price {
-        background: #b21414;
+        background: @another-red;
       }
 
       button {
-        background-color:  #b21414;
+        background-color: @another-red;
         color: white;
       }
+    }
+  }
+}
+
+#motopark {
+
+  h2 {
+    @media (max-width: 767px) {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+    }
+  }
+
+  .bike-card {
+    margin-bottom: 30px;
+    border: 1px solid #eaeaea;
+    @media (min-width: 767px) {
+      margin-left: 4%;
+      width: 46%;
+      &:nth-child(2n+1){
+        margin-left: 0;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .bike-description {
+    background-color: @dark-blue;
+  }
+
+  .bike-model {
+    .uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 28px;
+    @media (max-width: 767px) {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+    }
+  }
+
+  .description-text {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    @media (max-width: 767px) {
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      padding-top: 10px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+    }
+
+    span {
+      font-style: italic;
+      .font(14px; 24px);
+      color: #cccccc;
     }
   }
 }
