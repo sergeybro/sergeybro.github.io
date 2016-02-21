@@ -4,6 +4,9 @@
 .uppercase {
   text-transform: uppercase;
 }
+.transition {
+  transition: all .5s;
+}
 /*   ======General======   */
 body,
 h1,
@@ -20,6 +23,11 @@ a {
   font-family: 'Lato', Helvetica, sans-serif;
   color: white;
 }
+h2 {
+  font-size: 32px;
+  line-height: 42px;
+  text-transform: uppercase;
+}
 body {
   background-color: #0B1129;
 }
@@ -30,7 +38,8 @@ a:active {
 /*   ======Navigation header======   */
 .navbar-wrapper .navbar-inverse {
   background: rgba(255, 255, 255, 0.1);
-  border: none;
+  /* border: none;*/
+  border-color: #484848;
 }
 .navbar-wrapper .navbar-inverse #navbar {
   background-color: rgba(0, 0, 0, 0);
@@ -61,6 +70,12 @@ a:active {
 .navbar-wrapper .navbar-inverse #navbar li.active a {
   background-color: transparent;
   color: #c80e0e;
+}
+.navbar-wrapper .navbar-inverse.not-blured {
+  background-color: #0B1129;
+}
+.navbar-wrapper .navbar-inverse.not-blured #navbar.navbar-collapse {
+  background-color: #0B1129;
 }
 .navbar-wrapper .the-navbar {
   background-color: rgba(0, 0, 0, 0);
@@ -425,6 +440,11 @@ a:active {
   text-align: center;
   margin-bottom: 90px;
 }
+@media (max-width: 480px) {
+  #news .news-header {
+    margin-bottom: 60px;
+  }
+}
 #news .news-header h3 {
   font-size: 28px;
   line-height: 28px;
@@ -442,6 +462,9 @@ a:active {
     margin-left: auto;
     margin-right: auto;*/
 }
+#news .news-array .col-sm-6 {
+  margin-bottom: 40px;
+}
 #news .news-array img {
   display: inline-block;
   width: 28%;
@@ -454,7 +477,7 @@ a:active {
   height: 100px;
   padding-top: 10px;
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (max-width: 991px) {
   #news .news-array .news-item-text {
     padding-top: 0;
   }
@@ -465,6 +488,12 @@ a:active {
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 0;
+}
+@media (max-width: 480px) {
+  #news .news-array .news-item-text p {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 #news .news-array .news-item-text a span {
   font-size: 12px;
@@ -665,4 +694,90 @@ footer .logo .logo-footer a::after {
     right: 40px;
     top: 23px;
   }
+}
+/*   ======Services page styles======   */
+#services-inside {
+  margin-top: 50px;
+  background-color: white;
+}
+#services-inside h2 {
+  color: #212525;
+  font-weight: 700;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+#services-inside .course-card {
+  text-align: center;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin-bottom: 47px;
+}
+@media (min-width: 767px) {
+  #services-inside .course-card {
+    margin-left: 3%;
+    width: 22%;
+  }
+  #services-inside .course-card:nth-child(4n+1) {
+    margin-left: 0;
+  }
+}
+#services-inside .course-card h3 {
+  color: #3e4f6a;
+  padding-top: 32px;
+  padding-bottom: 26px;
+  margin: 0;
+  background: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+#services-inside .course-card .course-price {
+  background: linear-gradient(0deg, #364761 0%, #475975 100%);
+  color: white;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 42px;
+}
+#services-inside .course-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 44px;
+}
+#services-inside .course-card ul li {
+  color: #979797;
+  font-size: 15px;
+  line-height: 15px;
+  margin-bottom: 24px;
+}
+#services-inside .course-card ul li .accent {
+  color: #3e4f6a;
+}
+#services-inside .course-card button {
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #3e4f6a;
+  font-weight: 700;
+  border: 2px solid #eeeeee;
+  border-radius: 5px;
+  background-color: white;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  width: 90%;
+  margin-bottom: 15px;
+}
+#services-inside .course-card:hover h3 {
+  background: linear-gradient(0deg, #364761 0%, #475975 100%);
+  color: white;
+}
+#services-inside .course-card:hover .course-price {
+  background: #b21414;
+}
+#services-inside .course-card:hover button {
+  background-color: #b21414;
+  color: white;
 }
