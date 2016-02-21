@@ -4,6 +4,7 @@
 @dark-blue: #0B1129;
 @red: #c80e0e;
 @dark-grey: #484848;
+@mostly-dark: #212525;
 
 /*   ======Mixins======   */
 .font(@x; @y) {
@@ -39,9 +40,11 @@ a:hover, a:active {
       background-color: rgba(0,0,0,0);
       position: relative;
       z-index: 999;
-      &.collapse.in {
+
+      @media (max-width: 767px) {
         background-color: #222222;
       }
+
       li {
         a {
           font-size: 13px;
@@ -50,6 +53,12 @@ a:hover, a:active {
           color: white;
           &:hover {
             color: @red;
+          }
+
+          @media (max-width: 840px) and (min-width: 767px){
+            font-size: 12px;
+            padding-left: 10px;
+            padding-right: 10px;
           }
         }
         &.active {
@@ -520,11 +529,177 @@ footer {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: #f1f1f1;
+  .container {
+    @media (max-width: 991px) {
+      width: 100%;
+    }
 
-  .row {
+    .row {
+      & > div {
+        @media (max-width: 767px) {
+          margin-bottom: 20px;
+          border: none;
+        }
+      }
+    }
+  }
+  .telephones {
+    ul {
+      list-style-type: none;
+
+      li {
+        color: @dark-grey;
+        .font(15px;26px);
+        position: relative;
+        &::before {
+          position: absolute;
+          display: block;
+          content: " ";
+          width: 16px;
+          height: 16px;
+          left: -36px;
+          top: 6px;
+        }
+      }
+
+      .vodafone {
+        &::before {
+          background: url("../img/vodafone_icon.png") center no-repeat;
+        }
+      }
+      .kievstar {
+        &::before {
+          background: url("../img/kyivstar_icon.png") center no-repeat;
+        }
+      }
+      .life {
+        &::before {
+          background: url("../img/life_icon.png") center no-repeat;
+        }
+      }
+    }
+  }
+
+  .address {
     div {
-      height: 130px;
-      border: 2px solid @red;
+      padding-top: 4px;
+      color: @mostly-dark;
+      .font(14px; 20px);
+      span {
+        color: inherit;
+        .font(14px; 20px);
+        font-weight: 700;
+      }
+    }
+    a {
+      color: #0053a4;
+      font-size: 12px;
+      display: inline-block;
+      border-bottom: 1px dashed #0053a4;
+      margin-top: 10px;
+      min-width: 114px;
+    }
+  }
+
+  .navigation {
+    ul {
+      width: 100%;
+      list-style-type: none;
+      @media (max-width: 767px) {
+        padding: 0;
+      }
+
+      li {
+        display: inline-block;
+        width: 49%;
+        .uppercase;
+
+        .font(14px;26px);
+        font-weight: 700;
+        @media (max-width: 767px) {
+          width: 32%;
+          padding-bottom: 6px;
+        }
+        a {
+          color: @mostly-dark;
+          &:hover {
+            color: @red;
+          }
+        }
+      }
+    }
+  }
+
+  .social {
+    text-align: center;
+    & > div {
+      text-align: center;
+      color: @mostly-dark;
+      font-size: 14px;
+      font-weight: 700;
+
+      @media (max-width: 767px) {
+        text-align: left;
+      }
+      .our-groups {
+        padding-bottom: 14px;
+      }
+
+      a {
+        display: inline-block;
+        color: white;
+        background-color: @red;
+        width: 70px;
+        height: 25px;
+        margin-bottom: 14px;
+        text-align: center;
+        span {
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .logo {
+    padding-top: 35px;
+    @media (max-width: 767px) {
+      padding-top: 0;
+    }
+
+    .logo-footer {
+      color: @dark-grey;
+      .font(15px; 25px);
+      display: inline-block;
+      min-width: 108px;
+
+      a {
+        color: @dark-grey;
+        font-size: 15px;
+        font-weight: 900;
+        .uppercase;
+        position: relative;
+        text-decoration: none;
+
+        span{
+          color: @red;
+        }
+
+        &::after {
+          display: block;
+          content: " ";
+          position: absolute;
+          width: 28px;
+          height: 43px;
+          background: url("../img/logo-2.png") left no-repeat;
+          right: -34px;
+          top: -12px;
+          @media (max-width: 991px) and (min-width: 767px){
+            right: 40px;
+            top: 23px;
+          }
+        }
+      }
     }
   }
 }

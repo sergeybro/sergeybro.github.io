@@ -37,8 +37,10 @@ a:active {
   position: relative;
   z-index: 999;
 }
-.navbar-wrapper .navbar-inverse #navbar.collapse.in {
-  background-color: #222222;
+@media (max-width: 767px) {
+  .navbar-wrapper .navbar-inverse #navbar {
+    background-color: #222222;
+  }
 }
 .navbar-wrapper .navbar-inverse #navbar li a {
   font-size: 13px;
@@ -48,6 +50,13 @@ a:active {
 }
 .navbar-wrapper .navbar-inverse #navbar li a:hover {
   color: #c80e0e;
+}
+@media (max-width: 840px) and (min-width: 767px) {
+  .navbar-wrapper .navbar-inverse #navbar li a {
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 .navbar-wrapper .navbar-inverse #navbar li.active a {
   background-color: transparent;
@@ -490,7 +499,162 @@ footer {
   padding-bottom: 30px;
   background-color: #f1f1f1;
 }
-footer .row div {
-  height: 130px;
-  border: 2px solid #c80e0e;
+@media (max-width: 991px) {
+  footer .container {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  footer .container .row > div {
+    margin-bottom: 20px;
+    border: none;
+  }
+}
+footer .telephones ul {
+  list-style-type: none;
+}
+footer .telephones ul li {
+  color: #484848;
+  font-size: 15px;
+  line-height: 26px;
+  position: relative;
+}
+footer .telephones ul li::before {
+  position: absolute;
+  display: block;
+  content: " ";
+  width: 16px;
+  height: 16px;
+  left: -36px;
+  top: 6px;
+}
+footer .telephones ul .vodafone::before {
+  background: url("../img/vodafone_icon.png") center no-repeat;
+}
+footer .telephones ul .kievstar::before {
+  background: url("../img/kyivstar_icon.png") center no-repeat;
+}
+footer .telephones ul .life::before {
+  background: url("../img/life_icon.png") center no-repeat;
+}
+footer .address div {
+  padding-top: 4px;
+  color: #212525;
+  font-size: 14px;
+  line-height: 20px;
+}
+footer .address div span {
+  color: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+}
+footer .address a {
+  color: #0053a4;
+  font-size: 12px;
+  display: inline-block;
+  border-bottom: 1px dashed #0053a4;
+  margin-top: 10px;
+  min-width: 114px;
+}
+footer .navigation ul {
+  width: 100%;
+  list-style-type: none;
+}
+@media (max-width: 767px) {
+  footer .navigation ul {
+    padding: 0;
+  }
+}
+footer .navigation ul li {
+  display: inline-block;
+  width: 49%;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  footer .navigation ul li {
+    width: 32%;
+    padding-bottom: 6px;
+  }
+}
+footer .navigation ul li a {
+  color: #212525;
+}
+footer .navigation ul li a:hover {
+  color: #c80e0e;
+}
+footer .social {
+  text-align: center;
+}
+footer .social > div {
+  text-align: center;
+  color: #212525;
+  font-size: 14px;
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  footer .social > div {
+    text-align: left;
+  }
+}
+footer .social > div .our-groups {
+  padding-bottom: 14px;
+}
+footer .social > div a {
+  display: inline-block;
+  color: white;
+  background-color: #c80e0e;
+  width: 70px;
+  height: 25px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+footer .social > div a span {
+  font-size: 13px;
+  font-weight: 400;
+}
+footer .logo {
+  padding-top: 35px;
+}
+@media (max-width: 767px) {
+  footer .logo {
+    padding-top: 0;
+  }
+}
+footer .logo .logo-footer {
+  color: #484848;
+  font-size: 15px;
+  line-height: 25px;
+  display: inline-block;
+  min-width: 108px;
+}
+footer .logo .logo-footer a {
+  color: #484848;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  position: relative;
+  text-decoration: none;
+}
+footer .logo .logo-footer a span {
+  color: #c80e0e;
+}
+footer .logo .logo-footer a::after {
+  display: block;
+  content: " ";
+  position: absolute;
+  width: 28px;
+  height: 43px;
+  background: url("../img/logo-2.png") left no-repeat;
+  right: -34px;
+  top: -12px;
+}
+@media (max-width: 991px) and (min-width: 767px) {
+  footer .logo .logo-footer a::after {
+    right: 40px;
+    top: 23px;
+  }
 }
