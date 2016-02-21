@@ -376,6 +376,14 @@ a:active {
   padding-right: 35px;
   padding-left: 35px;
 }
+@media (max-width: 767px) {
+  #our-team .col-sm-4 {
+    margin-top: 40px;
+  }
+  #our-team .col-sm-4:first-child {
+    margin-top: 0;
+  }
+}
 #our-team .col-sm-4 img {
   display: inline-block;
   width: 132px;

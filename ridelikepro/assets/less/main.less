@@ -395,7 +395,12 @@ a:hover, a:active {
     text-align: center;
     padding-right: 35px;
     padding-left: 35px;
-
+    @media (max-width: 767px) {
+      margin-top: 40px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
     img {
       display: inline-block;
       width: 132px;
