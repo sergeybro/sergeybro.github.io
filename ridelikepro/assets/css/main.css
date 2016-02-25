@@ -783,6 +783,7 @@ footer .logo .logo-footer a::after {
   background-color: #b21414;
   color: white;
 }
+/*   ======Motopark page styles======   */
 @media (max-width: 767px) {
   #motopark h2 {
     width: 90%;
@@ -846,4 +847,82 @@ footer .logo .logo-footer a::after {
   font-size: 14px;
   line-height: 24px;
   color: #cccccc;
+}
+/*   ======Gallery page styles======   */
+#gallery .gallery-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+#gallery .gallery-item:hover .gallery-item-text-left,
+#gallery .gallery-item:hover .gallery-item-text-right {
+  opacity: 0;
+}
+#gallery .gallery-item:hover .red-hover {
+  opacity: 0.8;
+}
+#gallery .gallery-item .red-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(220, 77, 81, 0.88);
+  opacity: 0;
+  z-index: 99;
+  margin-left: 15px;
+  margin-right: 15px;
+  transition: all .7s;
+}
+#gallery .gallery-item .red-hover .loupe {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("../img/white_loupe.svg") center no-repeat;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+#gallery .gallery-item img {
+  width: 100%;
+  height: auto;
+}
+#gallery .gallery-item .gallery-item-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media (min-width: 991px) {
+  #gallery .gallery-item .gallery-item-text {
+    max-width: 555px;
+  }
+}
+#gallery .gallery-item .gallery-item-text .gallery-item-text-left {
+  float: left;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+  transition: all .7s;
+}
+#gallery .gallery-item .gallery-item-text .gallery-item-text-right {
+  float: right;
+  padding-right: 30px;
+  padding-top: 3px;
+  padding-left: 20px;
+  border-left: 2px solid white;
+  padding-bottom: 3px;
+  margin-top: 14px;
+  font-size: 15px;
+  transition: all .7s;
+}
+@media (max-width: 1199px) {
+  #gallery .gallery-item .gallery-item-text .gallery-item-text-right {
+    padding-right: 50px;
+  }
 }
