@@ -22,9 +22,16 @@
 }
 
 /*   ======General======   */
-body, h1, h2, h3, h4, h5, h6, p, span, ul,li, a {
+body, h1, h2, h3, h4, h5, h6, p, span, ul, li, a {
   font-family: 'Lato', Helvetica, sans-serif;
   color: white;
+}
+
+.not-front {
+  h1, h2, h3, h4, h5, h6, p, span, ul, li, a {
+    font-family: 'Lato', Helvetica, sans-serif;
+    color: black;
+  }
 }
 h2 {
   .font(32px; 42px);
@@ -50,6 +57,7 @@ section.not-front {
   padding-bottom: 60px;
   background-color: white;
   border-bottom: 3px solid @another-red;
+  color: black;
 }
 /*   ======Navigation header======   */
 
@@ -138,10 +146,13 @@ section.not-front {
 /*   ======Bike section======   */
 
 #bike {
-  background: url('../img/proride_image.jpg') center center no-repeat;
+  background: url('../img/main_back.jpg') center center no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 670px;
   position: relative;
+  @media (min-width: 1023px) {
+    height: 100vh;
+  }
   .in-center {
     position: relative;
     top: 50%;
@@ -153,6 +164,42 @@ section.not-front {
       .lead {
         .font(18px; 26px);
       }
+
+      @media (max-width: 600px) {
+        h1 {
+          .font(24px; 36px)
+        }
+        .lead {
+          .font(15px; 24px)
+        }
+      }
+    }
+    @media (max-width: 600px) {
+      top: 36%;
+
+      .main-button {
+        bottom: -70px;
+        transform: translateX(-50%);
+        left: 50%;
+      }
+    }
+  }
+
+  .main-button {
+    display: block;
+    position: absolute;
+    width: 194px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    .uppercase;
+    .font(15px; 12px);
+    font-weight: 700;
+    text-align: center;
+    border: 3px solid @red;
+    bottom: 100px;
+    right: 0;
+    &:hover {
+      color: white;
     }
   }
   .contacts {
@@ -200,6 +247,10 @@ section.not-front {
     background-image: url("../img/arrow.png"), url("../img/red-traingle.png");
     background-position: center 10px, center;
     background-repeat: no-repeat;
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
   }
 
   .sticky-social {
@@ -370,6 +421,10 @@ section.not-front {
     text-align: left;
     .font(36px; 38px);
     font-weight: 700;
+
+    @media (max-width: 600px) {
+      .font(24px; 38px);
+    }
     span {
       color: @red;
     }
@@ -421,7 +476,7 @@ section.not-front {
     width: 90%;
     margin: auto;
   }
-  .col-sm-4 {
+  .our-team-person {
     text-align: center;
     padding-right: 35px;
     padding-left: 35px;
@@ -766,6 +821,10 @@ footer {
         margin-left: 0;
       }
     }
+    @media (max-width: 766px) {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
 
     h3 {
       color: @desaturated-blue;
@@ -986,4 +1045,29 @@ footer {
       }
     }
   }
+}
+
+.news-page h3 {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.news-page h3:hover {
+  color: #f00;
+}
+
+.news-page .news-anounce p {
+  color: black;
+}
+
+.news-page .more-link {
+  display: block;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: bold;
+  font-size: 16px;
+}
+.news-page .more-link:hover {
+  color: #f00;
 }

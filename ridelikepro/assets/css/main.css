@@ -23,6 +23,20 @@ a {
   font-family: 'Lato', Helvetica, sans-serif;
   color: white;
 }
+.not-front h1,
+.not-front h2,
+.not-front h3,
+.not-front h4,
+.not-front h5,
+.not-front h6,
+.not-front p,
+.not-front span,
+.not-front ul,
+.not-front li,
+.not-front a {
+  font-family: 'Lato', Helvetica, sans-serif;
+  color: black;
+}
 h2 {
   font-size: 32px;
   line-height: 42px;
@@ -46,6 +60,7 @@ section.not-front {
   padding-bottom: 60px;
   background-color: white;
   border-bottom: 3px solid #b21414;
+  color: black;
 }
 /*   ======Navigation header======   */
 .navbar-wrapper .navbar-inverse {
@@ -120,10 +135,15 @@ section.not-front {
 }
 /*   ======Bike section======   */
 #bike {
-  background: url('../img/proride_image.jpg') center center no-repeat;
+  background: url('../img/main_back.jpg') center center no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 670px;
   position: relative;
+}
+@media (min-width: 1023px) {
+  #bike {
+    height: 100vh;
+  }
 }
 #bike .in-center {
   position: relative;
@@ -139,6 +159,46 @@ section.not-front {
 #bike .in-center .bike-text .lead {
   font-size: 18px;
   line-height: 26px;
+}
+@media (max-width: 600px) {
+  #bike .in-center .bike-text h1 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  #bike .in-center .bike-text .lead {
+    font-size: 15px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 600px) {
+  #bike .in-center {
+    top: 36%;
+  }
+  #bike .in-center .main-button {
+    bottom: -70px;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    left: 50%;
+  }
+}
+#bike .main-button {
+  display: block;
+  position: absolute;
+  width: 194px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 12px;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid #c80e0e;
+  bottom: 100px;
+  right: 0;
+}
+#bike .main-button:hover {
+  color: white;
 }
 #bike .contacts {
   position: absolute;
@@ -185,6 +245,11 @@ section.not-front {
   background-image: url("../img/arrow.png"), url("../img/red-traingle.png");
   background-position: center 10px, center;
   background-repeat: no-repeat;
+}
+@media (max-width: 1023px) {
+  #bike .down-button {
+    display: none;
+  }
 }
 #bike .sticky-social {
   position: absolute;
@@ -347,6 +412,12 @@ section.not-front {
   line-height: 38px;
   font-weight: 700;
 }
+@media (max-width: 600px) {
+  #sign-in h2 {
+    font-size: 24px;
+    line-height: 38px;
+  }
+}
 #sign-in h2 span {
   color: #c80e0e;
 }
@@ -398,26 +469,26 @@ section.not-front {
   width: 90%;
   margin: auto;
 }
-#our-team .col-sm-4 {
+#our-team .our-team-person {
   text-align: center;
   padding-right: 35px;
   padding-left: 35px;
 }
 @media (max-width: 767px) {
-  #our-team .col-sm-4 {
+  #our-team .our-team-person {
     margin-top: 40px;
   }
-  #our-team .col-sm-4:first-child {
+  #our-team .our-team-person:first-child {
     margin-top: 0;
   }
 }
-#our-team .col-sm-4 img {
+#our-team .our-team-person img {
   display: inline-block;
   width: 132px;
   height: 132px;
   border-radius: 50%;
 }
-#our-team .col-sm-4 .name {
+#our-team .our-team-person .name {
   color: #202525;
   font-size: 18px;
   line-height: 20px;
@@ -426,7 +497,7 @@ section.not-front {
   padding-bottom: 10px;
   border-bottom: 2px solid #c80e0e;
 }
-#our-team .col-sm-4 .name span {
+#our-team .our-team-person .name span {
   color: #202525;
   font-size: 14px;
   line-height: 20px;
@@ -435,7 +506,7 @@ section.not-front {
   margin-top: 4px;
   font-weight: 400;
 }
-#our-team .col-sm-4 .name-text {
+#our-team .our-team-person .name-text {
   color: #484848;
   font-size: 16px;
   line-height: 22px;
@@ -725,6 +796,12 @@ footer .logo .logo-footer a::after {
     margin-left: 0;
   }
 }
+@media (max-width: 766px) {
+  #services-inside .course-card {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
 #services-inside .course-card h3 {
   color: #3e4f6a;
   padding-top: 32px;
@@ -925,4 +1002,25 @@ footer .logo .logo-footer a::after {
   #gallery .gallery-item .gallery-item-text .gallery-item-text-right {
     padding-right: 50px;
   }
+}
+.news-page h3 {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+.news-page h3:hover {
+  color: #f00;
+}
+.news-page .news-anounce p {
+  color: black;
+}
+.news-page .more-link {
+  display: block;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: bold;
+  font-size: 16px;
+}
+.news-page .more-link:hover {
+  color: #f00;
 }
