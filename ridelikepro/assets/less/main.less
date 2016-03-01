@@ -18,7 +18,7 @@
   text-transform: uppercase;
 }
 .transition {
-  transition: all .5s;
+  transition: all .4s;
 }
 
 /*   ======General======   */
@@ -30,7 +30,7 @@ body, h1, h2, h3, h4, h5, h6, p, span, ul, li, a {
 .not-front {
   h1, h2, h3, h4, h5, h6, p, span, ul, li, a {
     font-family: 'Lato', Helvetica, sans-serif;
-    color: black;
+    color: @mostly-dark;
   }
 }
 h2 {
@@ -39,6 +39,10 @@ h2 {
 }
 body {
   background-color: @dark-blue;
+}
+
+p {
+  margin-bottom: 0;
 }
 
 a:hover, a:active {
@@ -83,6 +87,7 @@ section.not-front {
           font-weight: bold;
           .uppercase;
           color: white;
+          .transition;
           &:hover {
             color: @red;
           }
@@ -198,8 +203,14 @@ section.not-front {
     border: 3px solid @red;
     bottom: 100px;
     right: 0;
+    .transition;
     &:hover {
       color: white;
+      background-color: @red;
+    }
+
+    @media (max-width: 770px) {
+      margin-right: 20px;
     }
   }
   .contacts {
@@ -373,6 +384,9 @@ section.not-front {
           border-bottom: 1px solid rgba(212, 212, 212, 0.2);
           border-top: 1px solid rgba(212, 212, 212, 0.2);
 
+          a {
+            .transition;
+          }
           a:hover {
             color: @red;
           }
@@ -419,7 +433,7 @@ section.not-front {
 
   h2 {
     text-align: left;
-    .font(36px; 38px);
+    .font(36px; 44px);
     font-weight: 700;
 
     @media (max-width: 600px) {
@@ -432,17 +446,19 @@ section.not-front {
   .button {
     text-align: center;
     padding-top: 16px;
-    button {
+    a {
       display: inline-block;
       width: 200px;
-      height: 46px;
+
       border: 3px solid @red;
       background-color: transparent;
-      .font(15px; 26px);
+      .font(15px; 42px);
       text-align: center;
       .uppercase;
+      .transition;
       &:hover {
-        color: @red;
+        color: white;
+        background-color: @red;
       }
     }
   }
@@ -584,6 +600,7 @@ section.not-front {
           font-size: 12px;
           .uppercase;
           font-weight: 400;
+          .transition;
         }
         &:hover {
           span {
@@ -617,8 +634,11 @@ section.not-front {
     font-weight: 700;
     .uppercase;
     margin-top: 62px;
+    .transition;
     &:hover {
       color: @red;
+      background-color: white;
+      border-color: white;
     }
   }
 }
@@ -721,6 +741,7 @@ footer {
         }
         a {
           color: @mostly-dark;
+          .transition;
           &:hover {
             color: @red;
           }
@@ -910,6 +931,8 @@ footer {
   .bike-card {
     margin-bottom: 30px;
     border: 1px solid #eaeaea;
+    padding-left: 0;
+    padding-right: 0;
     @media (min-width: 767px) {
       margin-left: 4%;
       width: 46%;
@@ -926,13 +949,16 @@ footer {
 
   .bike-description {
     background-color: @dark-blue;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .bike-model {
     .uppercase;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     padding-top: 28px;
+    color: white;
     @media (max-width: 767px) {
       width: 90%;
       margin-left: auto;
@@ -957,7 +983,7 @@ footer {
 
     span {
       font-style: italic;
-      .font(14px; 24px);
+      .font(13px; 22px);
       color: #cccccc;
     }
   }
@@ -969,7 +995,10 @@ footer {
   .gallery-item {
     position: relative;
     margin-bottom: 30px;
-
+    .gallery-item-text-left,
+    .gallery-item-text-right{
+      color: white;
+    }
     &:hover {
       .gallery-item-text-left,
       .gallery-item-text-right {
@@ -1048,7 +1077,7 @@ footer {
 }
 
 .news-page h3 {
-  color: black;
+  color: @mostly-dark;
   font-size: 18px;
   font-weight: bold;
 }
@@ -1058,7 +1087,7 @@ footer {
 }
 
 .news-page .news-anounce p {
-  color: black;
+  color: @mostly-dark;
 }
 
 .news-page .more-link {

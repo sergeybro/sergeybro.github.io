@@ -5,7 +5,7 @@
   text-transform: uppercase;
 }
 .transition {
-  transition: all .5s;
+  transition: all .4s;
 }
 /*   ======General======   */
 body,
@@ -35,7 +35,7 @@ a {
 .not-front li,
 .not-front a {
   font-family: 'Lato', Helvetica, sans-serif;
-  color: black;
+  color: #212525;
 }
 h2 {
   font-size: 32px;
@@ -44,6 +44,9 @@ h2 {
 }
 body {
   background-color: #0B1129;
+}
+p {
+  margin-bottom: 0;
 }
 a:hover,
 a:active {
@@ -83,6 +86,7 @@ section.not-front {
   font-weight: bold;
   text-transform: uppercase;
   color: white;
+  transition: all .4s;
 }
 .navbar-wrapper .navbar-inverse #navbar li a:hover {
   color: #c80e0e;
@@ -196,9 +200,16 @@ section.not-front {
   border: 3px solid #c80e0e;
   bottom: 100px;
   right: 0;
+  transition: all .4s;
 }
 #bike .main-button:hover {
   color: white;
+  background-color: #c80e0e;
+}
+@media (max-width: 770px) {
+  #bike .main-button {
+    margin-right: 20px;
+  }
 }
 #bike .contacts {
   position: absolute;
@@ -371,6 +382,9 @@ section.not-front {
   border-bottom: 1px solid rgba(212, 212, 212, 0.2);
   border-top: 1px solid rgba(212, 212, 212, 0.2);
 }
+#services table.table.services-table tbody tr td a {
+  transition: all .4s;
+}
 #services table.table.services-table tbody tr td a:hover {
   color: #c80e0e;
 }
@@ -409,7 +423,7 @@ section.not-front {
 #sign-in h2 {
   text-align: left;
   font-size: 36px;
-  line-height: 38px;
+  line-height: 44px;
   font-weight: 700;
 }
 @media (max-width: 600px) {
@@ -425,19 +439,20 @@ section.not-front {
   text-align: center;
   padding-top: 16px;
 }
-#sign-in .button button {
+#sign-in .button a {
   display: inline-block;
   width: 200px;
-  height: 46px;
   border: 3px solid #c80e0e;
   background-color: transparent;
   font-size: 15px;
-  line-height: 26px;
+  line-height: 42px;
   text-align: center;
   text-transform: uppercase;
+  transition: all .4s;
 }
-#sign-in .button button:hover {
-  color: #c80e0e;
+#sign-in .button a:hover {
+  color: white;
+  background-color: #c80e0e;
 }
 /*   ======our-team section======   */
 #our-team {
@@ -582,6 +597,7 @@ section.not-front {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 400;
+  transition: all .4s;
 }
 #news .news-array .news-item-text a:hover span {
   color: #c80e0e;
@@ -609,9 +625,12 @@ section.not-front {
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 62px;
+  transition: all .4s;
 }
 #news .all-news-button:hover {
   color: #c80e0e;
+  background-color: white;
+  border-color: white;
 }
 /*   ====== footer ======   */
 footer {
@@ -702,6 +721,7 @@ footer .navigation ul li {
 }
 footer .navigation ul li a {
   color: #212525;
+  transition: all .4s;
 }
 footer .navigation ul li a:hover {
   color: #c80e0e;
@@ -872,6 +892,8 @@ footer .logo .logo-footer a::after {
 #motopark .bike-card {
   margin-bottom: 30px;
   border: 1px solid #eaeaea;
+  padding-left: 0;
+  padding-right: 0;
 }
 @media (min-width: 767px) {
   #motopark .bike-card {
@@ -888,12 +910,15 @@ footer .logo .logo-footer a::after {
 }
 #motopark .bike-description {
   background-color: #0B1129;
+  margin-left: 0;
+  margin-right: 0;
 }
 #motopark .bike-model {
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   padding-top: 28px;
+  color: white;
 }
 @media (max-width: 767px) {
   #motopark .bike-model {
@@ -921,14 +946,18 @@ footer .logo .logo-footer a::after {
 }
 #motopark .description-text span {
   font-style: italic;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 13px;
+  line-height: 22px;
   color: #cccccc;
 }
 /*   ======Gallery page styles======   */
 #gallery .gallery-item {
   position: relative;
   margin-bottom: 30px;
+}
+#gallery .gallery-item .gallery-item-text-left,
+#gallery .gallery-item .gallery-item-text-right {
+  color: white;
 }
 #gallery .gallery-item:hover .gallery-item-text-left,
 #gallery .gallery-item:hover .gallery-item-text-right {
@@ -1004,7 +1033,7 @@ footer .logo .logo-footer a::after {
   }
 }
 .news-page h3 {
-  color: black;
+  color: #212525;
   font-size: 18px;
   font-weight: bold;
 }
@@ -1012,7 +1041,7 @@ footer .logo .logo-footer a::after {
   color: #f00;
 }
 .news-page .news-anounce p {
-  color: black;
+  color: #212525;
 }
 .news-page .more-link {
   display: block;
