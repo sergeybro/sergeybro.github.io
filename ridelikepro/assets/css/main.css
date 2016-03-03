@@ -891,18 +891,16 @@ footer .logo .logo-footer a::after {
 }
 #motopark .bike-card {
   margin-bottom: 30px;
-  border: 1px solid #eaeaea;
-  padding-left: 0;
-  padding-right: 0;
-}
-@media (min-width: 767px) {
-  #motopark .bike-card {
-    margin-left: 4%;
-    width: 46%;
-  }
-  #motopark .bike-card:nth-child(2n+1) {
-    margin-left: 0;
-  }
+  /*border: 1px solid #eaeaea;*/
+  /*padding-left: 0;
+    padding-right: 0;*/
+  /*@media (min-width: 767px) {
+      margin-left: 4%;
+      width: 46%;
+      &:nth-child(2n+1){
+        margin-left: 0;
+      }
+    }*/
 }
 #motopark .bike-card img {
   width: 100%;
@@ -978,6 +976,7 @@ footer .logo .logo-footer a::after {
   margin-left: 15px;
   margin-right: 15px;
   transition: all .7s;
+  cursor: pointer;
 }
 #gallery .gallery-item .red-hover .loupe {
   display: inline-block;
@@ -1032,7 +1031,102 @@ footer .logo .logo-footer a::after {
     padding-right: 50px;
   }
 }
-/*   ======Sloder styling======   */
+/*   ======News inside page styles======   */
+.page-news-inside h2.page-head {
+  margin-bottom: 14px;
+}
+.page-news-inside .news-content img {
+  display: block;
+  margin-bottom: 28px;
+  width: 100%;
+}
+.page-news-inside .news-content p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #484848;
+}
+.page-news-inside .news-inside-text {
+  margin-bottom: 36px;
+}
+.temporary-breadcrumbs {
+  color: #9e9f9f;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+.moto-sidebar h3 {
+  margin-top: 35px;
+  color: #484848;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 0;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #d9dee1;
+}
+.moto-sidebar .sidebar-item {
+  margin-top: 24px;
+  margin-bottom: 26px;
+  overflow: hidden;
+  position: relative;
+}
+.moto-sidebar .sidebar-item:hover .sidebar-item-header,
+.moto-sidebar .sidebar-item:hover .sidebar-item-more {
+  color: #a30a0a;
+}
+.moto-sidebar .sidebar-item .sidebar-item-header {
+  color: #212525;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom: 10px;
+  transition: all .4s;
+}
+.moto-sidebar .sidebar-item .sidebar-item-body {
+  color: #484848;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+.moto-sidebar .sidebar-item .sidebar-item-more {
+  text-transform: uppercase;
+  color: #adb8bf;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  position: relative;
+  transition: all .4s;
+}
+.moto-sidebar .sidebar-item .sidebar-item-more::after {
+  position: absolute;
+  width: 100%;
+  content: " ";
+  display: block;
+  background-color: #b4bbc0;
+  height: 1px;
+  left: 84px;
+  top: 9px;
+}
+.moto-sidebar .sidebar-item a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.disqus-temp {
+  font-size: 32px;
+  line-height: 42px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #484848;
+}
+/*   ======Slider styling======   */
 .bx-wrapper {
   max-width: 1000px !important;
   width: 90%;
@@ -1050,31 +1144,32 @@ footer .logo .logo-footer a::after {
 .cbp-qtcontent blockquote img {
   margin: auto !important;
   float: none !important;
+  border-radius: 50% !important;
 }
 .cbp-qtcontent blockquote p {
   width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 36px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 36px !important;
   font-size: 18px;
   line-height: 22px;
   font-style: italic;
 }
 .cbp-qtcontent blockquote footer {
   background-color: white;
-  text-align: center;
+  text-align: center !important;
 }
 .cbp-qtcontent blockquote footer::before {
   display: none !important;
 }
 .cbp-qtcontent blockquote footer a {
-  color: #484848;
+  color: #484848 !important;
   font-style: italic;
 }
 .cbp-qtcontent blockquote footer a:hover {
   color: #484848;
 }
-/*=============================*/
+/*==============KolobX styles===============*/
 .news-page h3 {
   color: #212525;
   font-size: 18px;

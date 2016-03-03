@@ -930,16 +930,16 @@ footer {
 
   .bike-card {
     margin-bottom: 30px;
-    border: 1px solid #eaeaea;
-    padding-left: 0;
-    padding-right: 0;
-    @media (min-width: 767px) {
+    /*border: 1px solid #eaeaea;*/
+    /*padding-left: 0;
+    padding-right: 0;*/
+    /*@media (min-width: 767px) {
       margin-left: 4%;
       width: 46%;
       &:nth-child(2n+1){
         margin-left: 0;
       }
-    }
+    }*/
 
     img {
       width: 100%;
@@ -1021,6 +1021,7 @@ footer {
       margin-left: 15px;
       margin-right: 15px;
       transition: all .7s;
+      cursor: pointer;
 
       .loupe {
         display: inline-block;
@@ -1075,7 +1076,119 @@ footer {
     }
   }
 }
-/*   ======Sloder styling======   */
+
+/*   ======News inside page styles======   */
+
+.page-news-inside {
+  h2.page-head {
+    margin-bottom: 14px;
+  }
+  .news-content {
+    img {
+      display: block;
+      margin-bottom: 28px;
+      width: 100%;
+    }
+    p {
+      margin-bottom: 10px;
+      .font(14px; 22px);
+      color: @dark-grey;
+    }
+  }
+  .news-inside-text {
+    margin-bottom: 36px;
+  }
+}
+.temporary-breadcrumbs {
+  color: #9e9f9f;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.moto-sidebar {
+  h3 {
+    margin-top: 35px;
+    color: @dark-grey;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 0;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #d9dee1;
+  }
+
+  .sidebar-item {
+    margin-top: 24px;
+    margin-bottom: 26px;
+    overflow: hidden;
+    position: relative;
+    &:hover {
+      .sidebar-item-header,
+      .sidebar-item-more {
+        color:  #a30a0a;
+      }
+    }
+
+    .sidebar-item-header {
+      color: @mostly-dark;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 22px;
+      margin-bottom: 10px;
+      .transition;
+    }
+
+    .sidebar-item-body {
+      color: @dark-grey;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-item-more {
+      .uppercase;
+      color: #adb8bf;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 18px;
+      position: relative;
+      .transition;
+      &::after {
+        position: absolute;
+        width: 100%;
+        content: " ";
+        display: block;
+        background-color: #b4bbc0;
+        height: 1px;
+        left: 84px;
+        top: 9px;
+      }
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 99;
+    }
+  }
+}
+
+.disqus-temp {
+  .font(32px; 42px);
+  font-weight: 700;
+  .uppercase;
+  color: @dark-grey;
+}
+
+/*   ======Slider styling======   */
+
 .bx-wrapper {
   max-width: 1000px !important;
   width: 90%;
@@ -1097,26 +1210,27 @@ footer {
 .cbp-qtcontent blockquote img {
   margin: auto !important;
   float: none !important;
+  border-radius: 50% !important;
 }
 .cbp-qtcontent blockquote p {
   width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 36px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 36px !important;
   .font(18px; 22px);
   font-style: italic;
 }
 
 .cbp-qtcontent blockquote footer {
   background-color: white;
-  text-align: center;
+  text-align: center !important;
   &::before {
     display: none !important;
   }
 }
 
 .cbp-qtcontent blockquote footer a {
-  color: @dark-grey;
+  color: @dark-grey !important;
   font-style: italic;
   &:hover {
     color: @dark-grey;
@@ -1125,7 +1239,7 @@ footer {
 
 
 
-/*=============================*/
+/*==============KolobX styles===============*/
 
 .news-page h3 {
   color: @mostly-dark;
