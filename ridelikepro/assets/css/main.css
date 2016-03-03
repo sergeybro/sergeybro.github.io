@@ -1032,6 +1032,49 @@ footer .logo .logo-footer a::after {
     padding-right: 50px;
   }
 }
+/*   ======Sloder styling======   */
+.bx-wrapper {
+  max-width: 1000px !important;
+  width: 90%;
+  margin-top: 90px;
+}
+.bx-viewport {
+  min-height: 325px !important;
+}
+.bx-wrapper blockquote {
+  border: none;
+}
+.cbp-qtcontent {
+  text-align: center;
+}
+.cbp-qtcontent blockquote img {
+  margin: auto !important;
+  float: none !important;
+}
+.cbp-qtcontent blockquote p {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 36px;
+  font-size: 18px;
+  line-height: 22px;
+  font-style: italic;
+}
+.cbp-qtcontent blockquote footer {
+  background-color: white;
+  text-align: center;
+}
+.cbp-qtcontent blockquote footer::before {
+  display: none !important;
+}
+.cbp-qtcontent blockquote footer a {
+  color: #484848;
+  font-style: italic;
+}
+.cbp-qtcontent blockquote footer a:hover {
+  color: #484848;
+}
+/*=============================*/
 .news-page h3 {
   color: #212525;
   font-size: 18px;
