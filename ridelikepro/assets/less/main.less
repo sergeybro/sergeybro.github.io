@@ -250,6 +250,7 @@ section.not-front {
 
   .down-button {
     position: absolute;
+    display: block;
     width: 48px;
     height: 23px;
     bottom: 0;
@@ -1237,9 +1238,94 @@ footer {
   }
 }
 
+/*   ======News aggregator page styles======   */
 
+.page-news {
+  .news-item {
+    overflow: hidden;
+    position: relative;
+    &:hover {
+      .news-item-header,
+      .news-item-more {
+        color:  #a30a0a;
+      }
+      .red-cover-link {
+        .red-hover {
+          opacity: 0.8;
+        }
+      }
+    }
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 99;
+    }
+
+    .red-cover-link {
+      position: relative;
+      margin-bottom: 10px;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .red-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(220, 77, 81, 0.88);
+        opacity: 0;
+        z-index: 99;
+        transition: all .7s;
+      }
+    }
+
+    .news-item-header {
+      .uppercase;
+      color: @mostly-dark;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 22px;
+      margin-bottom: 10px;
+      .transition;
+    }
+    .news-item-body {
+      color: @dark-grey;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+    .news-item-more {
+      .uppercase;
+      color: #adb8bf;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 18px;
+      position: relative;
+      .transition;
+      &::after {
+        position: absolute;
+        width: 100%;
+        content: " ";
+        display: block;
+        background-color: #b4bbc0;
+        height: 1px;
+        left: 84px;
+        top: 9px;
+      }
+    }
+  }
+}
 
 /*==============KolobX styles===============*/
+/*
 
 .news-page h3 {
   color: @mostly-dark;
@@ -1265,3 +1351,4 @@ footer {
 .news-page .more-link:hover {
   color: #f00;
 }
+*/

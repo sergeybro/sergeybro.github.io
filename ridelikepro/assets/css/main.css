@@ -246,6 +246,7 @@ section.not-front {
 }
 #bike .down-button {
   position: absolute;
+  display: block;
   width: 48px;
   height: 23px;
   bottom: 0;
@@ -1169,18 +1170,97 @@ footer .logo .logo-footer a::after {
 .cbp-qtcontent blockquote footer a:hover {
   color: #484848;
 }
-/*==============KolobX styles===============*/
-.news-page h3 {
+/*   ======News aggregator page styles======   */
+.page-news .news-item {
+  overflow: hidden;
+  position: relative;
+}
+.page-news .news-item:hover .news-item-header,
+.page-news .news-item:hover .news-item-more {
+  color: #a30a0a;
+}
+.page-news .news-item:hover .red-cover-link .red-hover {
+  opacity: 0.8;
+}
+.page-news .news-item a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.page-news .news-item .red-cover-link {
+  position: relative;
+  margin-bottom: 10px;
+}
+.page-news .news-item .red-cover-link img {
+  display: block;
+  width: 100%;
+}
+.page-news .news-item .red-cover-link .red-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(220, 77, 81, 0.88);
+  opacity: 0;
+  z-index: 99;
+  transition: all .7s;
+}
+.page-news .news-item .news-item-header {
+  text-transform: uppercase;
   color: #212525;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom: 10px;
+  transition: all .4s;
+}
+.page-news .news-item .news-item-body {
+  color: #484848;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+.page-news .news-item .news-item-more {
+  text-transform: uppercase;
+  color: #adb8bf;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  position: relative;
+  transition: all .4s;
+}
+.page-news .news-item .news-item-more::after {
+  position: absolute;
+  width: 100%;
+  content: " ";
+  display: block;
+  background-color: #b4bbc0;
+  height: 1px;
+  left: 84px;
+  top: 9px;
+}
+/*==============KolobX styles===============*/
+/*
+
+.news-page h3 {
+  color: @mostly-dark;
   font-size: 18px;
   font-weight: bold;
 }
+
 .news-page h3:hover {
   color: #f00;
 }
+
 .news-page .news-anounce p {
-  color: #212525;
+  color: @mostly-dark;
 }
+
 .news-page .more-link {
   display: block;
   text-transform: uppercase;
@@ -1191,3 +1271,4 @@ footer .logo .logo-footer a::after {
 .news-page .more-link:hover {
   color: #f00;
 }
+*/

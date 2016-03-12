@@ -9,6 +9,8 @@
             $(this).find($('img')).prependTo($(this).find('.cbp-qtcontent blockquote'))
         });
 
+        $('a.down-button').smoothScroll({speed: 800});
+
     });
 
 })(jQuery);
