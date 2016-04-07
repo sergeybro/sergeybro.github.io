@@ -69,7 +69,7 @@ section.not-front {
 
   .navbar-inverse {
     background:rgba(255, 255, 255, 0.1);
-   /* border: none;*/
+    /* border: none;*/
     border-color: @dark-grey;
 
     #navbar {
@@ -354,7 +354,7 @@ section.not-front {
 
   table.table.services-table {
     border-color: rgba(212, 212, 212, 0.2);
-   /* border-collapse: separate;*/
+    /* border-collapse: separate;*/
     thead {
       th {
         .uppercase;
@@ -1212,6 +1212,7 @@ footer {
   margin: auto !important;
   float: none !important;
   border-radius: 50% !important;
+  max-width: none !important;
 }
 .cbp-qtcontent blockquote p {
   width: 70%;
@@ -1244,6 +1245,7 @@ footer {
   .news-item {
     overflow: hidden;
     position: relative;
+    padding-bottom: 40px;
     &:hover {
       .news-item-header,
       .news-item-more {
@@ -1322,33 +1324,52 @@ footer {
       }
     }
   }
-}
 
-/*==============KolobX styles===============*/
-/*
-
-.news-page h3 {
-  color: @mostly-dark;
-  font-size: 18px;
-  font-weight: bold;
+  .row:nth-child(2) {
+    text-align: center;
+  }
+  .navigation.pagination {
+    h2 {
+      display: none;
+    }
+    .nav-links {
+      a, span {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #adb8bf;
+        font-size: 18px;
+      }
+      .current {
+        color: @another-red;
+      }
+      .next,
+      .prev {
+        width: 23px;
+        height: 23px;
+        border: 1px solid #b4bbc0;
+        padding-left: 0;
+        padding-right: 0;
+        .transition;
+        &:hover {
+          border-color: @another-red;
+          background: url("../img/white_loupe.svg") center no-repeat;
+        }
+      }
+      .next {
+        background: url("../img/pagination-gray-right.png") center no-repeat;
+        &:hover {
+          background: url("../img/pagination-red-right.png") center no-repeat;
+        }
+      }
+      .prev {
+        background: url("../img/pagination-gray-left.png") center no-repeat;
+        &:hover {
+          background: url("../img/pagination-red-left.png") center no-repeat;
+        }
+      }
+    }
+  }
 }
-
-.news-page h3:hover {
-  color: #f00;
-}
-
-.news-page .news-anounce p {
-  color: @mostly-dark;
-}
-
-.news-page .more-link {
-  display: block;
-  text-transform: uppercase;
-  color: #999;
-  font-weight: bold;
-  font-size: 16px;
-}
-.news-page .more-link:hover {
-  color: #f00;
-}
-*/

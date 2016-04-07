@@ -1146,6 +1146,7 @@ footer .logo .logo-footer a::after {
   margin: auto !important;
   float: none !important;
   border-radius: 50% !important;
+  max-width: none !important;
 }
 .cbp-qtcontent blockquote p {
   width: 70%;
@@ -1174,6 +1175,7 @@ footer .logo .logo-footer a::after {
 .page-news .news-item {
   overflow: hidden;
   position: relative;
+  padding-bottom: 40px;
 }
 .page-news .news-item:hover .news-item-header,
 .page-news .news-item:hover .news-item-more {
@@ -1244,31 +1246,48 @@ footer .logo .logo-footer a::after {
   left: 84px;
   top: 9px;
 }
-/*==============KolobX styles===============*/
-/*
-
-.news-page h3 {
-  color: @mostly-dark;
+.page-news .row:nth-child(2) {
+  text-align: center;
+}
+.page-news .navigation.pagination h2 {
+  display: none;
+}
+.page-news .navigation.pagination .nav-links a,
+.page-news .navigation.pagination .nav-links span {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #adb8bf;
   font-size: 18px;
-  font-weight: bold;
 }
-
-.news-page h3:hover {
-  color: #f00;
+.page-news .navigation.pagination .nav-links .current {
+  color: #b21414;
 }
-
-.news-page .news-anounce p {
-  color: @mostly-dark;
+.page-news .navigation.pagination .nav-links .next,
+.page-news .navigation.pagination .nav-links .prev {
+  width: 23px;
+  height: 23px;
+  border: 1px solid #b4bbc0;
+  padding-left: 0;
+  padding-right: 0;
+  transition: all .4s;
 }
-
-.news-page .more-link {
-  display: block;
-  text-transform: uppercase;
-  color: #999;
-  font-weight: bold;
-  font-size: 16px;
+.page-news .navigation.pagination .nav-links .next:hover,
+.page-news .navigation.pagination .nav-links .prev:hover {
+  border-color: #b21414;
+  background: url("../img/white_loupe.svg") center no-repeat;
 }
-.news-page .more-link:hover {
-  color: #f00;
+.page-news .navigation.pagination .nav-links .next {
+  background: url("../img/pagination-gray-right.png") center no-repeat;
 }
-*/
+.page-news .navigation.pagination .nav-links .next:hover {
+  background: url("../img/pagination-red-right.png") center no-repeat;
+}
+.page-news .navigation.pagination .nav-links .prev {
+  background: url("../img/pagination-gray-left.png") center no-repeat;
+}
+.page-news .navigation.pagination .nav-links .prev:hover {
+  background: url("../img/pagination-red-left.png") center no-repeat;
+}

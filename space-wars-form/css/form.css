@@ -1,0 +1,233 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../fonts/OpenSans-Regular-webfont.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+    url('../fonts/OpenSans-Regular-webfont.svg#webfont') format('svg'),
+    url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'OpenSansBold';
+    src: url('../fonts/OpenSans-Bold-webfont.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+    url('../fonts/OpenSans-Bold-webfont.svg#webfont') format('svg'),
+    url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'OpenSansExtraBold';
+    src: url('../fonts/OpenSans-ExtraBold-webfont.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/OpenSans-ExtraBold-webfont.woff') format('woff'),
+    url('../fonts/OpenSans-ExtraBold-webfont.svg#webfont') format('svg'),
+    url('../fonts/OpenSans-ExtraBold-webfont.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+html {
+    background: url(../images/space-background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    height: 100%;
+    font-family: 'OpenSansRegular', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+   position: relative;
+}
+
+.top-left-corner {
+    background: url("../images/left-top-corner.png") center center no-repeat;
+    background-size: cover;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 260px;
+    z-index: -1;
+    position: absolute;
+}
+
+.top-right-corner {
+    background: url("../images/right-top-corner.png") center center no-repeat;
+    background-size: cover;
+    right: 0;
+    top: 0;
+    width: 260px;
+    height: 260px;
+    z-index: -1;
+    position: absolute;
+}
+
+.bot-right-corner {
+    background: url("../images/right-bot-corner.png") center center no-repeat;
+    background-size: cover;
+    right: 0;
+    bottom: 0;
+    width: 260px;
+    height: 260px;
+    z-index: -1;
+    position: absolute;
+}
+
+.bot-left-corner {
+    background: url("../images/left-bot-corner.png") center center no-repeat;
+    background-size: cover;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    height: 260px;
+    z-index: -1;
+    position: absolute;
+}
+
+.stripe-bg {
+    background: #09101e url("../images/filter-bg.png") center center no-repeat;
+    background-size: cover;
+    position: fixed;
+    z-index: -2;
+    height: 100%;
+    width: 100%;
+    opacity: 0.55;
+}
+
+.form-wrapper {
+    width: 600px;
+    height: 450px;
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: url("../images/main_form.png") center center no-repeat;
+    z-index: -1;
+    opacity: .6;
+}
+
+.form-title {
+    width: 290px;
+    margin: auto;
+    text-align: center;
+    line-height: 38px;
+    font-size: 24px;
+    font-weight: 700;
+    background: -webkit-linear-gradient(#F39500, #FDBB00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    font-family: 'OpenSansExtraBold', sans-serif;
+    text-shadow: 0 2px 5px rgba(150, 150, 150, 0.5);
+}
+
+.line-title {
+    text-align: center;
+    text-shadow: 0 3px 10px rgba(150, 150, 150, 1);
+    color: #fff;
+    background: url("../images/line_title.png") center center no-repeat;
+    line-height: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#beta-test-form {
+    height: inherit;
+}
+
+.nickname,
+.email,
+.password {
+    width: 444px;
+    margin: 0 auto 22px auto;
+}
+
+.nickname input {
+    background: url("../images/input_nickname.png") center no-repeat;
+    margin: auto;
+    display: block;
+    width: 444px;
+    height: 62px;
+    outline: none;
+    border: none;
+    font-size: 21px;
+    color: #F39500;
+    text-align: center;
+    font-family: 'OpenSansRegular', sans-serif;
+}
+.nickname input::-webkit-input-placeholder {color: #F39500;}
+.nickname input::-moz-placeholder          {color: #F39500;}
+.nickname input:-moz-placeholder           {color: #F39500;}
+.nickname input:-ms-input-placeholder      {color: #F39500;}
+
+.email input {
+    background: url("../images/input_mail.png") center no-repeat;
+    margin: auto;
+    display: block;
+    width: 444px;
+    height: 62px;
+    outline: none;
+    border: none;
+    font-size: 21px;
+    color: #F39500;
+    text-align: center;
+    font-family: 'OpenSansRegular', sans-serif;
+}
+
+.email input::-webkit-input-placeholder {color: #F39500;}
+.email input::-moz-placeholder          {color: #F39500;}
+.email input:-moz-placeholder           {color: #F39500;}
+.email input:-ms-input-placeholder      {color: #F39500;}
+
+.password input {
+    background: url("../images/input_password.png") center no-repeat;
+    margin: auto;
+    display: block;
+    width: 444px;
+    height: 62px;
+    outline: none;
+    border: none;
+    font-size: 21px;
+    color: #F39500;
+    text-align: center;
+    font-family: 'OpenSansRegular', sans-serif;
+}
+
+.password input::-webkit-input-placeholder {color: #F39500;}
+.password input::-moz-placeholder          {color: #F39500;}
+.password input:-moz-placeholder           {color: #F39500;}
+.password input:-ms-input-placeholder      {color: #F39500;}
+
+.submit-button button {
+    background: url("../images/button_send.png") transparent center no-repeat;
+    display: block;
+    width: 196px;
+    height: 43px;
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+    color: #001a00;
+    font-family: 'OpenSansBold', sans-serif;
+    border: none;
+}
