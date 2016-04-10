@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 @font-face {
     font-family: 'OpenSansRegular';
     src: url('../fonts/OpenSans-Regular-webfont.eot'); /* IE9 Compat Modes */
@@ -37,20 +35,24 @@
 }
 
 html {
-    background: url(../images/space-background.jpg) no-repeat center center fixed;
+    background: url("../images/space-background.jpg") no-repeat center center /*fixed*/;
     background-size: cover;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
+    min-width: 768px;
+    min-height: 600px;
 }
 body {
     height: 100%;
     font-family: 'OpenSansRegular', sans-serif;
+    min-width: 768px;
+    min-height: 550px;
 }
 
 .container {
     width: 100%;
     height: 100%;
-   position: relative;
+    position: relative;
 }
 
 .top-left-corner {
@@ -101,7 +103,7 @@ body {
     background: #09101e url("../images/filter-bg.png") center center no-repeat;
     background-size: cover;
     position: fixed;
-    z-index: -2;
+    z-index: -1;
     height: 100%;
     width: 100%;
     opacity: 0.55;
@@ -134,9 +136,10 @@ body {
     line-height: 38px;
     font-size: 24px;
     font-weight: 700;
-    background: -webkit-linear-gradient(#F39500, #FDBB00);
+    color: #F39500;
+   /* background: -webkit-linear-gradient(#F39500, #FDBB00), transparent;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;*/
     position: relative;
     font-family: 'OpenSansExtraBold', sans-serif;
     text-shadow: 0 2px 5px rgba(150, 150, 150, 0.5);
@@ -176,10 +179,15 @@ body {
     text-align: center;
     font-family: 'OpenSansRegular', sans-serif;
 }
-.nickname input::-webkit-input-placeholder {color: #F39500;}
+.nickname input::-webkit-input-placeholder {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
 .nickname input::-moz-placeholder          {color: #F39500;}
 .nickname input:-moz-placeholder           {color: #F39500;}
-.nickname input:-ms-input-placeholder      {color: #F39500;}
+.nickname input:-ms-input-placeholder      {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
+
+.nickname input:focus::-webkit-input-placeholder {color: #F39500; line-height: 100px; transition: line-height 0.5s ease;}
+.nickname input:focus::-moz-placeholder          {color: transparent;}
+.nickname input:focus:-moz-placeholder           {color: transparent;}
+.nickname input:focus:-ms-input-placeholder      {color: transparent; line-height: 100px; transition: line-height 0.5s ease;}
 
 .email input {
     background: url("../images/input_mail.png") center no-repeat;
@@ -195,10 +203,15 @@ body {
     font-family: 'OpenSansRegular', sans-serif;
 }
 
-.email input::-webkit-input-placeholder {color: #F39500;}
+.email input::-webkit-input-placeholder {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
 .email input::-moz-placeholder          {color: #F39500;}
 .email input:-moz-placeholder           {color: #F39500;}
-.email input:-ms-input-placeholder      {color: #F39500;}
+.email input:-ms-input-placeholder      {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
+
+.email input:focus::-webkit-input-placeholder {color: #F39500; line-height: 100px; transition: line-height 0.5s ease;}
+.email input:focus::-moz-placeholder          {color: transparent;}
+.email input:focus:-moz-placeholder           {color: transparent;}
+.email input:focus:-ms-input-placeholder      {color: #F39500; line-height: 100px; transition: line-height 0.5s ease;}
 
 .password input {
     background: url("../images/input_password.png") center no-repeat;
@@ -214,10 +227,15 @@ body {
     font-family: 'OpenSansRegular', sans-serif;
 }
 
-.password input::-webkit-input-placeholder {color: #F39500;}
+.password input::-webkit-input-placeholder {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
 .password input::-moz-placeholder          {color: #F39500;}
 .password input:-moz-placeholder           {color: #F39500;}
-.password input:-ms-input-placeholder      {color: #F39500;}
+.password input:-ms-input-placeholder      {color: #F39500; line-height: 28px; transition: line-height 0.4s ease;}
+
+.password input:focus::-webkit-input-placeholder {color: #F39500; line-height: 100px; transition: line-height 0.5s ease;}
+.password input:focus::-moz-placeholder          {color: transparent;}
+.password input:focus:-moz-placeholder           {color: transparent;}
+.password input:focus:-ms-input-placeholder      {color: #F39500; line-height: 100px; transition: line-height 0.5s ease;}
 
 .submit-button button {
     background: url("../images/button_send.png") transparent center no-repeat;
@@ -230,4 +248,21 @@ body {
     color: #001a00;
     font-family: 'OpenSansBold', sans-serif;
     border: none;
+    transition: transform .3s ease;
+}
+
+.submit-button button:hover {
+    transform: translateY(-4px);
+    transition: transform .3s ease, box-shadow .1s;
+    -webkit-box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
+    box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
+}
+
+.submit-button button:focus {
+    transform: translateY(-4px);
+    transition: transform .3s ease, box-shadow .1s;
+    -webkit-box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
+    box-shadow: 0px 11px 10px -9px rgba(0,0,0,0.8);
 }
