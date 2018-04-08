@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Clicker</title>
+    <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            height: 100%;
+            font-size: 14px;
+        }
+        body {
+            display: flex;
+            height: 100%;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left:  15px;
+            padding-right: 15px;
+
+        }
+        .cats-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        .cat {
+            padding-left: 20px;
+            padding-right: 20px;
+            flex-basis: 400px;
+            display: none;
+        }
+        .cat.active {
+            display: block;
+        }
+        .text {
+            font-size: 2.4rem;
+            padding-top: 20px;
+
+        }
+        .cat_pic {
+            max-width: 360px;
+        }
+        .cat_name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .cats-list {
+            display: flex;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .cat-ref {
+            margin: 0 20px 0 0;
+            cursor: pointer;
+        }
+        .cat-ref.active {
+            font-size: 1.2rem;
+            color: #2b669a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <ul class="cats-list">
+        <li class="cat-ref active">Tom</li>
+        <li class="cat-ref">Jerry</li>
+        <li class="cat-ref">Mike</li>
+        <li class="cat-ref">Park</li>
+        <li class="cat-ref">Chuck</li>
+    </ul>
+    <div class="cats-row">
+        <div class="cat active">
+            <p class="cat_name">
+                Tom
+            </p>
+            <img src="https://lh3.ggpht.com/nlI91wYNCrjjNy5f-S3CmVehIBM4cprx-JFWOztLk7vFlhYuFR6YnxcT446AvxYg4Ab7M1Fy0twaOCWYcUk=s0#w=640&h=426" alt="meow" class="cat_pic">
+            <div class="text">
+                <span>Clicked on cat, times: </span><span class="counter">0</span>
+            </div>
+        </div>
+        <div class="cat">
+            <p class="cat_name">
+                Jerry
+            </p>
+            <img src="https://lh3.ggpht.com/kixazxoJ2ufl3ACj2I85Xsy-Rfog97BM75ZiLaX02KgeYramAEqlEHqPC3rKqdQj4C1VFnXXryadFs1J9A=s0#w=640&h=496" alt="meow" class="cat_pic">
+            <div class="text">
+                <span>Clicked on cat, times: </span><span class="counter">0</span>
+            </div>
+        </div>
+        <div class="cat">
+            <p class="cat_name">
+                Mike
+            </p>
+            <img src="https://lh3.ggpht.com/nlI91wYNCrjjNy5f-S3CmVehIBM4cprx-JFWOztLk7vFlhYuFR6YnxcT446AvxYg4Ab7M1Fy0twaOCWYcUk=s0#w=640&h=426" alt="meow" class="cat_pic">
+            <div class="text">
+                <span>Clicked on cat, times: </span><span class="counter">0</span>
+            </div>
+        </div>
+        <div class="cat">
+            <p class="cat_name">
+                Park
+            </p>
+            <img src="https://lh3.ggpht.com/kixazxoJ2ufl3ACj2I85Xsy-Rfog97BM75ZiLaX02KgeYramAEqlEHqPC3rKqdQj4C1VFnXXryadFs1J9A=s0#w=640&h=496" alt="meow" class="cat_pic">
+            <div class="text">
+                <span>Clicked on cat, times: </span><span class="counter">0</span>
+            </div>
+        </div>
+        <div class="cat">
+            <p class="cat_name">
+                Chuck
+            </p>
+            <img src="https://lh3.ggpht.com/nlI91wYNCrjjNy5f-S3CmVehIBM4cprx-JFWOztLk7vFlhYuFR6YnxcT446AvxYg4Ab7M1Fy0twaOCWYcUk=s0#w=640&h=426" alt="meow" class="cat_pic">
+            <div class="text">
+                <span>Clicked on cat, times: </span><span class="counter">0</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const catImages = document.querySelectorAll('.cat_pic');
+    const counterElems = document.querySelectorAll('.counter');
+    const catsLinks = document.querySelectorAll('.cat-ref');
+    const catsCards = document.querySelectorAll('.cat');
+
+    [].forEach.call(catsLinks, function(catLink, i) {
+        catLink.addEventListener('click', function() {
+            if (!catLink.classList.contains('active')) {
+                document.querySelector('.cat-ref.active').classList.remove('active');
+                document.querySelector('.cat.active').classList.remove('active');
+                catLink.classList.add('active');
+                catsCards[i].classList.add('active');
+            }
+        })
+    });
+
+    [].forEach.call(catImages, function(img, i) {
+        let counter = 0;
+        img.addEventListener('click', function() {
+            counter++;
+            counterElems[i].innerHTML = counter;
+        });
+    });
+</script>
+
+</body>
+</html>
