@@ -1,0 +1,60 @@
+*,
+*:before,
+*:after {box-sizing: border-box;}
+html {
+    font-family: 'Asap', sans-serif;
+}
+.new-note-form {
+    margin-bottom: 15px;
+}
+.new-note-content {
+    width:100%;
+    display: block;
+    font-size: 1.3em;
+}
+
+.notes {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+}
+.note {
+    display: inline-block;
+    width: 250px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding:10px;
+    list-style-type: none;
+    background-color: #cde;
+}
+
+.note-date {
+    font-size:0.7em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+button.clear {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
