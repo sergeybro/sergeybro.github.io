@@ -15,7 +15,7 @@
         }
         body {
             display: flex;
-            height: 100%;
+            min-height: 100%;
             margin: 0;
             align-items: center;
             justify-content: center;
@@ -81,7 +81,7 @@
         <li class="cat-ref active">Tom</li>
         <li class="cat-ref">Jerry</li>
         <li class="cat-ref">Ultron</li>
-        <li class="cat-ref">Park</li>
+        <li class="cat-ref">Maru</li>
         <li class="cat-ref">Chuck</li>
     </ul>
     <div class="cats-row">
@@ -114,9 +114,9 @@
         </div>
         <div class="cat">
             <p class="cat_name">
-                Park
+                Maru
             </p>
-            <img src="https://lh3.ggpht.com/kixazxoJ2ufl3ACj2I85Xsy-Rfog97BM75ZiLaX02KgeYramAEqlEHqPC3rKqdQj4C1VFnXXryadFs1J9A=s0#w=640&h=496" alt="meow" class="cat_pic">
+            <img src="http://purrshare.com/wp-content/uploads/2017/08/cat-refuses-boxes-too-small-25.jpg" alt="meow" class="cat_pic">
             <div class="text">
                 <span>Clicked on cat, times: </span><span class="counter">0</span>
             </div>
@@ -148,6 +148,14 @@
                 catLink.classList.add('active');
                 catsCards[i].classList.add('active');
             }
+        });
+        catLink.addEventListener('touchend', function() {
+            if (!catLink.classList.contains('active')) {
+                document.querySelector('.cat-ref.active').classList.remove('active');
+                document.querySelector('.cat.active').classList.remove('active');
+                catLink.classList.add('active');
+                catsCards[i].classList.add('active');
+            }
         })
     });
 
@@ -157,7 +165,15 @@
             counter++;
             counterElems[i].innerHTML = counter;
         });
+        img.addEventListener('touchend', function() {
+            counter++;
+            counterElems[i].innerHTML = counter;
+        });
     });
+
+    function switchCats() {
+
+    }
 </script>
 
 </body>
