@@ -316,12 +316,85 @@
                                 <input type="text" name="address" id="form-address">
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="input-label">
+                                <input type="checkbox" name="terms-conds" id="terms-conds">
+                                <label for="terms-conds">I accept Terms and Service</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-section form-section--billing-details">
                 <h2>Shipping & billing details</h2>
+                <span class="sub-header">You can change the shipping method</span>
+                <div class="tabs-wrapper">
+                    <div class="tabs-buttons">
+                        <div class="form-tab form-tab--standard">
+                            <span class="form-tab__header">Standard</span>
+                            <span class="form-tab__subheader">5$ in 10 days</span>
+                        </div>
+                        <div class="form-tab form-tab--express">
+                            <span class="form-tab__header">Express</span>
+                            <span class="form-tab__subheader">25$ in 5 days</span>
+                        </div>
+                        <div class="form-tab form-tab--premium">
+                            <span class="form-tab__header">Premium</span>
+                            <span class="form-tab__subheader">50$ for tomorrow</span>
+                        </div>
+                    </div>
+                    <div class="tabs">
+                        <div class="form-tab">
+                            <h1>CONTENT</h1>
+                        </div>
+                        <div class="form-tab">
+                            <div class="form-side">
+                                <h4>Payment method</h4>
+                                <div class="form-row">
+                                    <div class="payment-systems-wrapper">
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--ae"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--mc"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--visa"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--discover"></div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="payment-system-logo payment-system-logo--horizontal payment-system-logo--paypal"></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="payment-system-logo payment-system-logo--horizontal payment-system-logo--paypal"></div>
+                                </div>
+                            </div>
+                            <div class="form-side">
+                                <h4>Card details</h4>
+                                <div class="card-visual-wrapper">
+                                    <div class="form-row">
+                                        <label for="creditCard1"></label>
+                                        <input class="inputCard" type="number" name="creditCard1" id="creditCard1"/>
+                                        <input class="inputCard" type="number" name="creditCard2" id="creditCard2"/>
+                                        <input class="inputCard" type="number" name="creditCard3" id="creditCard3"/>
+                                        <input class="inputCard" type="number" name="creditCard4" id="creditCard4"/>
+                                    </div>
+                                    <div class="form-row form-row--divided-sides">
+                                        <div class="input-group">
+                                            <label for="form-card-number"></label>
+                                            <input type="number" name="card-number" id="form-card-number">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="form-card-cvv"></label>
+                                            <input type="number" name="cvv" id="form-card-cvv">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-tab">
+                            <h1>MORE CONTENT</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <button type="submit" class="bth btn-submit-form">SUMBIT</button>
         </form>
     </div>
 </div>
