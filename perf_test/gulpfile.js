@@ -4,7 +4,7 @@ var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 var minifyCSS = require('gulp-csso');
 var watch = require('gulp-watch');
-// var concat = require('gulp-concat');
+var concat = require('gulp-concat');
 // var sourcemaps = require('gulp-sourcemaps');
 //
 // gulp.task('html', function(){
@@ -32,11 +32,10 @@ gulp.task('stream', function () {
 });
 
 gulp.task('js', function(){
-    return gulp.src('client/javascript/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(concat('app.min.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('build/js'))
+    return gulp.src('./src/js/*.js')
+        .pipe(concat('app.js'))
+        // .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./dist/js'))
 });
 
-gulp.task('default', ['clean', 'css'] /*[ 'html', 'css', 'js' ]*/);
+gulp.task('default', ['clean', 'css', 'js'] /*[ 'html', 'css', 'js' ]*/);

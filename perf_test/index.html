@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Perfectial Test</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
 </head>
 <body>
@@ -10,43 +11,43 @@
     <div class="content">
         <form name="shipping_form" id="shipping_form">
             <div class="form-section form-section--personal-info">
-                <h2>Fill in the form</h2>
+                <h2 class="form-section__header">Fill in the form</h2>
                 <div class="form-group">
                     <div class="form-side">
-                        <div class="form-row">
+                        <div class="form-row form-row--two-inputs">
                             <div class="input-label">
-                                <label for="form-first-name"></label>
-                                <input type="text" name="first-name" id="form-first-name">
+                                <label for="form-first-name">Name</label>
+                                <input type="text" name="first-name" id="form-first-name" class="input--standard">
                             </div>
                             <div class="input-label">
-                                <label for="form-surname"></label>
-                                <input type="text" name="surname" id="form-surname">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-label">
-                                <label for="form-company-name"></label>
-                                <input type="text" name="company-name" id="form-company-name">
+                                <label for="form-surname">Surname</label>
+                                <input type="text" name="surname" id="form-surname" class="input--standard">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
-                                <label for="form-email"></label>
-                                <input type="email" name="email" id="form-email">
+                                <label for="form-company-name">Company name</label>
+                                <input type="text" name="company-name" id="form-company-name" class="input--standard">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
-                                <label for="form-phone-number"></label>
-                                <input type="tel" name="phone-number" id="form-phone-number">
+                                <label for="form-email">Email</label>
+                                <input type="email" name="email" id="form-email" class="input--standard">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-label">
+                                <label for="form-phone-number">Phone number</label>
+                                <input type="tel" name="phone-number" id="form-phone-number" class="input--standard">
                             </div>
                         </div>
                     </div>
                     <div class="form-side">
                         <div class="form-row">
                             <div class="input-label">
-                                <label for="form-country"></label>
-                                <select name="country" id="form-country">
+                                <label for="form-country">Country</label>
+                                <select name="country" id="form-country" class="input--select">
                                     <option selected="selected" disabled="disabled"></option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AX">Åland Islands</option>
@@ -300,25 +301,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row form-row--two-inputs">
                             <div class="input-label">
-                                <label for="form-city"></label>
-                                <input type="text" name="city" id="form-city">
+                                <label for="form-city">City</label>
+                                <input type="text" name="city" id="form-city" class="input--standard">
                             </div>
                             <div class="input-label">
-                                <label for="form-postal-code"></label>
-                                <input type="number" name="postal-code" id="form-postal-code">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-label">
-                                <label for="form-address"></label>
-                                <input type="text" name="address" id="form-address">
+                                <label for="form-postal-code">Postal code</label>
+                                <input type="text" name="postal-code" id="form-postal-code" class="input--standard">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
-                                <input type="checkbox" name="terms-conds" id="terms-conds">
+                                <label for="form-address">Address</label>
+                                <input type="text" name="address" id="form-address" class="input--standard">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-label">
+                                <input type="checkbox" name="terms-conds" id="terms-conds" class="input--checkbox">
                                 <label for="terms-conds">I accept Terms and Service</label>
                             </div>
                         </div>
@@ -326,19 +327,19 @@
                 </div>
             </div>
             <div class="form-section form-section--billing-details">
-                <h2>Shipping & billing details</h2>
+                <h2 class="form-section__header">Shipping & billing details</h2>
                 <span class="sub-header">You can change the shipping method</span>
                 <div class="tabs-wrapper">
                     <div class="tabs-buttons">
-                        <div class="form-tab form-tab--standard">
+                        <div class="tab-btn tab-btn--standard">
                             <span class="form-tab__header">Standard</span>
                             <span class="form-tab__subheader">5$ in 10 days</span>
                         </div>
-                        <div class="form-tab form-tab--express">
+                        <div class="tab-btn tab-btn--express active">
                             <span class="form-tab__header">Express</span>
                             <span class="form-tab__subheader">25$ in 5 days</span>
                         </div>
-                        <div class="form-tab form-tab--premium">
+                        <div class="tab-btn tab-btn--premium">
                             <span class="form-tab__header">Premium</span>
                             <span class="form-tab__subheader">50$ for tomorrow</span>
                         </div>
@@ -347,7 +348,7 @@
                         <div class="form-tab">
                             <h1>CONTENT</h1>
                         </div>
-                        <div class="form-tab">
+                        <div class="form-tab active">
                             <div class="form-side">
                                 <h4>Payment method</h4>
                                 <div class="form-row">
@@ -370,19 +371,19 @@
                                 <div class="card-visual-wrapper">
                                     <div class="form-row">
                                         <label for="creditCard1"></label>
-                                        <input class="inputCard" type="number" name="creditCard1" id="creditCard1"/>
-                                        <input class="inputCard" type="number" name="creditCard2" id="creditCard2"/>
-                                        <input class="inputCard" type="number" name="creditCard3" id="creditCard3"/>
-                                        <input class="inputCard" type="number" name="creditCard4" id="creditCard4"/>
+                                        <input class="input--card input--standard" type="text" name="creditCard1" id="creditCard1"/>
+                                        <input class="input--card input--standard" type="text" name="creditCard2" id="creditCard2"/>
+                                        <input class="input--card input--standard" type="text" name="creditCard3" id="creditCard3"/>
+                                        <input class="input--card input--standard" type="text" name="creditCard4" id="creditCard4"/>
                                     </div>
                                     <div class="form-row form-row--divided-sides">
                                         <div class="input-group">
                                             <label for="form-card-number"></label>
-                                            <input type="number" name="card-number" id="form-card-number">
+                                            <input type="text" name="card-number" id="form-card-number"  class="input--standard">
                                         </div>
                                         <div class="input-group">
                                             <label for="form-card-cvv"></label>
-                                            <input type="number" name="cvv" id="form-card-cvv">
+                                            <input type="text" name="cvv" id="form-card-cvv"  class="input--standard">
                                         </div>
                                     </div>
                                 </div>
@@ -398,5 +399,6 @@
         </form>
     </div>
 </div>
+<script type="text/javascript" src="dist/js/app.js"></script>
 </body>
 </html>
