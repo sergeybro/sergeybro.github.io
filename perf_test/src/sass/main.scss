@@ -21,12 +21,6 @@ html, body {
   padding-top: 60px;
 }
 
-.form-section__header {
-  font-weight: 500;
-  font-size: 32px;
-  color: #333333;
-}
-
 .form-group {
   display: flex;
   justify-content: space-between;
@@ -160,3 +154,131 @@ html, body {
   }
 }
 
+.form-section {
+
+  &--personal-info {
+    margin-bottom: 96px;
+  }
+
+  &--personal-info {
+    .form-section__header {
+      margin-bottom: 8px;
+    }
+  }
+
+  &--billing-details {
+    .form-section__header {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__header {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+    color: #333333;
+  }
+
+  &__sub-header {
+    font-size: 14px;
+  }
+}
+
+.tabs-wrapper {
+  display: flex;
+  padding-top: 38px;
+
+  .tabs {
+    flex-grow: 4;
+  }
+
+  .tabs-buttons {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .tab-btn {
+    color: #999999;
+    padding-left: 35px;
+    transition: color .2s;
+
+    &.active {
+      color: #333333;
+    }
+
+    &--standard {
+      & .form-tab__header::before {
+        content: url("../assets/icon_truck.svg");
+      }
+
+      &.active {
+        & .form-tab__header::before {
+          content: url("../assets/icon_truck_active.svg");
+        }
+      }
+    }
+
+    &--express {
+      & .form-tab__header::before {
+        content: url("../assets/icon_plane.svg");
+      }
+
+      &.active {
+        & .form-tab__header::before {
+          content: url("../assets/icon_plane_active.svg");
+        }
+      }
+    }
+
+    &--premium {
+      & .form-tab__header::before {
+        content: url("../assets/icon_rocket.svg");
+      }
+
+      &.active {
+        & .form-tab__header::before {
+          content: url("../assets/icon_rocket_active.svg");
+        }
+      }
+    }
+  }
+
+  .form-tab {
+    display: flex;
+
+    .form-side {
+      flex-basis: auto;
+      width: 50%;
+
+      h4 {
+        display: inline-block;
+        font-weight: 500;
+        line-height: normal;
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: #999;
+      }
+    }
+
+    &__header {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 5px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        display: block;
+        top: 2px;
+        left: -35px;
+      }
+    }
+
+    &__subheader {
+      display: block;
+      font-size: 14px;
+    }
+  }
+}
