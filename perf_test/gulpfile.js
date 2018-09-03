@@ -15,7 +15,7 @@ gulp.task('css', function(){
     return gulp.src('src/sass/main.scss')
         .pipe(sass())
         .pipe(postcss(processors))
-        .pipe(minifyCSS())
+        // .pipe(minifyCSS())
         .pipe(gulp.dest('dist/css'))
 });
 
