@@ -13,12 +13,14 @@ html, body {
   width: 100%;
   max-width: 1040px;
   margin: auto;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .content {
+  width: 100%;
   padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 50px;
 }
 
 .form-group {
@@ -40,6 +42,14 @@ html, body {
 
   &--two-inputs {
     justify-content: space-between;
+
+    .input-label {
+      max-width: 192px;
+    }
+  }
+
+  &--divided-sides {
+    justify-content: space-between;
   }
 }
 
@@ -47,6 +57,14 @@ html, body {
 
   width: 100%;
   max-width: 394px;
+
+  &--exp-date {
+    max-width: 158px;
+  }
+
+  &--cvv {
+    max-width: 74px;
+  }
 
   label {
     display: inline-block;
@@ -85,10 +103,17 @@ html, body {
 .input {
   &--standard {
     border: 1px solid #999999;
+    background: transparent;
     border-radius: 3px;
     height: 40px;
     padding-left: 10px;
     width: 100%;
+    transition: all .3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
+    }
   }
 
   &--select {
@@ -97,6 +122,12 @@ html, body {
     height: 40px;
     padding-left: 10px;
     width: 100%;
+    transition: all .3s ease-in-out;
+
+    &:focus {
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
+    }
   }
 
   &--checkbox {
@@ -127,14 +158,6 @@ html, body {
   }
 }
 
-.form-row {
-  &--two-inputs {
-    .input-label {
-      max-width: 192px;
-    }
-  }
-}
-
 .tab-btn {
   cursor: pointer;
 
@@ -147,15 +170,13 @@ html, body {
 
   &--personal-info {
     margin-bottom: 96px;
-  }
-
-  &--personal-info {
     .form-section__header {
       margin-bottom: 8px;
     }
   }
 
   &--billing-details {
+    margin-bottom: 50px;
     .form-section__header {
       margin-bottom: 8px;
     }
@@ -258,7 +279,7 @@ html, body {
       border-radius: 15px;
       background-color: #ffffff;
       opacity: 0;
-
+      padding: 20px 24px 0;
     }
 
     &::before {
@@ -294,9 +315,8 @@ html, body {
     &.active {
       display: flex;
 
-      & .form-tab__content {
+      .form-tab__content {
         opacity: 1;
-        transition: opacity 3s;
       }
 
       &::before {
@@ -313,6 +333,7 @@ html, body {
         font-weight: 500;
         line-height: normal;
         font-size: 14px;
+        margin-top: 0;
         margin-bottom: 8px;
         color: #999;
       }
@@ -346,4 +367,136 @@ html, body {
       font-size: 14px;
     }
   }
+}
+
+.payment-systems-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 340px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.payment-system-logo {
+
+  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.2);
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  &--square {
+    width: 23.53%;
+    padding-top: 23.53%;
+  }
+
+  &--horizontal {
+    width: 100%;
+    height: 50px;
+  }
+
+  &--ae {
+    background-image: url("../assets/logo_american_express.svg");
+  }
+
+  &--mc {
+    background-image: url("../assets/logo_mastercard.svg");
+  }
+
+  &--visa {
+    background-image: url("../assets/logo_visa.svg");
+  }
+
+  &--discover {
+    background-image: url("../assets/logo_discover.svg");
+  }
+
+  &--paypal {
+    background-image: url("../assets/logo_paypal.svg");
+  }
+
+  &--amazon {
+    background-image: url("../assets/logo_amazonpay.svg");
+  }
+}
+
+.card-visual-wrapper {
+  height:  200px;
+  width: 100%;
+  max-width:  370px;
+  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.2);
+  border-radius: 15px;
+  padding: 20px 25px 0;
+
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+
+    .input--card {
+      max-width: 74px;
+    }
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction:  row-reverse;
+}
+
+.btn-submit-form {
+  width: 300px;
+  height: 60px;
+  background: linear-gradient(10.65deg, #F57E80 0%, #D43535 119.64%);
+  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.3);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 22px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  span {
+    position: relative;
+    pointer-events: none;
+  }
+
+  &::before {
+    --size: 0;
+
+    content: '';
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle closest-side, #4405f7, transparent);
+    transform: translate(-50%, -50%);
+    transition: width .2s ease, height .2s ease;
+  }
+
+  &:hover::before {
+    --size: 400px;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.focus-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ededed;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: -1;
+}
+.input--standard:focus ~ .focus-bg {
+  transition: 0.5s;
+  opacity: 1;
 }

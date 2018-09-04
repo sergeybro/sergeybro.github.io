@@ -1,6 +1,12 @@
 var tabsButtons = document.querySelectorAll('.tab-btn');
 var formTabs = document.querySelectorAll('.form-tab');
 
+var form = document.getElementById('shipping_form');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+});
+
 [].forEach.call(tabsButtons, function(tabBtn, i) {
     tabBtn.addEventListener('click', function() {
         if (!tabBtn.classList.contains('active')) {
@@ -19,3 +25,13 @@ var formTabs = document.querySelectorAll('.form-tab');
         }
     })
 });
+
+document.querySelector('.btn-submit-form').onmousemove = (e) => {
+
+    var x = e.pageX - e.target.offsetLeft;
+    var y = e.pageY - e.target.offsetTop;
+
+    e.target.style.setProperty('--x', x + 'px');
+    e.target.style.setProperty('--y', y + 'px');
+
+}

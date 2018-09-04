@@ -17,29 +17,44 @@
                         <div class="form-row form-row--two-inputs">
                             <div class="input-label">
                                 <label for="form-first-name">Name</label>
-                                <input type="text" name="first-name" id="form-first-name" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="first-name" id="form-first-name" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                             <div class="input-label">
                                 <label for="form-surname">Surname</label>
-                                <input type="text" name="surname" id="form-surname" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="surname" id="form-surname" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
                                 <label for="form-company-name">Company name</label>
-                                <input type="text" name="company-name" id="form-company-name" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="company-name" id="form-company-name" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
                                 <label for="form-email">Email</label>
-                                <input type="email" name="email" id="form-email" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="email" name="email" id="form-email" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
                                 <label for="form-phone-number">Phone number</label>
-                                <input type="tel" name="phone-number" id="form-phone-number" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="tel" name="phone-number" id="form-phone-number" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,7 +62,8 @@
                         <div class="form-row">
                             <div class="input-label">
                                 <label for="form-country">Country</label>
-                                <select name="country" id="form-country" class="input--select">
+                                <div class="input-wrapper">
+                                    <select name="country" id="form-country" class="input--select">
                                     <option selected="selected" disabled="disabled"></option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AX">Åland Islands</option>
@@ -299,22 +315,33 @@
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabwe</option>
                                 </select>
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row form-row--two-inputs">
                             <div class="input-label">
                                 <label for="form-city">City</label>
-                                <input type="text" name="city" id="form-city" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="city" id="form-city" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                             <div class="input-label">
                                 <label for="form-postal-code">Postal code</label>
-                                <input type="text" name="postal-code" id="form-postal-code" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="postal-code" id="form-postal-code" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="input-label">
                                 <label for="form-address">Address</label>
-                                <input type="text" name="address" id="form-address" class="input--standard">
+                                <div class="input-wrapper">
+                                    <input type="text" name="address" id="form-address" class="input--standard">
+                                    <span class="focus-bg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-row">
@@ -354,38 +381,40 @@
                             <div class="form-tab__content">
                                 <div class="form-side">
                                     <h4>Payment method</h4>
-                                    <div class="form-row">
-                                        <div class="payment-systems-wrapper">
-                                            <div class="payment-system-logo payment-system-logo--square payment-system-logo--ae"></div>
-                                            <div class="payment-system-logo payment-system-logo--square payment-system-logo--mc"></div>
-                                            <div class="payment-system-logo payment-system-logo--square payment-system-logo--visa"></div>
-                                            <div class="payment-system-logo payment-system-logo--square payment-system-logo--discover"></div>
-                                        </div>
+                                    <div class="payment-systems-wrapper">
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--ae"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--mc"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--visa"></div>
+                                        <div class="payment-system-logo payment-system-logo--square payment-system-logo--discover"></div>
                                     </div>
-                                    <div class="form-row">
+                                    <div class="payment-systems-wrapper">
                                         <div class="payment-system-logo payment-system-logo--horizontal payment-system-logo--paypal"></div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="payment-system-logo payment-system-logo--horizontal payment-system-logo--paypal"></div>
+                                    <div class="payment-systems-wrapper">
+                                        <div class="payment-system-logo payment-system-logo--horizontal payment-system-logo--amazon"></div>
                                     </div>
                                 </div>
                                 <div class="form-side">
                                     <h4>Card details</h4>
                                     <div class="card-visual-wrapper">
                                         <div class="form-row">
-                                            <label for="creditCard1"></label>
-                                            <input class="input--card input--standard" type="text" name="creditCard1" id="creditCard1"/>
-                                            <input class="input--card input--standard" type="text" name="creditCard2" id="creditCard2"/>
-                                            <input class="input--card input--standard" type="text" name="creditCard3" id="creditCard3"/>
-                                            <input class="input--card input--standard" type="text" name="creditCard4" id="creditCard4"/>
+                                            <div class="input-label input-label--credit-card">
+                                                <label for="creditCard1">Card number</label>
+                                                <div class="input-group">
+                                                    <input class="input--card input--standard" type="text" name="creditCard1" id="creditCard1"/>
+                                                    <input class="input--card input--standard" type="text" name="creditCard2" id="creditCard2"/>
+                                                    <input class="input--card input--standard" type="text" name="creditCard3" id="creditCard3"/>
+                                                    <input class="input--card input--standard" type="text" name="creditCard4" id="creditCard4"/>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-row form-row--divided-sides">
-                                            <div class="input-group">
-                                                <label for="form-card-number"></label>
+                                            <div class="input-label input-label--exp-date">
+                                                <label for="form-card-number">Expiration date</label>
                                                 <input type="text" name="card-number" id="form-card-number"  class="input--standard">
                                             </div>
-                                            <div class="input-group">
-                                                <label for="form-card-cvv"></label>
+                                            <div class="input-label input-label--cvv">
+                                                <label for="form-card-cvv">CVC/CVV</label>
                                                 <input type="text" name="cvv" id="form-card-cvv"  class="input--standard">
                                             </div>
                                         </div>
@@ -401,7 +430,11 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="bth btn-submit-form">SUMBIT</button>
+            <div class="button-wrapper">
+                <button type="submit" class="bth btn-submit-form">
+                    <span>SUMBIT</span>
+                </button>
+            </div>
         </form>
     </div>
 </div>
