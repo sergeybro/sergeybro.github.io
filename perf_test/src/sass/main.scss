@@ -1,7 +1,7 @@
 @import 'normalize';
 
 html, body {
-  height: 100%;
+  min-height: 100%;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -21,6 +21,7 @@ html, body {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
+  min-width: 320px;
 }
 
 .form-group {
@@ -33,7 +34,7 @@ html, body {
 }
 
 .form-side {
-  flex-basis: 394px;
+  min-width: 394px;
 }
 
 .form-row {
@@ -131,29 +132,49 @@ html, body {
   }
 
   &--checkbox {
-    display: none;
 
     & + label {
+      position: relative;
       line-height: 16px;
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+      padding-right: 2px;
+      border: 1px solid transparent;
+
+      .checkbox-square {
+        border: 1px solid #999999;
+        border-radius: 3px;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+        box-sizing: border-box;
+        position: relative;
+        top: 2px;
+      }
     }
 
     & + label::before {
-      content: "\2714";
-      border: 1px solid #999999;
-      border-radius: 3px;
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      color: transparent;
-      transition: color .2s;
-      margin-right: 10px;
-      box-sizing: border-box;
-      padding-left: 1px;
+      content: "";
+      position: absolute;
+      opacity: 0;
+      width: 4px;
+      height: 8px;
+      left: 4px;
+      top: 3px;
+      border: solid #999999;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+      transition: opacity .2s;
     }
 
     &:checked + label::before {
-      color: #999999;
+      opacity: 1;
+    }
 
+    &:focus + label {
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
     }
   }
 }
@@ -199,14 +220,15 @@ html, body {
   padding-top: 38px;
 
   .tabs {
-    flex-grow: 4;
-    flex-basis: 800px;
-    min-height: 295px;
+    /*flex-grow: 4;
+    flex-basis: 800px;*/
+    min-height: 300px;
+    width: 80%;
   }
 
   .tabs-buttons {
-    flex-grow: 1;
-    flex-basis: 200px;
+    width: 20%;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -279,7 +301,7 @@ html, body {
       border-radius: 15px;
       background-color: #ffffff;
       opacity: 0;
-      padding: 20px 24px 0;
+      padding: 20px 24px;
     }
 
     &::before {
@@ -499,4 +521,117 @@ html, body {
 .input--standard:focus ~ .focus-bg {
   transition: 0.5s;
   opacity: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+@media all and (max-width: 1000px){
+  .content {
+    padding-top: 20px;
+  }
+
+  .form-section--personal-info {
+    margin-bottom: 40px;
+  }
+
+  .tabs-wrapper  {
+    .form-tab__content {
+      flex-direction: column;
+    }
+
+    .tabs {
+      width: auto;
+    }
+
+    .form-tab .form-side {
+      width: auto;
+    }
+
+    .form-tab--express::before {
+      top: 244px;
+    }
+
+    .form-tab--premium::before {
+      top: 466px;
+    }
+  }
+
+  .payment-systems-wrapper {
+    max-width: none;
+  }
+
+  .input-group {
+    .input-wrapper .input--card {
+      margin-right: 4px;
+    }
+
+    .input-wrapper:last-child .input--card {
+      margin-right: 0;
+    }
+  }
+
+  .form-tab--standard,
+  .form-tab--premium {
+    .form-tab__content {
+      height: 508px;
+    }
+  }
+
+  .form-group {
+    flex-direction: column;
+    max-width: 394px;
+    margin: auto;
+  }
+
+  .form-side {
+    min-width: auto;
+  }
+}
+
+@media all and (max-width: 627px) {
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .tabs-wrapper {
+    flex-direction: column;
+
+    .tabs-buttons {
+      flex-direction: row;
+      margin-bottom: 20px;
+      min-width: auto;
+      width: 100%;
+    }
+
+    .form-tab__header {
+      font-size: 16px;
+    }
+
+    .form-tab__subheader {
+      font-size: 12px;
+    }
+
+    .form-tab--express::before {
+      top: -12px;
+      left: calc(50% - 10px);
+    }
+
+    .form-tab--standard::before {
+      left: 40px;
+      top: -12px;
+    }
+
+    .form-tab--premium::before {
+      top: -12px;
+      right: 40px;
+      left: auto;
+    }
+  }
 }

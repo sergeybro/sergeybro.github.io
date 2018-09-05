@@ -1,10 +1,9 @@
 var gulp = require('gulp');
 var clean = require('gulp-clean');
 var sass = require('gulp-sass');
-var minifyCSS = require('gulp-csso');
+// var minifyCSS = require('gulp-csso');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
-// var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 
 var processors = [
@@ -42,7 +41,5 @@ gulp.task('watch', function() {
     gulp.watch('src/**/*.js', ['js']);
 });
 
-//gulp.task('default', ['clean', 'css', 'js'] /*[ 'html', 'css', 'js' ]*/);
-
 gulp.task('build', ['css', 'js', 'copy']);
-gulp.task('default', ['clean', 'build']);
+gulp.task('default', ['build']);

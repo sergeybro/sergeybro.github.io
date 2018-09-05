@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfectial Test</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
@@ -346,8 +347,8 @@
                         </div>
                         <div class="form-row">
                             <div class="input-label">
-                                <input type="checkbox" name="terms-conds" id="terms-conds" class="input--checkbox">
-                                <label for="terms-conds">I accept Terms and Service</label>
+                                <input type="checkbox" name="terms-conds" id="terms-conds" class="input--checkbox visually-hidden">
+                                <label for="terms-conds"><div class="checkbox-square"></div>I accept Terms and Service</label>
                             </div>
                         </div>
                     </div>
@@ -401,21 +402,39 @@
                                             <div class="input-label input-label--credit-card">
                                                 <label for="creditCard1">Card number</label>
                                                 <div class="input-group">
-                                                    <input class="input--card input--standard" type="text" name="creditCard1" id="creditCard1"/>
-                                                    <input class="input--card input--standard" type="text" name="creditCard2" id="creditCard2"/>
-                                                    <input class="input--card input--standard" type="text" name="creditCard3" id="creditCard3"/>
-                                                    <input class="input--card input--standard" type="text" name="creditCard4" id="creditCard4"/>
+                                                    <div class="input-wrapper">
+                                                        <input class="input--card input--standard" type="text" name="creditCard1" id="creditCard1"/>
+                                                        <span class="focus-bg"></span>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <input class="input--card input--standard" type="text" name="creditCard2" id="creditCard2"/>
+                                                        <span class="focus-bg"></span>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <input class="input--card input--standard" type="text" name="creditCard3" id="creditCard3"/>
+                                                        <span class="focus-bg"></span>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <input class="input--card input--standard" type="text" name="creditCard4" id="creditCard4"/>
+                                                        <span class="focus-bg"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row form-row--divided-sides">
                                             <div class="input-label input-label--exp-date">
                                                 <label for="form-card-number">Expiration date</label>
-                                                <input type="text" name="card-number" id="form-card-number"  class="input--standard">
+                                                <div class="input-wrapper">
+                                                    <input type="text" name="card-number" id="form-card-number"  class="input--standard">
+                                                    <span class="focus-bg"></span>
+                                                </div>
                                             </div>
                                             <div class="input-label input-label--cvv">
                                                 <label for="form-card-cvv">CVC/CVV</label>
-                                                <input type="text" name="cvv" id="form-card-cvv"  class="input--standard">
+                                                <div class="input-wrapper">
+                                                    <input type="text" name="cvv" id="form-card-cvv"  class="input--standard">
+                                                    <span class="focus-bg"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
