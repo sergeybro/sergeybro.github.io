@@ -17,11 +17,25 @@ html, body {
 
 .content {
   width: 100%;
-  padding-top: 60px;
+  padding-top: 52px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
   min-width: 320px;
+}
+
+.logo-head-region {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  font-family: 'Fira Sans', sans-serif;
+  color: #808080;
+
+  &--highlighted-text {
+    color: #000;
+  }
 }
 
 .form-group {
@@ -39,10 +53,13 @@ html, body {
 
 .form-row {
   display: flex;
+  flex-direction: column;
+  position: relative;
   margin-bottom: 24px;
 
-  &--two-inputs {
+  &.form-row--two-inputs {
     justify-content: space-between;
+    flex-direction: row;
 
     .input-label {
       max-width: 192px;
@@ -51,6 +68,7 @@ html, body {
 
   &--divided-sides {
     justify-content: space-between;
+    flex-direction: row;
   }
 }
 
@@ -65,6 +83,26 @@ html, body {
 
   &--cvv {
     max-width: 74px;
+  }
+
+  &.input-label--type-file {
+    position: absolute;
+    left: 102%;
+    top: 31px;
+    width: auto;
+    min-width: 70px;
+
+    label {
+      color: #F57E80;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all .3s ease-in-out;
+    }
+
+    & input:focus ~ label {
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
+    }
   }
 
   label {
@@ -193,6 +231,7 @@ html, body {
     margin-bottom: 96px;
     .form-section__header {
       margin-bottom: 8px;
+      margin-top: 80px;
     }
   }
 
@@ -600,6 +639,13 @@ html, body {
     padding-right: 10px;
   }
 
+  .form-section--personal-info {
+    .form-section__header {
+
+      margin-top: 40px;
+    }
+  }
+
   .tabs-wrapper {
     flex-direction: column;
 
@@ -632,6 +678,15 @@ html, body {
       top: -12px;
       right: 40px;
       left: auto;
+    }
+  }
+
+  .input-label {
+    &.input-label--type-file {
+      position: initial;
+      padding-top: 24px;
+      left: auto;
+      top: auto;
     }
   }
 }

@@ -2,6 +2,8 @@
     var tabsButtons = document.querySelectorAll('.tab-btn');
     var formTabs = document.querySelectorAll('.form-tab');
 
+    var inputFile = document.querySelector('#form-file-logo');
+
     var form = document.getElementById('shipping_form');
 
     form.addEventListener('submit', function (e) {
@@ -25,6 +27,16 @@
                 formTabs[i].classList.add('active');
             }
         })
+    });
+
+    inputFile.addEventListener('change', function () {
+        var file = this.files[0];
+        var fileName = file.name;
+        var label = this.nextElementSibling;
+
+        label.innerHTML = 'Added logo:<br>' + fileName;
+
+        this.parentElement.style.top = '25px';
     });
 
     document.querySelector('.btn-submit-form').onmousemove = function(e) {

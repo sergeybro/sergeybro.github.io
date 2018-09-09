@@ -18,11 +18,6 @@ gulp.task('css', function(){
         .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('clean', function () {
-    return gulp.src('dist', {read: false})
-        .pipe(clean());
-});
-
 gulp.task('js', function(){
     return gulp.src('src/js/*.js')
         .pipe(concat('app.js'))
@@ -34,6 +29,11 @@ gulp.task('copy', function(){
         'src/assets/*.{jpg,png,jpeg,svg,gif}'
     ])
         .pipe(gulp.dest('dist/assets'))
+});
+
+gulp.task('clean', function () {
+    return gulp.src('dist', {read: false})
+        .pipe(clean());
 });
 
 gulp.task('watch', function() {

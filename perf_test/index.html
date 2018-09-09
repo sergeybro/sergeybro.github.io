@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfectial Test</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:500" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/css/main.css">
 </head>
 <body>
 <div class="wrapper">
     <div class="content">
+        <div class="logo-head-region">
+            <div class="logo">
+                <span><span class="logo--highlighted-text">pixetic</span> design agency</span>
+            </div>
+        </div>
         <form name="shipping_form" id="shipping_form">
             <div class="form-section form-section--personal-info">
                 <h2 class="form-section__header">Fill in the form</h2>
@@ -38,6 +44,10 @@
                                     <input type="text" name="company-name" id="form-company-name" class="input--standard">
                                     <span class="focus-bg"></span>
                                 </div>
+                            </div>
+                            <div class="input-label input-label--type-file">
+                                <input type="file" accept="image/*" name="company-logo" id="form-file-logo" class="input--file visually-hidden">
+                                <label for="form-file-logo">+  Add logo</label>
                             </div>
                         </div>
                         <div class="form-row">
