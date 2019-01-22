@@ -1,8 +1,8 @@
 function harmlessRansomNote (messageText, hayText) {
-    var messageIsPossible;
-    var messageTextArr = messageText.split(' ');
-    var hayTextArr = hayText.split(' ');
-    var hayTextObj = {};
+    var messageIsPossible,
+        messageTextArr = messageText.split(' '),
+        hayTextArr = hayText.split(' '),
+        hayTextObj = {};
 
     hayTextArr.forEach(function (word) {
         if (!hayTextObj[word]) {
