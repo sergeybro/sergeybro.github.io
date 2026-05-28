@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WheelVision is an AI-powered wheel visualization app that lets you preview rims on your car before buying.">
+<title>WheelVision — AI Wheel Visualization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08080E;--bg2:#0F0F18;--bg3:#171724;--bg4:#1F1F2E;--bg5:#282838;
+  --accent:#7C6FF7;--accent2:#A29BFE;--accent3:#00CEC9;
+  --text:#EEEDF8;--text2:#9896B5;--text3:#56546F;
+  --border:#1E1E2E;--border2:#2E2D45;--border3:#3D3C58;
+  --success:#00CEC9;--warn:#FDCB6E;--danger:#FF6B6B;
+}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border3);border-radius:3px}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(8,8,14,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;cursor:pointer;user-select:none}
+.logo span{color:var(--accent2)}
+.nav-center{display:flex;gap:2px}
+.nav-link{font-size:13px;padding:7px 16px;border-radius:20px;border:none;background:transparent;color:var(--text2);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.nav-link:hover{color:var(--text);background:var(--bg3)}
+.nav-link.active{color:var(--text);background:var(--bg3);border:1px solid var(--border2)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-credits{font-size:12px;padding:5px 12px;border-radius:20px;background:rgba(253,203,110,.1);border:1px solid rgba(253,203,110,.2);color:var(--warn);cursor:default}
+.btn-nav-cta{font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 18px;border-radius:20px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-weight:500;transition:all .2s}
+.btn-nav-cta:hover{background:var(--accent2);color:var(--bg)}
+
+/* ── SCREENS ── */
+.screen{display:none;padding-top:60px;min-height:100vh}
+.screen.active{display:block}
+
+/* ══════════════════════════════════════
+   LANDING
+══════════════════════════════════════ */
+.hero{min-height:calc(100vh - 60px);display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 32px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 800px 600px at 50% 40%,rgba(124,111,247,.08) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;opacity:.4;pointer-events:none}
+.hero-content{position:relative;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent2);border:1px solid rgba(124,111,247,.35);padding:5px 16px;border-radius:20px;margin-bottom:28px;font-weight:500}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--text2);line-height:1.65;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn-hero-primary{font-family:'DM Sans',sans-serif;font-size:16px;padding:14px 32px;border-radius:28px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-weight:500;transition:all .25s;display:flex;align-items:center;gap:8px}
+.btn-hero-primary:hover{background:var(--accent2);color:var(--bg);transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,111,247,.3)}
+.btn-hero-secondary{font-family:'DM Sans',sans-serif;font-size:16px;padding:14px 32px;border-radius:28px;border:1px solid var(--border3);background:transparent;color:var(--text);cursor:pointer;transition:all .25s}
+.btn-hero-secondary:hover{border-color:var(--accent2);color:var(--accent2);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;justify-content:center}
+.stat-item{text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text)}
+.stat-label{font-size:12px;color:var(--text3);margin-top:2px}
+
+.section{padding:80px 32px;max-width:1100px;margin:0 auto}
+.section-title{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.section-sub{font-size:15px;color:var(--text2);margin-bottom:48px}
+
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.how-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;overflow:hidden;transition:.25s}
+.how-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.how-num{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;color:var(--border2);position:absolute;top:16px;right:20px;line-height:1;user-select:none}
+.how-icon{font-size:32px;margin-bottom:16px}
+.how-card h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* ══════════════════════════════════════
+   UPLOAD / VISUALIZE
+══════════════════════════════════════ */
+.page-header{padding:40px 32px 0;max-width:900px;margin:0 auto}
+.page-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px}
+.page-sub{font-size:14px;color:var(--text2)}
+
+.upload-wrap{max-width:900px;margin:32px auto 0;padding:0 32px 60px}
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.drop-zone{background:var(--bg2);border:1.5px dashed var(--border2);border-radius:20px;padding:40px 24px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;user-select:none}
+.drop-zone:hover{border-color:var(--accent);background:var(--bg3)}
+.drop-zone.uploaded{border-style:solid;border-color:var(--accent3)}
+.drop-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(124,111,247,.05),transparent 60%);pointer-events:none}
+.dz-check{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--accent3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--bg);font-weight:700;opacity:0;transform:scale(.5);transition:.25s}
+.drop-zone.uploaded .dz-check{opacity:1;transform:scale(1)}
+.dz-tag{display:inline-block;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:12px;margin-bottom:16px;font-weight:600}
+.tag-car{background:rgba(162,155,254,.12);color:var(--accent2);border:1px solid rgba(162,155,254,.25)}
+.tag-wheel{background:rgba(0,206,201,.1);color:var(--accent3);border:1px solid rgba(0,206,201,.25)}
+.dz-emoji{font-size:40px;margin-bottom:14px;display:block;transition:.2s}
+.dz-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
+.dz-hint{font-size:12px;color:var(--text3);line-height:1.5}
+.dz-filename{font-size:12px;color:var(--accent3);margin-top:8px;font-weight:500}
+
+.options-bar{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 24px;margin-bottom:20px}
+.options-bar h4{font-size:13px;color:var(--text3);font-weight:500;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px}
+.options-row{display:flex;gap:12px;flex-wrap:wrap}
+.opt-chip{font-size:13px;padding:7px 16px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
+.opt-chip:hover{border-color:var(--border3);color:var(--text)}
+.opt-chip.selected{border-color:var(--accent);color:var(--accent2);background:rgba(124,111,247,.1)}
+
+.process-bar{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.process-info h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:4px}
+.process-info p{font-size:13px;color:var(--text2)}
+.btn-run{font-family:'DM Sans',sans-serif;font-size:15px;padding:12px 28px;border-radius:24px;border:none;background:var(--bg5);color:var(--text3);cursor:not-allowed;font-weight:500;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.btn-run.ready{background:var(--accent);color:#fff;cursor:pointer}
+.btn-run.ready:hover{background:var(--accent2);color:var(--bg);transform:translateY(-1px);box-shadow:0 8px 24px rgba(124,111,247,.3)}
+
+/* ══════════════════════════════════════
+   PROCESSING
+══════════════════════════════════════ */
+.processing-wrap{min-height:calc(100vh - 60px);display:flex;align-items:center;justify-content:center;padding:40px}
+.processing-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:48px;text-align:center;max-width:420px;width:100%}
+.proc-ring{width:72px;height:72px;border-radius:50%;border:2px solid var(--border2);border-top-color:var(--accent);border-right-color:var(--accent3);animation:spin 1.2s linear infinite;margin:0 auto 28px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.proc-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px}
+.proc-sub{font-size:14px;color:var(--text2);margin-bottom:32px}
+.steps{display:flex;flex-direction:column;gap:10px;text-align:left}
+.step{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text3);transition:.4s}
+.step.active{color:var(--text)}
+.step.done{color:var(--success)}
+.step-dot{width:10px;height:10px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:.4s}
+.step.active .step-dot{background:var(--accent);box-shadow:0 0 10px rgba(124,111,247,.6)}
+.step.done .step-dot{background:var(--success)}
+.step-tick{display:none;font-size:12px;margin-left:auto;color:var(--success);font-weight:600}
+.step.done .step-tick{display:block}
+
+/* ══════════════════════════════════════
+   RESULT
+══════════════════════════════════════ */
+.result-wrap{max-width:1000px;margin:0 auto;padding:32px 32px 60px}
+.result-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+.result-left{}
+.result-viewer{background:var(--bg2);border:1px solid var(--border);border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3}
+.viewer-canvas{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.viewer-after,.viewer-before{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:.4s;flex-direction:column;gap:12px}
+.viewer-before{opacity:0;pointer-events:none}
+.viewer-before.show{opacity:1}
+.viewer-after.hide{opacity:0}
+.car-render{width:80%;max-width:320px}
+.ba-bar{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(8,8,14,.8);border-radius:24px;padding:5px;backdrop-filter:blur(8px);border:1px solid var(--border)}
+.ba-btn{font-size:12px;padding:5px 14px;border-radius:18px;border:none;cursor:pointer;font-weight:500;transition:.2s;background:transparent;color:var(--text2);font-family:'DM Sans',sans-serif}
+.ba-btn.on{background:var(--accent);color:#fff}
+.result-tag{position:absolute;top:14px;left:14px;font-size:11px;padding:4px 12px;border-radius:10px;background:rgba(0,206,201,.15);color:var(--accent3);border:1px solid rgba(0,206,201,.3);font-weight:600}
+
+.result-right{display:flex;flex-direction:column;gap:16px}
+.harmony-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:24px}
+.hb-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-weight:500}
+.hb-score{display:flex;align-items:baseline;gap:6px;margin-bottom:14px}
+.hb-num{font-family:'Syne',sans-serif;font-size:54px;font-weight:800;color:var(--accent3);line-height:1}
+.hb-of{font-size:18px;color:var(--text3)}
+.hb-bar{height:5px;background:var(--bg5);border-radius:5px;overflow:hidden;margin-bottom:16px}
+.hb-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.hb-stars{display:flex;gap:3px;margin-bottom:12px}
+.star{font-size:14px;color:var(--border3)}
+.star.lit{color:var(--warn)}
+.hb-text{font-size:13px;color:var(--text2);line-height:1.65}
+
+.color-compat{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:20px}
+.cc-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-weight:500}
+.cc-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.cc-swatch{width:28px;height:28px;border-radius:8px;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+.cc-info{flex:1}
+.cc-name{font-size:13px;font-weight:500}
+.cc-hex{font-size:11px;color:var(--text3)}
+.cc-plus{font-size:18px;color:var(--text3);margin:0 4px}
+.cc-score-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.cc-score-label{font-size:12px;color:var(--text2)}
+.cc-score-val{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--accent3)}
+
+.actions-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.act-btn{font-family:'DM Sans',sans-serif;font-size:14px;padding:11px 16px;border-radius:12px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:10px;width:100%}
+.act-btn:hover{border-color:var(--accent2);background:rgba(124,111,247,.07);color:var(--accent2)}
+.act-btn svg{flex-shrink:0;opacity:.7}
+.act-btn span{font-size:11px;margin-left:auto;padding:2px 8px;border-radius:8px;background:rgba(253,203,110,.1);color:var(--warn);border:1px solid rgba(253,203,110,.2)}
+.credits-note{font-size:12px;color:var(--text3);text-align:center;padding:4px 0}
+
+/* ══════════════════════════════════════
+   GARAGE
+══════════════════════════════════════ */
+.garage-wrap{max-width:1000px;margin:0 auto;padding:32px 32px 60px}
+.garage-filters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.filter-btn{font-size:13px;padding:7px 16px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
+.filter-btn:hover{color:var(--text);border-color:var(--border3)}
+.filter-btn.active{border-color:var(--accent);color:var(--accent2);background:rgba(124,111,247,.1)}
+.garage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.garage-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:.25s}
+.garage-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.gc-thumb{aspect-ratio:4/3;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative}
+.gc-thumb-inner{display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.6}
+.gc-score{position:absolute;top:10px;right:10px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:4px 10px;border-radius:10px;background:rgba(0,206,201,.15);color:var(--accent3);border:1px solid rgba(0,206,201,.3)}
+.gc-body{padding:14px}
+.gc-car{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px}
+.gc-wheel{font-size:12px;color:var(--text2);margin-bottom:8px}
+.gc-footer{display:flex;align-items:center;justify-content:space-between}
+.gc-date{font-size:11px;color:var(--text3)}
+.gc-poll{font-size:11px;padding:3px 10px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif}
+.gc-poll:hover{border-color:var(--accent);color:var(--accent2)}
+.garage-empty{text-align:center;padding:80px 40px;color:var(--text3)}
+.garage-empty-icon{font-size:48px;margin-bottom:16px}
+.garage-empty h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text2);margin-bottom:8px}
+.garage-empty p{font-size:14px;line-height:1.6;margin-bottom:24px}
+
+/* ══════════════════════════════════════
+   PRICING
+══════════════════════════════════════ */
+.pricing-wrap{max-width:900px;margin:0 auto;padding:32px 32px 60px}
+.pricing-toggle{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:40px}
+.toggle-label{font-size:14px;color:var(--text2)}
+.toggle-label.active{color:var(--text)}
+.toggle-track{width:48px;height:26px;background:var(--bg5);border-radius:13px;border:1px solid var(--border2);cursor:pointer;position:relative;transition:.2s;flex-shrink:0}
+.toggle-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);position:absolute;top:2px;left:2px;transition:.25s}
+.toggle-track.yearly .toggle-thumb{left:24px}
+.toggle-track.yearly{background:rgba(124,111,247,.15);border-color:var(--accent)}
+.save-badge{font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(0,206,201,.1);color:var(--accent3);border:1px solid rgba(0,206,201,.25);font-weight:500}
+
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.plan{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:28px;position:relative;transition:.25s}
+.plan:hover{border-color:var(--border2)}
+.plan.featured{border-color:var(--accent);background:var(--bg3)}
+.plan-pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:12px;background:var(--accent);color:#fff;font-weight:600;white-space:nowrap}
+.plan-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.plan-price-wrap{margin:12px 0 4px;display:flex;align-items:baseline;gap:4px}
+.plan-price{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;line-height:1}
+.plan-period{font-size:14px;color:var(--text3)}
+.plan-credits-note{font-size:12px;color:var(--text3);margin-bottom:20px}
+.plan-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.plan-list li{font-size:13px;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.plan-list li.yes{color:var(--text2)}
+.plan-list li.no{color:var(--text3)}
+.plan-list li::before{content:'';width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.plan-list li.yes::before{content:'✓';background:rgba(0,206,201,.15);color:var(--accent3)}
+.plan-list li.no::before{content:'×';background:var(--bg5);color:var(--text3)}
+.btn-plan{width:100%;font-family:'DM Sans',sans-serif;font-size:14px;padding:12px;border-radius:14px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;font-weight:500;transition:.25s}
+.btn-plan:hover{border-color:var(--accent2);color:var(--accent2)}
+.plan.featured .btn-plan{background:var(--accent);border-color:var(--accent);color:#fff}
+.plan.featured .btn-plan:hover{background:var(--accent2);border-color:var(--accent2);color:var(--bg);transform:translateY(-1px)}
+
+.credits-bundle{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:28px}
+.cb-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px}
+.cb-sub{font-size:13px;color:var(--text2);margin-bottom:20px}
+.bundles-row{display:flex;gap:12px;flex-wrap:wrap}
+.bundle{background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:16px 20px;cursor:pointer;transition:.25s;flex:1;min-width:140px;text-align:center}
+.bundle:hover{border-color:var(--accent2)}
+.bundle.hot{border-color:var(--accent)}
+.bundle-credits{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px}
+.bundle-days{font-size:12px;color:var(--text3);margin-bottom:8px}
+.bundle-price{font-size:15px;font-weight:600;color:var(--text)}
+.bundle-save{font-size:10px;padding:2px 8px;border-radius:8px;background:rgba(0,206,201,.1);color:var(--accent3);margin-top:4px;display:inline-block}
+
+/* ══════════════════════════════════════
+   POLL
+══════════════════════════════════════ */
+.poll-wrap{max-width:720px;margin:0 auto;padding:32px 32px 60px}
+.poll-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;overflow:hidden}
+.poll-header{padding:24px 28px;border-bottom:1px solid var(--border)}
+.poll-q{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px}
+.poll-meta{font-size:13px;color:var(--text3)}
+.poll-options{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border)}
+.poll-opt{padding:32px 24px;text-align:center;cursor:pointer;transition:.2s;position:relative;border-right:1px solid var(--border)}
+.poll-opt:last-child{border-right:none}
+.poll-opt:hover{background:var(--bg3)}
+.poll-opt.voted{background:rgba(124,111,247,.06)}
+.po-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;font-weight:500}
+.po-car{font-size:40px;margin-bottom:10px}
+.po-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px}
+.po-wheel{font-size:13px;color:var(--text2);margin-bottom:12px}
+.po-score{display:inline-block;font-size:12px;padding:4px 12px;border-radius:10px;background:rgba(0,206,201,.1);color:var(--accent3);border:1px solid rgba(0,206,201,.25);font-weight:600;margin-bottom:16px}
+.po-bar-wrap{height:6px;background:var(--bg5);border-radius:3px;margin-bottom:6px;overflow:hidden}
+.po-bar{height:100%;border-radius:3px;background:var(--accent);width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.po-percent{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text3);transition:.4s}
+.poll-opt.voted .po-percent{color:var(--accent2)}
+.poll-opt.leader .po-bar{background:linear-gradient(90deg,var(--accent),var(--accent3))}
+.poll-footer{padding:20px 28px;display:flex;align-items:center;justify-content:space-between}
+.poll-total{font-size:13px;color:var(--text3)}
+.poll-share{font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 20px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:.2s}
+.poll-share:hover{border-color:var(--accent2);color:var(--accent2)}
+
+/* TOAST */
+.toast{position:fixed;bottom:32px;right:32px;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;padding:14px 20px;font-size:14px;color:var(--text);z-index:999;transform:translateY(80px);opacity:0;transition:.3s;max-width:300px;display:flex;align-items:center;gap:10px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{font-size:18px}
+
+/* MODAL / OVERLAY — normal flow faux-viewport */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(8,8,14,.85);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:24px;padding:32px;max-width:420px;width:90%;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.modal-close:hover{background:var(--bg4);color:var(--text)}
+.modal h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:20px}
+.modal-btns{display:flex;gap:10px}
+.modal-btn-prim{flex:1;font-family:'DM Sans',sans-serif;font-size:14px;padding:11px;border-radius:12px;border:none;background:var(--accent);color:#fff;cursor:pointer;font-weight:500;transition:.2s}
+.modal-btn-prim:hover{background:var(--accent2);color:var(--bg)}
+.modal-btn-sec{flex:1;font-family:'DM Sans',sans-serif;font-size:14px;padding:11px;border-radius:12px;border:1px solid var(--border2);background:transparent;color:var(--text);cursor:pointer;transition:.2s}
+.modal-btn-sec:hover{border-color:var(--border3)}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="logo" onclick="goTo('landing')">Wheel<span>Vision</span></div>
+  <div class="nav-center">
+    <button class="nav-link active" id="nl-landing" onclick="goTo('landing')">Home</button>
+    <button class="nav-link" id="nl-upload" onclick="goTo('upload')">Visualization</button>
+    <button class="nav-link" id="nl-garage" onclick="goTo('garage')">Garage</button>
+    <button class="nav-link" id="nl-pricing" onclick="goTo('pricing')">Pricing</button>
+  </div>
+  <div class="nav-right">
+    <div class="nav-credits">⚡ 4 credits</div>
+    <button class="btn-nav-cta" onclick="goTo('upload')">Create Render →</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     LANDING
+══════════════════════════════════════ -->
+<div class="screen active" id="screen-landing">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><div class="badge-dot"></div>AI · Visualization дисков</div>
+      <h1>See Wheels<br>on Your Car<br><em>Before Buying</em></h1>
+      <p class="hero-sub">Upload a photo of your car and wheels you like — AI will show how they look together and evaluate the harmony of the color combination.</p>
+      <div class="hero-btns">
+        <button class="btn-hero-primary" onclick="goTo('upload')">🚀 Try for Free</button>
+        <button class="btn-hero-secondary" onclick="goTo('pricing')">View Pricing</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">12 400+</div><div class="stat-label">Renders Created</div></div>
+        <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-label">Average Rating</div></div>
+        <div class="stat-item"><div class="stat-num">2 мин</div><div class="stat-label">Processing Time</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">How It Works</div>
+    <p class="section-sub">Three simple steps to the result</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01</div>
+        <div class="how-icon">📸</div>
+        <h3>Upload Two Photos</h3>
+        <p>Upload a photo of your car and the wheels you want to try. JPG or PNG, any quality.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02</div>
+        <div class="how-icon">🤖</div>
+        <h3>AI Processing</h3>
+        <p>The neural network segments the wheels, aligns perspective, and overlays rims with realistic shadows.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03</div>
+        <div class="how-icon">🎯</div>
+        <h3>Get the Result</h3>
+        <p>Receive a finished render and Harmony Score — a color compatibility evaluation explained in plain language.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     UPLOAD
+══════════════════════════════════════ -->
+<div class="screen" id="screen-upload">
+  <div class="page-header">
+    <div class="page-title">New Visualization</div>
+    <p class="page-sub">Upload Two Photos — и AI покажет результат за 1–2 минуты</p>
+  </div>
+  <div class="upload-wrap">
+    <div class="upload-grid">
+      <div class="drop-zone" id="dz-car" onclick="uploadFile('car')">
+        <div class="dz-check">✓</div>
+        <div class="dz-tag tag-car">Car</div>
+        <span class="dz-emoji" id="dz-car-icon">🚗</span>
+        <div class="dz-title" id="dz-car-title">Photo of Your Car</div>
+        <div class="dz-hint" id="dz-car-hint">Click to choose a file<br>JPG or PNG · Any angle</div>
+        <div class="dz-filename" id="dz-car-name"></div>
+      </div>
+      <div class="drop-zone" id="dz-wheel" onclick="uploadFile('wheel')">
+        <div class="dz-check">✓</div>
+        <div class="dz-tag tag-wheel">Wheels</div>
+        <span class="dz-emoji" id="dz-wheel-icon">⚙️</span>
+        <div class="dz-title" id="dz-wheel-title">Wheel Photo</div>
+        <div class="dz-hint" id="dz-wheel-hint">Click to choose a file<br>Front-facing view recommended</div>
+        <div class="dz-filename" id="dz-wheel-name"></div>
+      </div>
+    </div>
+
+    <div class="options-bar">
+      <h4>Render Style</h4>
+      <div class="options-row">
+        <button class="opt-chip selected" onclick="selectOpt(this)">Realistic</button>
+        <button class="opt-chip" onclick="selectOpt(this)">Studio Lighting</button>
+        <button class="opt-chip" onclick="selectOpt(this)">Street Background</button>
+        <button class="opt-chip" onclick="selectOpt(this)">Track</button>
+      </div>
+    </div>
+
+    <div class="process-bar">
+      <div class="process-info">
+        <h4 id="proc-title">Upload both photos</h4>
+        <p id="proc-sub">A car and wheels are required to run AI</p>
+      </div>
+      <button class="btn-run" id="btn-run" onclick="startProcess()">Run AI</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PROCESSING
+══════════════════════════════════════ -->
+<div class="screen" id="screen-processing">
+  <div class="processing-wrap">
+    <div class="processing-card">
+      <div class="proc-ring"></div>
+      <div class="proc-title">Processing...</div>
+      <div class="proc-sub">AI is analyzing your photos</div>
+      <div class="steps">
+        <div class="step active" id="st-1"><div class="step-dot"></div>Car Segmentation<div class="step-tick">✓</div></div>
+        <div class="step" id="st-2"><div class="step-dot"></div>Wheel Arch Detection<div class="step-tick">✓</div></div>
+        <div class="step" id="st-3"><div class="step-dot"></div>Wheel Segmentation<div class="step-tick">✓</div></div>
+        <div class="step" id="st-4"><div class="step-dot"></div>Perspective Alignment<div class="step-tick">✓</div></div>
+        <div class="step" id="st-5"><div class="step-dot"></div>AI Compositing<div class="step-tick">✓</div></div>
+        <div class="step" id="st-6"><div class="step-dot"></div>Harmony Score Analysis<div class="step-tick">✓</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     RESULT
+══════════════════════════════════════ -->
+<div class="screen" id="screen-result">
+  <div class="page-header">
+    <div class="page-title">Result Ready 🎉</div>
+    <p class="page-sub">AI processed your photos</p>
+  </div>
+  <div class="result-wrap">
+    <div class="result-grid">
+      <div class="result-left">
+        <div class="result-viewer">
+          <div class="viewer-canvas">
+            <div class="viewer-after" id="view-after">
+              <div class="result-tag">Result</div>
+              <svg class="car-render" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="80" width="280" height="80" rx="12" fill="#1F1F2E"/>
+                <rect x="70" y="44" width="220" height="54" rx="10" fill="#282838"/>
+                <rect x="82" y="50" width="82" height="40" rx="6" fill="#3D3B55" opacity=".9"/>
+                <rect x="82" y="50" width="82" height="40" rx="6" fill="#7C6FF7" opacity=".2"/>
+                <rect x="176" y="50" width="82" height="40" rx="6" fill="#3D3B55" opacity=".9"/>
+                <rect x="176" y="50" width="82" height="40" rx="6" fill="#7C6FF7" opacity=".2"/>
+                <!-- wheel left -->
+                <circle cx="105" cy="162" r="32" fill="#0F0F18" stroke="#7C6FF7" stroke-width="3"/>
+                <circle cx="105" cy="162" r="22" fill="#1A1A28"/>
+                <circle cx="105" cy="162" r="14" fill="#0F0F18"/>
+                <line x1="105" y1="140" x2="105" y2="184" stroke="#A29BFE" stroke-width="2" opacity=".7"/>
+                <line x1="83" y1="162" x2="127" y2="162" stroke="#A29BFE" stroke-width="2" opacity=".7"/>
+                <line x1="90" y1="147" x2="120" y2="177" stroke="#A29BFE" stroke-width="1.5" opacity=".5"/>
+                <line x1="120" y1="147" x2="90" y2="177" stroke="#A29BFE" stroke-width="1.5" opacity=".5"/>
+                <!-- wheel right -->
+                <circle cx="255" cy="162" r="32" fill="#0F0F18" stroke="#7C6FF7" stroke-width="3"/>
+                <circle cx="255" cy="162" r="22" fill="#1A1A28"/>
+                <circle cx="255" cy="162" r="14" fill="#0F0F18"/>
+                <line x1="255" y1="140" x2="255" y2="184" stroke="#A29BFE" stroke-width="2" opacity=".7"/>
+                <line x1="233" y1="162" x2="277" y2="162" stroke="#A29BFE" stroke-width="2" opacity=".7"/>
+                <line x1="240" y1="147" x2="270" y2="177" stroke="#A29BFE" stroke-width="1.5" opacity=".5"/>
+                <line x1="270" y1="147" x2="240" y2="177" stroke="#A29BFE" stroke-width="1.5" opacity=".5"/>
+                <!-- lights -->
+                <rect x="30" y="96" width="18" height="10" rx="3" fill="#A29BFE" opacity=".8"/>
+                <rect x="312" y="96" width="18" height="10" rx="3" fill="#A29BFE" opacity=".3"/>
+                <rect x="40" y="110" width="12" height="8" rx="2" fill="#FDCB6E" opacity=".6"/>
+                <!-- ground shadow -->
+                <ellipse cx="180" cy="196" rx="130" ry="8" fill="#0A0A12" opacity=".8"/>
+              </svg>
+            </div>
+            <div class="viewer-before" id="view-before">
+              <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
+                <rect x="20" y="35" width="160" height="55" rx="8" fill="#2A2838"/>
+                <rect x="38" y="18" width="124" height="26" rx="6" fill="#333248"/>
+                <circle cx="60" cy="94" r="20" fill="#1A1A24" stroke="#3D3B55" stroke-width="2"/>
+                <circle cx="140" cy="94" r="20" fill="#1A1A24" stroke="#3D3B55" stroke-width="2"/>
+                <rect x="14" y="46" width="12" height="8" rx="2" fill="#5C5A78" opacity=".7"/>
+              </svg>
+              <div style="font-size:13px;color:var(--text3)">Original Photo</div>
+            </div>
+          </div>
+          <div class="ba-bar">
+            <button class="ba-btn on" id="ba-after-btn" onclick="showView('after')">After</button>
+            <button class="ba-btn" id="ba-before-btn" onclick="showView('before')">Before</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-right">
+        <div class="harmony-box">
+          <div class="hb-label">Harmony Score</div>
+          <div class="hb-score">
+            <div class="hb-num" id="hb-num">8.2</div>
+            <div class="hb-of">/ 10</div>
+          </div>
+          <div class="hb-bar"><div class="hb-fill" id="hb-fill" style="width:0%"></div></div>
+          <div class="hb-stars" id="hb-stars"></div>
+          <p class="hb-text">Dark multi-spoke wheels create a striking contrast with the body. The combination emphasizes the sporty character and visually widens the wheel arches. Excellent choice!</p>
+        </div>
+
+        <div class="color-compat">
+          <div class="cc-label">Color Analysis</div>
+          <div class="cc-row">
+            <div class="cc-swatch" style="background:#1C2B3A"></div>
+            <div class="cc-info"><div class="cc-name">Car Body</div><div class="cc-hex">#1C2B3A · Dark Blue</div></div>
+          </div>
+          <div style="font-size:18px;color:var(--text3);text-align:center;margin:4px 0">＋</div>
+          <div class="cc-row">
+            <div class="cc-swatch" style="background:#8B8B9A"></div>
+            <div class="cc-info"><div class="cc-name">Wheels</div><div class="cc-hex">#8B8B9A · Тёмный хром</div></div>
+          </div>
+          <div class="cc-score-row">
+            <span class="cc-score-label">Compatibility</span>
+            <span class="cc-score-val">Excellent ✨</span>
+          </div>
+        </div>
+
+        <div class="actions-box">
+          <button class="act-btn" onclick="showToast('💾 Сохранено в Garage!')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Сохранить в Garage
+          </button>
+          <button class="act-btn" onclick="goTo('poll')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Create A vs B Poll
+            <span>Standard+</span>
+          </button>
+          <button class="act-btn" onclick="showToast('⬇️ Рендер скачан!')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Result
+          </button>
+          <button class="act-btn" onclick="showModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+          <button class="act-btn" onclick="goTo('upload')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            New Visualization
+          </button>
+          <div class="credits-note">1 credit used · Remaining: 4 of 5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GARAGE
+══════════════════════════════════════ -->
+<div class="screen" id="screen-garage">
+  <div class="page-header">
+    <div class="page-title">Garage</div>
+    <p class="page-sub">Your saved visualizations</p>
+  </div>
+  <div class="garage-wrap">
+    <div class="garage-filters">
+      <button class="filter-btn active" onclick="filterGarage(this,'all')">All Renders</button>
+      <button class="filter-btn" onclick="filterGarage(this,'saved')">Saved</button>
+      <button class="filter-btn" onclick="filterGarage(this,'polls')">With Polls</button>
+    </div>
+    <div class="garage-grid" id="garage-grid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PRICING
+══════════════════════════════════════ -->
+<div class="screen" id="screen-pricing">
+  <div class="page-header">
+    <div class="page-title">Pricing</div>
+    <p class="page-sub">Start for free, scale when needed</p>
+  </div>
+  <div class="pricing-wrap">
+    <div class="pricing-toggle">
+      <span class="toggle-label active" id="tl-month">Monthly</span>
+      <div class="toggle-track" id="billing-toggle" onclick="toggleBilling()"><div class="toggle-thumb"></div></div>
+      <span class="toggle-label" id="tl-year">Yearly</span>
+      <span class="save-badge">Save 20%</span>
+    </div>
+    <div class="plans-grid">
+      <div class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-price-wrap"><div class="plan-price">$0</div><div class="plan-period">/mo</div></div>
+        <div class="plan-credits-note" id="pc-free">5 starter credits</div>
+        <ul class="plan-list">
+          <li class="yes">Basic Render</li>
+          <li class="yes">Harmony Score</li>
+          <li class="yes">Переключатель Before/After</li>
+          <li class="no">Garage (история рендеров)</li>
+          <li class="no">Создание опросов</li>
+          <li class="no">No Watermark</li>
+        </ul>
+        <button class="btn-plan" onclick="goTo('upload')">Start for Free</button>
+      </div>
+      <div class="plan featured">
+        <div class="plan-pop">Popular</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price-wrap"><div class="plan-price" id="pp-standard">$4.99</div><div class="plan-period">/mo</div></div>
+        <div class="plan-credits-note" id="pc-standard">50 credits per month</div>
+        <ul class="plan-list">
+          <li class="yes">Advanced Render</li>
+          <li class="yes">Harmony Score + AI Text</li>
+          <li class="yes">Переключатель Before/After</li>
+          <li class="yes">Garage (история рендеров)</li>
+          <li class="yes">A vs B Poll Creation</li>
+          <li class="no">No Watermark</li>
+        </ul>
+        <button class="btn-plan" onclick="showToast('🚀 Starting subscription Standard...')">Subscribe</button>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price-wrap"><div class="plan-price" id="pp-pro">$9.99</div><div class="plan-period">/mo</div></div>
+        <div class="plan-credits-note" id="pc-pro">150 credits per month</div>
+        <ul class="plan-list">
+          <li class="yes">Maximum Render</li>
+          <li class="yes">Harmony Score + AI Text</li>
+          <li class="yes">Переключатель Before/After</li>
+          <li class="yes">Garage + сравнение</li>
+          <li class="yes">Polls + Gallery</li>
+          <li class="yes">No Watermark</li>
+        </ul>
+        <button class="btn-plan" onclick="showToast('🚀 Starting subscription Pro...')">Subscribe</button>
+      </div>
+    </div>
+
+    <div class="credits-bundle">
+      <div class="cb-title">One-Time Credit Bundles</div>
+      <div class="cb-sub">No subscription needed? Buy credits whenever you need them</div>
+      <div class="bundles-row">
+        <div class="bundle" onclick="showToast('💳 Purchasing 20 кредитов...')">
+          <div class="bundle-credits">20</div>
+          <div class="bundle-days">7 days</div>
+          <div class="bundle-price">$2.99</div>
+        </div>
+        <div class="bundle hot" onclick="showToast('💳 Purchasing 60 кредитов...')">
+          <div class="bundle-credits">60</div>
+          <div class="bundle-days">30 days</div>
+          <div class="bundle-price">$5.99</div>
+          <div class="bundle-save">Best Value</div>
+        </div>
+        <div class="bundle" onclick="showToast('💳 Purchasing 150 кредитов...')">
+          <div class="bundle-credits">150</div>
+          <div class="bundle-days">90 days</div>
+          <div class="bundle-price">$12.99</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     POLL
+══════════════════════════════════════ -->
+<div class="screen" id="screen-poll">
+  <div class="page-header">
+    <div class="page-title">Poll: Which Option Looks Better?</div>
+    <p class="page-sub">Vote and share with friends</p>
+  </div>
+  <div class="poll-wrap">
+    <div class="poll-card">
+      <div class="poll-header">
+        <div class="poll-q">Which wheels look better on the BMW 3 Series?</div>
+        <div class="poll-meta">Created: May 27, 2026 · 24 votes</div>
+      </div>
+      <div class="poll-options">
+        <div class="poll-opt" id="po-a" onclick="vote('a')">
+          <div class="po-label">Option A</div>
+          <div class="po-car">🚗</div>
+          <div class="po-name">OZ Racing Superturismo</div>
+          <div class="po-wheel">19" · Gloss Black</div>
+          <div class="po-score">Score 8.2</div>
+          <div class="po-bar-wrap"><div class="po-bar" id="bar-a"></div></div>
+          <div class="po-percent" id="pct-a">—</div>
+        </div>
+        <div class="poll-opt" id="po-b" onclick="vote('b')">
+          <div class="po-label">Option B</div>
+          <div class="po-car">🚙</div>
+          <div class="po-name">BBS CH-R</div>
+          <div class="po-wheel">20" · Polished Silver</div>
+          <div class="po-score">Score 7.6</div>
+          <div class="po-bar-wrap"><div class="po-bar" id="bar-b"></div></div>
+          <div class="po-percent" id="pct-b">—</div>
+        </div>
+      </div>
+      <div class="poll-footer">
+        <div class="poll-total" id="poll-total">Click to vote</div>
+        <button class="poll-share" onclick="showToast('🔗 Link copied!')">Copy Link</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Share рендером</h3>
+    <p>Поделись результатом с друзьями или в соцсетях. Ссылка действует 7 days.</p>
+    <div style="background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--accent2);font-family:monospace;margin-bottom:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">https://wheelvision.app/r/abc123xyz</div>
+    <div class="modal-btns">
+      <button class="modal-btn-prim" onclick="showToast('🔗 Link copied!');closeModal()">Copy Link</button>
+      <button class="modal-btn-sec" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-msg">Saved!</span>
+</div>
+
+<script>
+// ── NAV ──
+const SCREENS = ['landing','upload','processing','result','garage','pricing','poll'];
+function goTo(id) {
+  SCREENS.forEach(s => {
+    const el = document.getElementById('screen-' + s);
+    if (el) el.classList.remove('active');
+  });
+  const t = document.getElementById('screen-' + id);
+  if (t) t.classList.add('active');
+  // nav highlight
+  ['landing','upload','garage','pricing'].forEach(n => {
+    const btn = document.getElementById('nl-' + n);
+    if (btn) btn.classList.toggle('active', n === id);
+  });
+  window.scrollTo(0, 0);
+  if (id === 'processing') runProcessing();
+  if (id === 'result') animateResult();
+  if (id === 'garage') renderGarage();
+}
+
+// ── UPLOAD ──
+const uploaded = { car: false, wheel: false };
+const carNames = ['BMW_3_Series.jpg','Mercedes_C63.png','Toyota_Supra.jpg'];
+const wheelNames = ['OZ_Racing_18inch.png','BBS_CH-R_20.jpg','Vossen_HF7.png'];
+let carIdx = 0, wheelIdx = 0;
+
+function uploadFile(type) {
+  const zone = document.getElementById('dz-' + type);
+  const icon = document.getElementById('dz-' + type + '-icon');
+  const title = document.getElementById('dz-' + type + '-title');
+  const hint = document.getElementById('dz-' + type + '-hint');
+  const fname = document.getElementById('dz-' + type + '-name');
+  if (type === 'car') {
+    icon.textContent = '✅';
+    title.textContent = 'BMW 3 Series · Blue Metallic';
+    hint.textContent = 'File uploaded and ready';
+    fname.textContent = carNames[carIdx++ % carNames.length];
+  } else {
+    icon.textContent = '✅';
+    title.textContent = 'OZ Racing Superturismo 19"';
+    hint.textContent = 'File uploaded and ready';
+    fname.textContent = wheelNames[wheelIdx++ % wheelNames.length];
+  }
+  zone.classList.add('uploaded');
+  uploaded[type] = true;
+  updateRunBtn();
+}
+
+function updateRunBtn() {
+  const btn = document.getElementById('btn-run');
+  const t = document.getElementById('proc-title');
+  const s = document.getElementById('proc-sub');
+  if (uploaded.car && uploaded.wheel) {
+    btn.classList.add('ready');
+    t.textContent = 'Everything is ready for processing!';
+    s.textContent = 'Run AI — it will take about 1–2 minutes';
+  } else if (uploaded.car) {
+    t.textContent = 'Upload wheel photos';
+    s.textContent = 'Car photo already uploaded';
+  } else if (uploaded.wheel) {
+    t.textContent = 'Upload car photo';
+    s.textContent = 'Wheel Photo уже загружено';
+  }
+}
+
+function selectOpt(el) {
+  el.closest('.options-row').querySelectorAll('.opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function startProcess() {
+  if (!uploaded.car || !uploaded.wheel) {
+    showToast('⚠️ Upload both photos сначала');
+    return;
+  }
+  goTo('processing');
+}
+
+// ── PROCESSING ──
+function runProcessing() {
+  const steps = ['st-1','st-2','st-3','st-4','st-5','st-6'];
+  steps.forEach(s => {
+    const el = document.getElementById(s);
+    el.classList.remove('active','done');
+  });
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i > 0) document.getElementById(steps[i-1]).classList.add('done');
+    if (i < steps.length) {
+      document.getElementById(steps[i]).classList.add('active');
+      i++;
+    } else {
+      clearInterval(interval);
+      setTimeout(() => goTo('result'), 500);
+    }
+  }, 650);
+}
+
+// ── RESULT ──
+function animateResult() {
+  setTimeout(() => {
+    document.getElementById('hb-fill').style.width = '82%';
+    renderStars(8.2);
+  }, 200);
+}
+
+function renderStars(score) {
+  const c = document.getElementById('hb-stars');
+  c.innerHTML = '';
+  for (let i = 1; i <= 10; i++) {
+    const s = document.createElement('span');
+    s.className = 'star' + (i <= Math.round(score) ? ' lit' : '');
+    s.textContent = '★';
+    c.appendChild(s);
+  }
+}
+
+function showView(v) {
+  const after = document.getElementById('view-after');
+  const before = document.getElementById('view-before');
+  document.getElementById('ba-after-btn').classList.toggle('on', v === 'after');
+  document.getElementById('ba-before-btn').classList.toggle('on', v === 'before');
+  if (v === 'after') {
+    after.classList.remove('hide');
+    before.classList.remove('show');
+  } else {
+    after.classList.add('hide');
+    before.classList.add('show');
+  }
+}
+
+// ── GARAGE ──
+const garageData = [
+  { car: 'BMW 3 Series', wheel: 'OZ Racing 19"', score: 8.2, date: 'May 27, 2026', color: '#1C2B3A', wcolor: '#8B8B9A' },
+  { car: 'Mercedes C63', wheel: 'BBS CH-R 20"', score: 7.6, date: 'May 24, 2026', color: '#2D1B1B', wcolor: '#C0C0C0' },
+  { car: 'Toyota Supra', wheel: 'Vossen HF-7 18"', score: 9.1, date: 'May 20, 2026', color: '#1A2A1A', wcolor: '#FFD700' },
+  { car: 'Audi A4', wheel: 'Work Emotion 19"', score: 6.8, date: 'May 15, 2026', color: '#1E1E1E', wcolor: '#A0A0B0' },
+  { car: 'BMW M5', wheel: 'BBS FI-R 21"', score: 8.9, date: 'May 10, 2026', color: '#0D1B2A', wcolor: '#E8E8E8' },
+  { car: 'Nissan GT-R', wheel: 'Rays TE37 18"', score: 9.4, date: 'May 5, 2026', color: '#1A1A2E', wcolor: '#B8860B' },
+];
+
+function renderGarage(filter) {
+  const grid = document.getElementById('garage-grid');
+  const data = filter ? garageData.filter(d => filter === 'all' || true) : garageData;
+  grid.innerHTML = data.map(d => `
+    <div class="garage-card" onclick="goTo('result')">
+      <div class="gc-thumb">
+        <div class="gc-thumb-inner">
+          <svg width="100" height="60" viewBox="0 0 100 60" fill="none">
+            <rect x="10" y="22" width="80" height="26" rx="6" fill="#1F1F2E"/>
+            <rect x="20" y="12" width="60" height="16" rx="4" fill="${d.color}" opacity=".8"/>
+            <circle cx="28" cy="50" r="10" fill="#0F0F18" stroke="${d.wcolor}" stroke-width="2"/>
+            <circle cx="28" cy="50" r="5" fill="#1A1A28"/>
+            <circle cx="72" cy="50" r="10" fill="#0F0F18" stroke="${d.wcolor}" stroke-width="2"/>
+            <circle cx="72" cy="50" r="5" fill="#1A1A28"/>
+          </svg>
+        </div>
+        <div class="gc-score">${d.score}</div>
+      </div>
+      <div class="gc-body">
+        <div class="gc-car">${d.car}</div>
+        <div class="gc-wheel">${d.wheel}</div>
+        <div class="gc-footer">
+          <span class="gc-date">${d.date}</span>
+          <button class="gc-poll" onclick="event.stopPropagation();goTo('poll')">Poll</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterGarage(el, filter) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderGarage(filter);
+}
+
+// ── PRICING ──
+let isYearly = false;
+function toggleBilling() {
+  isYearly = !isYearly;
+  const track = document.getElementById('billing-toggle');
+  track.classList.toggle('yearly', isYearly);
+  document.getElementById('tl-month').classList.toggle('active', !isYearly);
+  document.getElementById('tl-year').classList.toggle('active', isYearly);
+  document.getElementById('pp-standard').textContent = isYearly ? '$3.99' : '$4.99';
+  document.getElementById('pp-pro').textContent = isYearly ? '$7.99' : '$9.99';
+  document.getElementById('pc-standard').textContent = isYearly ? '50 кредитов · экономия 20%' : '50 credits per month';
+  document.getElementById('pc-pro').textContent = isYearly ? '150 кредитов · экономия 20%' : '150 credits per month';
+}
+
+// ── POLL ──
+let voted = null;
+const votes = { a: 16, b: 8 };
+
+function vote(opt) {
+  if (voted) return;
+  voted = opt;
+  votes[opt]++;
+  const total = votes.a + votes.b;
+  const pctA = Math.round(votes.a / total * 100);
+  const pctB = 100 - pctA;
+  document.getElementById('bar-a').style.width = pctA + '%';
+  document.getElementById('bar-b').style.width = pctB + '%';
+  document.getElementById('pct-a').textContent = pctA + '%';
+  document.getElementById('pct-b').textContent = pctB + '%';
+  document.getElementById('po-a').classList.add('voted');
+  document.getElementById('po-b').classList.add('voted');
+  document.getElementById('poll-total').textContent = `${total} голосов`;
+  if (votes.a > votes.b) document.getElementById('po-a').classList.add('leader');
+  else document.getElementById('po-b').classList.add('leader');
+  if (opt === 'a') { document.getElementById('bar-a').style.background = 'linear-gradient(90deg,#7C6FF7,#A29BFE)'; }
+  else { document.getElementById('bar-b').style.background = 'linear-gradient(90deg,#7C6FF7,#A29BFE)'; }
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toast-msg');
+  m.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── MODAL ──
+function showModal() { document.getElementById('modal-overlay').classList.add('show'); }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('show'); }
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// init
+renderGarage();
+</script>
+</body>
+</html>
