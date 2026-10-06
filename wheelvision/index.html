@@ -1,0 +1,2326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landing | WheelVision</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231A2230' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='2.5'/%3E%3Cpath d='M12 3v6.5M20.56 9.22l-6.18 2.01M17.29 19.28l-3.82-5.26M6.71 19.28l3.82-5.26M3.44 9.22l6.18 2.01'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       TOKENS
+       ========================================================= */
+    :root {
+      --studio: #E4E7EB;
+      --panel: #F8F9FB;
+      --ink: #1A2230;
+      --muted: #566070;
+      --line: #BFC6CF;
+      --caliper: #F2B300;
+      --caliper-hover: #D99E00;
+      --success: #1B7F52;
+      --error: #B3261E;
+
+      --content-max: 1120px;
+      --page-x: 48px;
+      --section-gap: 80px;
+
+      --radius-photo: 20px;
+      --radius-panel: 14px;
+      --radius-control: 10px;
+    }
+
+    /* =========================================================
+       BASE STYLES
+       ========================================================= */
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--studio);
+      color: var(--ink);
+      min-width: 0;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--studio);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 26px;
+      font-weight: 400;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1, h2, p {
+      margin-top: 0;
+    }
+
+    h1, h2,
+    .wordmark,
+    .gauge-number {
+      font-family: "Archivo", system-ui, sans-serif;
+      font-stretch: 112%;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 40px;
+      line-height: 46px;
+    }
+
+    .display {
+      font-size: 56px;
+      line-height: 60px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+      line-height: 34px;
+    }
+
+    p {
+      max-width: 65ch;
+      margin-bottom: 16px;
+    }
+
+    .small {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0 0 0 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .site-header,
+    .site-footer,
+    .main-container {
+      width: min(100%, calc(var(--content-max) + (var(--page-x) * 2)));
+      margin-inline: auto;
+      padding-inline: var(--page-x);
+    }
+
+    .site-header {
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .site-footer {
+      padding-top: 40px;
+      padding-bottom: 32px;
+    }
+
+    .main-container {
+      min-height: calc(100vh - 180px);
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .wordmark svg {
+      width: 28px;
+      height: 28px;
+      flex: none;
+    }
+
+    .screen {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .screen-narrow {
+      width: min(100%, 720px);
+    }
+
+    .section-gap {
+      margin-top: var(--section-gap);
+    }
+
+    /* =========================================================
+       COMPONENTS
+       ========================================================= */
+    .button,
+    .text-link {
+      min-height: 44px;
+      border: 0;
+      border-radius: var(--radius-control);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        background-color 150ms ease,
+        color 150ms ease,
+        border-color 150ms ease,
+        opacity 150ms ease;
+    }
+
+    .button {
+      min-height: 48px;
+      padding: 11px 18px;
+      font-weight: 600;
+    }
+
+    .button-primary {
+      background: var(--caliper);
+      color: var(--ink);
+    }
+
+    .button-primary:hover:not(:disabled) {
+      background: var(--caliper-hover);
+    }
+
+    .button-primary:disabled {
+      background: var(--line);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+
+    .button-secondary.is-selected {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .text-link {
+      min-height: 44px;
+      padding: 8px 0;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    .button:focus-visible,
+    .text-link:focus-visible,
+    .dropzone:focus-visible,
+    .sample-tile:focus-visible,
+    .segment-button:focus-visible,
+    .toolbar-toggle:focus-visible,
+    .toolbar button:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--caliper);
+    }
+
+    .button-icon {
+      width: 24px;
+      height: 24px;
+      flex: none;
+    }
+
+    .step {
+      margin-bottom: 18px;
+    }
+
+    .step-copy {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+    }
+
+    .step-bar {
+      width: 120px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .step-segment {
+      height: 4px;
+      border-radius: 999px;
+      background: var(--line);
+    }
+
+    .step-segment.is-filled {
+      background: var(--caliper);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-panel);
+    }
+
+    .dropzone {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-photo);
+      background: transparent;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      cursor: pointer;
+    }
+
+    .dropzone.is-dragover {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+    }
+
+    .dropzone-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      max-width: 360px;
+    }
+
+    .dropzone-line {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dropzone svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .filled-upload {
+      display: grid;
+      gap: 10px;
+    }
+
+    .filled-upload-meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .media-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      border-radius: var(--radius-photo);
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .missing-image {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      background: var(--panel);
+    }
+
+    .inline-error {
+      margin-top: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--error);
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .inline-error svg {
+      width: 20px;
+      height: 20px;
+      flex: none;
+      margin-top: 1px;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .actions-spread {
+      justify-content: space-between;
+    }
+
+    .segmented {
+      display: inline-flex;
+      padding: 3px;
+      gap: 2px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+    }
+
+    .segment-button {
+      min-width: 92px;
+      min-height: 44px;
+      padding: 8px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .segment-button[aria-checked="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .sample-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 160px));
+      gap: 16px;
+    }
+
+    .sample-tile {
+      position: relative;
+      min-width: 0;
+      padding: 8px;
+      border: 2px solid transparent;
+      border-radius: var(--radius-panel);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .sample-tile[aria-checked="true"] {
+      border-color: var(--ink);
+    }
+
+    .sample-tile .media-frame {
+      border-radius: 10px;
+    }
+
+    .sample-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 2px 0;
+      font-weight: 500;
+    }
+
+    .tile-check {
+      width: 20px;
+      height: 20px;
+    }
+
+    .recap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .recap-thumb {
+      width: 64px;
+      height: 44px;
+      flex: none;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .recap-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .recap-copy {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .recap .text-link {
+      min-height: 32px;
+      padding-block: 2px;
+    }
+
+    /* =========================================================
+       SCREENS
+       ========================================================= */
+    .landing-hero {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+
+    .landing-copy {
+      grid-column: span 6;
+      min-width: 0;
+    }
+
+    .landing-image {
+      grid-column: span 6;
+      min-width: 0;
+    }
+
+    .landing-copy > p {
+      margin-bottom: 24px;
+    }
+
+    .landing-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .landing-note {
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .score-chip {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+    }
+
+    .score-chip strong {
+      font-family: "Archivo", system-ui, sans-serif;
+      font-stretch: 112%;
+      font-weight: 700;
+    }
+
+    .landing-steps {
+      margin-top: var(--section-gap);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .landing-steps p {
+      margin: 6px 0 0;
+    }
+
+    .upload-helper,
+    .wheel-tip {
+      margin-bottom: 18px;
+    }
+
+    .sample-label-heading {
+      margin-top: 28px;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .processing-photo {
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--line);
+      margin-bottom: 24px;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--caliper);
+    }
+
+    .stage-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stage-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .stage-status {
+      width: 22px;
+      height: 22px;
+      flex: none;
+      display: grid;
+      place-items: center;
+    }
+
+    .stage-pending {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 50%;
+    }
+
+    .stage-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--line);
+      border-top-color: var(--ink);
+      border-radius: 50%;
+      animation: spin 800ms linear infinite;
+    }
+
+    .stage-complete {
+      color: var(--success);
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .processing-bottom {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .processing-bottom p {
+      margin: 0;
+    }
+
+    .error-state {
+      max-width: 620px;
+      padding-top: 24px;
+    }
+
+    .error-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--error);
+      margin-bottom: 18px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+
+    .result-media {
+      grid-column: span 7;
+      min-width: 0;
+    }
+
+    .result-copy {
+      grid-column: span 5;
+      min-width: 0;
+    }
+
+    .result-media .segmented {
+      margin-bottom: 16px;
+    }
+
+    .result-photo img.after-reveal {
+      opacity: 0;
+      transition: opacity 400ms ease;
+    }
+
+    .result-photo img.after-reveal.is-visible {
+      opacity: 1;
+    }
+
+    .result-tag {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .gauge {
+      width: min(100%, 280px);
+      margin-bottom: 22px;
+    }
+
+    .gauge svg {
+      display: block;
+      width: 240px;
+      max-width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .gauge-number-row {
+      margin-top: -8px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .gauge-number {
+      font-stretch: 125%;
+      font-weight: 800;
+      font-size: 72px;
+      line-height: 76px;
+    }
+
+    .gauge-outof {
+      color: var(--muted);
+    }
+
+    .gauge-label {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .scenario-copy p {
+      margin-bottom: 14px;
+    }
+
+    .feedback {
+      margin-top: var(--section-gap);
+      padding: 24px;
+    }
+
+    .feedback h2 {
+      margin-bottom: 18px;
+    }
+
+    .feedback-choice {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .feedback-extra {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 150ms ease, opacity 150ms ease;
+    }
+
+    .feedback-extra.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .feedback-extra-inner {
+      overflow: hidden;
+    }
+
+    .feedback-field {
+      margin-top: 20px;
+      max-width: 640px;
+    }
+
+    .feedback-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 112px;
+      padding: 12px 14px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-control);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea:disabled,
+    .feedback button:disabled {
+      cursor: default;
+      opacity: 0.65;
+    }
+
+    .feedback-thanks {
+      margin: 18px 0 0;
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       TOOLBAR
+       ========================================================= */
+    .toolbar {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      z-index: 50;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .toolbar-toggle {
+      min-height: 40px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(26, 34, 48, 0.18);
+    }
+
+    .toolbar-panel {
+      width: min(360px, calc(100vw - 32px));
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(26, 34, 48, 0.22);
+    }
+
+    .toolbar-group + .toolbar-group {
+      margin-top: 14px;
+    }
+
+    .toolbar-label {
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .toolbar-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar button {
+      min-height: 36px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,0.42);
+      border-radius: 8px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .toolbar button[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .toolbar .toolbar-hide {
+      margin-top: 14px;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 899px) {
+      :root {
+        --page-x: 24px;
+        --section-gap: 48px;
+      }
+
+      .landing-hero,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .landing-copy,
+      .landing-image,
+      .result-media,
+      .result-copy {
+        grid-column: auto;
+      }
+
+      .landing-image {
+        margin-top: 8px;
+      }
+
+      .result-copy {
+        display: contents;
+      }
+
+      .result-copy .gauge,
+      .result-copy .scenario-copy,
+      .result-copy .result-actions {
+        grid-column: 1;
+      }
+
+      .result-copy .gauge { order: 3; margin-top: 4px; }
+      .result-copy .scenario-copy { order: 4; }
+      .result-copy .result-actions { order: 5; }
+      .result-media { order: 1; }
+
+      .landing-steps {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 599px) {
+      body {
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 36px;
+      }
+
+      .display {
+        font-size: 36px;
+        line-height: 40px;
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 30px;
+      }
+
+      .site-header {
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
+
+      .site-footer {
+        padding-top: 32px;
+        padding-bottom: 80px;
+      }
+
+      .screen {
+        padding-top: 16px;
+      }
+
+      .button-primary {
+        width: 100%;
+      }
+
+      .actions {
+        align-items: stretch;
+      }
+
+      .actions .button-primary {
+        order: 0;
+      }
+
+      .actions .text-link {
+        justify-content: flex-start;
+      }
+
+      .landing-cta-row {
+        align-items: stretch;
+      }
+
+      .landing-cta-row .button-primary {
+        width: 100%;
+      }
+
+      .landing-cta-row .text-link {
+        justify-content: flex-start;
+      }
+
+      .sample-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sample-tile {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .sample-label {
+        padding: 0;
+      }
+
+      .processing-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .result-actions {
+        align-items: stretch;
+      }
+
+      .result-actions .button-primary {
+        width: 100%;
+      }
+
+      .feedback-choice .button-secondary {
+        flex: 1;
+      }
+
+      .toolbar-toggle {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 0;
+        position: relative;
+      }
+
+      .toolbar-toggle::before,
+      .toolbar-toggle::after {
+        content: "";
+        position: absolute;
+        inset: 11px;
+        border: 1.5px solid var(--ink);
+        border-radius: 50%;
+      }
+
+      .toolbar-toggle::after {
+        inset: 18px;
+      }
+
+      .toolbar-panel {
+        max-height: min(72vh, 520px);
+        overflow: auto;
+      }
+
+      .gauge-number {
+        font-size: 64px;
+        line-height: 68px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wordmark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <circle cx="12" cy="12" r="2.5"></circle>
+        <path d="M12 3v6.5M20.56 9.22l-6.18 2.01M17.29 19.28l-3.82-5.26M6.71 19.28l3.82-5.26M3.44 9.22l6.18 2.01"></path>
+      </svg>
+      <span>WheelVision</span>
+    </div>
+  </header>
+
+  <main id="app" class="main-container"></main>
+
+  <footer class="site-footer">
+    <div class="small muted">Prototype build. Results are simulated with sample photos.</div>
+  </footer>
+
+  <div id="toolbar-root"></div>
+
+  <script>
+    /* =========================================================
+       SCENARIOS
+       ========================================================= */
+    const SCENARIOS = [
+      {
+        id: "white",
+        wheelLabel: "White",
+        wheelImage: "assets/wheels-white.jpg",
+        resultImage: "assets/result-white.jpg",
+        score: 8.7,
+        headline: "That is a striking combination.",
+        paragraphs: [
+          ["High value contrast", "Bright white wheels against deep purple paint create immediate impact. The white works like a spotlight and makes the paint look richer than it would with silver or black wheels."],
+          ["Visual weight", "Dark paint feels heavy. White at all four corners lifts the silhouette and draws the eye to the car's stance."]
+        ],
+        tip: "White wheels show brake dust quickly, so this look needs regular cleaning.",
+        next: "Try bronze or gold wheels, which complement purple tones, or dark gunmetal for a more subtle, premium look."
+      },
+      {
+        id: "bronze",
+        wheelLabel: "Bronze",
+        wheelImage: "assets/wheels-bronze.jpg",
+        resultImage: "assets/result-bronze.jpg",
+        score: 9.3,
+        headline: "A warm, confident match.",
+        paragraphs: [
+          ["Complementary color", "Bronze sits opposite purple on the color wheel, so it complements the paint without competing with it."],
+          ["Visual weight", "The darker metallic keeps the car grounded, and the warm tone adds a highlight at each corner."]
+        ],
+        tip: "Bronze hides brake dust better than white, so the look stays clean for longer.",
+        next: "This is already close to the top of the scale. Compare it with dark gunmetal for a more understated result."
+      },
+      {
+        id: "gunmetal",
+        wheelLabel: "Gunmetal",
+        wheelImage: "assets/wheels-gunmetal.jpg",
+        resultImage: "assets/result-gunmetal.jpg",
+        score: 9.0,
+        headline: "Subtle and cohesive.",
+        paragraphs: [
+          ["Tonal match", "Gunmetal stays close to the paint's darkness, so the car reads as one unified shape."],
+          ["Visual weight", "Low contrast keeps the weight even across the car and gives it a premium, understated stance."]
+        ],
+        tip: "Dark wheels are easy to keep looking clean.",
+        next: "For more contrast, try bronze or gold wheels."
+      }
+    ];
+
+    /* =========================================================
+       STATE
+       ========================================================= */
+    const state = {
+      car: null,
+      wheel: null,
+      scenario: null,
+      simulate: "none",
+      feedback: {
+        choice: null,
+        comment: "",
+        sent: false
+      },
+      completed: false,
+      shownScenarios: new Set(),
+      uploadCycleIndex: 0,
+      toolbarOpen: false,
+      toolbarHidden: false,
+      processingTimers: []
+    };
+
+    const app = document.getElementById("app");
+    const toolbarRoot = document.getElementById("toolbar-root");
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const escapeHtml = (value) =>
+      String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    const icon = (name, className = "button-icon") => {
+      const common = `class="${className}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"`;
+      const paths = {
+        add: `<path d="M4 7.5h3l1.5-2h7l1.5 2h3v11H4z"></path><circle cx="12" cy="13" r="3"></circle><path d="M19 3v4M17 5h4"></path>`,
+        check: `<path d="m5 12 4 4L19 6"></path>`,
+        alert: `<path d="M12 3 2.8 20h18.4L12 3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path>`,
+        back: `<path d="m15 18-6-6 6-6"></path>`,
+        up: `<path d="M7 10v10H3V10h4Zm0 9h9.2a2 2 0 0 0 1.9-1.36l2.3-7A2 2 0 0 0 18.5 8H14l.7-3.1A2.3 2.3 0 0 0 12.5 2L7 10"></path>`,
+        down: `<path d="M7 14V4H3v10h4Zm0-9h9.2a2 2 0 0 1 1.9 1.36l2.3 7A2 2 0 0 1 18.5 16H14l.7 3.1A2.3 2.3 0 0 1 12.5 22L7 14"></path>`,
+        rotate: `<path d="M20 6v5h-5"></path><path d="M18.5 16a8 8 0 1 1 .8-8.9L20 11"></path>`,
+        close: `<path d="M6 6l12 12M18 6 6 18"></path>`
+      };
+      return `<svg ${common}>${paths[name] || ""}</svg>`;
+    };
+
+    function revokeObjectUrl(item) {
+      if (item && item.objectUrl) {
+        URL.revokeObjectURL(item.objectUrl);
+      }
+    }
+
+    function clearProcessingTimers() {
+      state.processingTimers.forEach(clearTimeout);
+      state.processingTimers = [];
+    }
+
+    function resetFeedback() {
+      state.feedback = { choice: null, comment: "", sent: false };
+    }
+
+    function clearAllState() {
+      clearProcessingTimers();
+      revokeObjectUrl(state.car);
+      revokeObjectUrl(state.wheel);
+      state.car = null;
+      state.wheel = null;
+      state.scenario = null;
+      state.simulate = "none";
+      state.completed = false;
+      state.shownScenarios.clear();
+      state.uploadCycleIndex = 0;
+      resetFeedback();
+    }
+
+    function setSampleCar() {
+      revokeObjectUrl(state.car);
+      state.car = {
+        kind: "sample",
+        src: "assets/car-sample.jpg",
+        name: "car-sample.jpg",
+        objectUrl: false
+      };
+      state.completed = false;
+    }
+
+    function setSampleWheel(scenario) {
+      revokeObjectUrl(state.wheel);
+      state.wheel = {
+        kind: "sample",
+        src: scenario.wheelImage,
+        name: scenario.wheelImage.split("/").pop(),
+        objectUrl: false
+      };
+      state.scenario = scenario;
+      state.completed = false;
+      resetFeedback();
+    }
+
+    function chooseUploadScenario() {
+      const unseen = SCENARIOS.find((scenario) => !state.shownScenarios.has(scenario.id));
+      if (unseen) return unseen;
+      const scenario = SCENARIOS[state.uploadCycleIndex % SCENARIOS.length];
+      state.uploadCycleIndex = (state.uploadCycleIndex + 1) % SCENARIOS.length;
+      return scenario;
+    }
+
+    /* =========================================================
+       IMAGE HELPERS
+       ========================================================= */
+    function mediaFrame(src, alt, extraClass = "", imageClass = "") {
+      const filename = src.startsWith("blob:")
+        ? ""
+        : src.split("/").pop();
+
+      return `
+        <div class="media-frame ${extraClass}">
+          <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" class="${imageClass}" ${filename ? `data-fallback="${escapeHtml(filename)}"` : ""}>
+          ${filename ? `<div class="missing-image" hidden>${escapeHtml(filename)}</div>` : ""}
+        </div>
+      `;
+    }
+
+    function setupImageFallbacks(scope = document) {
+      scope.querySelectorAll("img[data-fallback]").forEach((img) => {
+        const fallback = img.nextElementSibling;
+        const showFallback = () => {
+          img.hidden = true;
+          if (fallback && fallback.classList.contains("missing-image")) fallback.hidden = false;
+        };
+        img.addEventListener("error", showFallback, { once: true });
+        if (img.complete && img.naturalWidth === 0) showFallback();
+      });
+    }
+
+    /* =========================================================
+       ROUTER
+       ========================================================= */
+    const ROUTES = {
+      "#/": { title: "Landing", render: renderLanding },
+      "#/car": { title: "Add car photo", render: renderCar },
+      "#/wheels": { title: "Add wheel photo", render: renderWheels },
+      "#/processing": { title: "Processing", render: renderProcessing },
+      "#/result": { title: "Result", render: renderResult }
+    };
+
+    function currentRoute() {
+      return ROUTES[location.hash] ? location.hash : "#/";
+    }
+
+    function guardedRoute(route) {
+      if (route === "#/wheels" && !state.car) return "#/car";
+      if (route === "#/processing") {
+        if (!state.car) return "#/car";
+        if (!state.wheel || !state.scenario) return "#/wheels";
+      }
+      if (route === "#/result" && !state.completed) {
+        if (!state.car) return "#/car";
+        if (!state.wheel || !state.scenario) return "#/wheels";
+        return "#/processing";
+      }
+      return route;
+    }
+
+    function go(route) {
+      if (location.hash === route) {
+        renderRoute();
+      } else {
+        location.hash = route;
+      }
+    }
+
+    function renderRoute() {
+      clearProcessingTimers();
+
+      const requested = currentRoute();
+      const guarded = guardedRoute(requested);
+
+      if (guarded !== requested) {
+        location.replace(guarded);
+        return;
+      }
+
+      const config = ROUTES[guarded];
+      document.title = `${config.title} | WheelVision`;
+      window.scrollTo(0, 0);
+      config.render();
+      renderToolbar();
+      setupImageFallbacks(app);
+
+      requestAnimationFrame(() => {
+        const heading = app.querySelector("h1");
+        if (heading) {
+          heading.tabIndex = -1;
+          heading.focus({ preventScroll: true });
+        }
+      });
+    }
+
+    window.addEventListener("hashchange", renderRoute);
+
+    /* =========================================================
+       UPLOADS
+       ========================================================= */
+    function validateFile(file) {
+      const validType =
+        file.type === "image/jpeg" ||
+        file.type === "image/png";
+
+      if (!validType) {
+        return "That file type isn't supported. Upload a JPG or PNG.";
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        return "That file is too large. Upload a photo under 10 MB.";
+      }
+
+      return "";
+    }
+
+    function setupDropzone({
+      dropzoneId,
+      inputId,
+      replaceId,
+      type
+    }) {
+      const zone = document.getElementById(dropzoneId);
+      const input = document.getElementById(inputId);
+      const replace = replaceId ? document.getElementById(replaceId) : null;
+
+      const openPicker = () => input && input.click();
+
+      if (zone && input) {
+        zone.addEventListener("click", (event) => {
+          if (event.target.closest("button")) return;
+          openPicker();
+        });
+
+        zone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          zone.classList.add("is-dragover");
+        });
+
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("is-dragover");
+        });
+
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          zone.classList.remove("is-dragover");
+          const file = event.dataTransfer.files && event.dataTransfer.files[0];
+          if (file) handleFile(type, file);
+        });
+
+        input.addEventListener("change", () => {
+          const file = input.files && input.files[0];
+          if (file) handleFile(type, file);
+        });
+      }
+
+      if (replace && input) {
+        replace.addEventListener("click", openPicker);
+      }
+    }
+
+    function handleFile(type, file) {
+      const error = validateFile(file);
+
+      if (type === "car") {
+        if (error) {
+          renderCar(error);
+          return;
+        }
+
+        revokeObjectUrl(state.car);
+        const objectUrl = URL.createObjectURL(file);
+        state.car = {
+          kind: "upload",
+          src: objectUrl,
+          name: file.name,
+          objectUrl: true
+        };
+        state.completed = false;
+        renderCar();
+        return;
+      }
+
+      if (error) {
+        renderWheels(error);
+        return;
+      }
+
+      revokeObjectUrl(state.wheel);
+      const objectUrl = URL.createObjectURL(file);
+      state.wheel = {
+        kind: "upload",
+        src: objectUrl,
+        name: file.name,
+        objectUrl: true
+      };
+      state.scenario = chooseUploadScenario();
+      state.completed = false;
+      resetFeedback();
+      renderWheels();
+    }
+
+    function uploadBlock(type, error = "") {
+      const item = type === "car" ? state.car : state.wheel;
+      const inputId = `${type}-file`;
+      const zoneId = `${type}-dropzone`;
+      const replaceId = `${type}-replace`;
+
+      const preview = item && item.kind === "upload";
+
+      if (preview) {
+        return `
+          <div class="filled-upload">
+            ${mediaFrame(item.src, type === "car" ? "Selected car photo" : "Selected wheel photo")}
+            <div class="filled-upload-meta">
+              <span class="small muted">${escapeHtml(item.name)}</span>
+              <button class="text-link" type="button" id="${replaceId}">Replace photo</button>
+            </div>
+            <label class="visually-hidden" for="${inputId}">Choose file</label>
+            <input id="${inputId}" class="visually-hidden" type="file" accept="image/jpeg,image/png">
+          </div>
+          ${error ? inlineError(error) : ""}
+        `;
+      }
+
+      return `
+        <div class="dropzone" id="${zoneId}">
+          <div class="dropzone-content">
+            ${icon("add", "")}
+            <div class="dropzone-line">
+              <span>Drag a photo here or</span>
+              <button class="button button-secondary" type="button" id="${type}-choose">Choose file</button>
+            </div>
+          </div>
+          <label class="visually-hidden" for="${inputId}">Choose file</label>
+          <input id="${inputId}" class="visually-hidden" type="file" accept="image/jpeg,image/png">
+        </div>
+        ${error ? inlineError(error) : ""}
+      `;
+    }
+
+    function inlineError(message) {
+      return `
+        <div class="inline-error" role="alert">
+          ${icon("alert", "")}
+          <span>${message}</span>
+        </div>
+      `;
+    }
+
+    /* =========================================================
+       LANDING
+       ========================================================= */
+    function renderLanding() {
+      app.innerHTML = `
+        <section class="screen">
+          <div class="landing-hero">
+            <div class="landing-copy">
+              <h1 class="display">See how wheels look on your car</h1>
+              <p>Add a photo of your car and a photo of the wheels you like. Get a realistic preview and a score for how well they match.</p>
+
+              <div class="landing-cta-row">
+                <button class="button button-primary" type="button" id="landing-upload">Upload car photo</button>
+                <button class="text-link" type="button" id="landing-sample">Try with sample photos</button>
+              </div>
+              <p class="small muted landing-note">No signup required</p>
+            </div>
+
+            <div class="landing-image">
+              <div class="media-frame">
+                <img src="assets/result-white.jpg" alt="Purple car with white wheels, a sample WheelVision result" data-fallback="result-white.jpg">
+                <div class="missing-image" hidden>result-white.jpg</div>
+                <div class="score-chip">
+                  <strong>8.7</strong>
+                  <span class="small">Harmony Score</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="landing-steps">
+            <div>
+              <strong>Add your car</strong>
+              <p>Use a clear photo of your car.</p>
+            </div>
+            <div>
+              <strong>Add the wheels</strong>
+              <p>A front-facing wheel photo works best.</p>
+            </div>
+            <div>
+              <strong>See the match</strong>
+              <p>Get a realistic preview and a Harmony Score with a plain-language explanation.</p>
+            </div>
+          </div>
+        </section>
+      `;
+
+      document.getElementById("landing-upload").addEventListener("click", () => go("#/car"));
+      document.getElementById("landing-sample").addEventListener("click", () => {
+        setSampleCar();
+        go("#/wheels");
+      });
+    }
+
+    /* =========================================================
+       ADD CAR
+       ========================================================= */
+    function renderCar(error = "") {
+      const hasCar = Boolean(state.car);
+
+      app.innerHTML = `
+        <section class="screen screen-narrow">
+          <div class="step">
+            <div class="step-copy">Step 1 of 2</div>
+            <div class="step-bar" aria-hidden="true">
+              <span class="step-segment is-filled"></span>
+              <span class="step-segment"></span>
+            </div>
+          </div>
+
+          <h1>Add your car photo</h1>
+          <p class="muted upload-helper">JPG or PNG, up to 10 MB.</p>
+
+          ${state.car && state.car.kind === "sample"
+            ? `
+              <div class="filled-upload">
+                ${mediaFrame(state.car.src, "Selected car photo")}
+                <div class="filled-upload-meta">
+                  <span class="small muted">${escapeHtml(state.car.name)}</span>
+                  <button class="text-link" type="button" id="car-replace">Replace photo</button>
+                </div>
+                <label class="visually-hidden" for="car-file">Choose file</label>
+                <input id="car-file" class="visually-hidden" type="file" accept="image/jpeg,image/png">
+              </div>
+              ${error ? inlineError(error) : ""}
+            `
+            : uploadBlock("car", error)
+          }
+
+          <button class="text-link" type="button" id="sample-car">Use sample car</button>
+
+          <div class="actions actions-spread">
+            <button class="button button-primary" type="button" id="car-continue" ${hasCar ? "" : "disabled"}>Continue</button>
+            <button class="text-link" type="button" id="car-back">${icon("back")}Back</button>
+          </div>
+        </section>
+      `;
+
+      setupImageFallbacks(app);
+
+      const choose = document.getElementById("car-choose");
+      const input = document.getElementById("car-file");
+      if (choose && input) choose.addEventListener("click", () => input.click());
+
+      setupDropzone({
+        dropzoneId: "car-dropzone",
+        inputId: "car-file",
+        replaceId: "car-replace",
+        type: "car"
+      });
+
+      document.getElementById("sample-car").addEventListener("click", () => {
+        setSampleCar();
+        renderCar();
+      });
+
+      document.getElementById("car-continue").addEventListener("click", () => {
+        if (state.car) go("#/wheels");
+      });
+
+      document.getElementById("car-back").addEventListener("click", () => go("#/"));
+    }
+
+    /* =========================================================
+       ADD WHEELS
+       ========================================================= */
+    function renderWheels(error = "") {
+      const selectedSampleId = state.wheel && state.wheel.kind === "sample" && state.scenario
+        ? state.scenario.id
+        : null;
+
+      app.innerHTML = `
+        <section class="screen screen-narrow">
+          <div class="step">
+            <div class="step-copy">Step 2 of 2</div>
+            <div class="step-bar" aria-hidden="true">
+              <span class="step-segment is-filled"></span>
+              <span class="step-segment is-filled"></span>
+            </div>
+          </div>
+
+          <div class="recap">
+            <div class="recap-thumb">
+              <img src="${escapeHtml(state.car.src)}" alt="Your car" ${state.car.src.startsWith("blob:") ? "" : `data-fallback="${escapeHtml(state.car.src.split("/").pop())}"`}>
+              ${state.car.src.startsWith("blob:") ? "" : `<div class="missing-image" hidden>${escapeHtml(state.car.src.split("/").pop())}</div>`}
+            </div>
+            <div class="recap-copy">
+              <span>Your car</span>
+              <button class="text-link" type="button" id="change-car">Change</button>
+            </div>
+          </div>
+
+          <h1>Add the wheels you want to try</h1>
+          <p class="muted wheel-tip">Tip: a front-facing wheel photo works best.</p>
+
+          ${uploadBlock("wheel", error)}
+
+          <p class="sample-label-heading">Or pick a sample</p>
+          <div class="sample-grid" role="radiogroup" aria-label="Or pick a sample" id="wheel-samples">
+            ${SCENARIOS.map((scenario, index) => `
+              <button
+                class="sample-tile"
+                type="button"
+                role="radio"
+                aria-checked="${selectedSampleId === scenario.id}"
+                tabindex="${selectedSampleId === scenario.id || (!selectedSampleId && index === 0) ? "0" : "-1"}"
+                data-scenario="${scenario.id}">
+                ${mediaFrame(scenario.wheelImage, `${scenario.wheelLabel} wheels`)}
+                <span class="sample-label">
+                  <span>${scenario.wheelLabel}</span>
+                  ${selectedSampleId === scenario.id ? icon("check", "tile-check") : ""}
+                </span>
+              </button>
+            `).join("")}
+          </div>
+
+          <div class="actions actions-spread">
+            <button class="button button-primary" type="button" id="wheel-generate" ${state.wheel ? "" : "disabled"}>Generate preview</button>
+            <button class="text-link" type="button" id="wheel-back">${icon("back")}Back</button>
+          </div>
+        </section>
+      `;
+
+      setupImageFallbacks(app);
+
+      const choose = document.getElementById("wheel-choose");
+      const input = document.getElementById("wheel-file");
+      if (choose && input) choose.addEventListener("click", () => input.click());
+
+      setupDropzone({
+        dropzoneId: "wheel-dropzone",
+        inputId: "wheel-file",
+        replaceId: "wheel-replace",
+        type: "wheel"
+      });
+
+      document.getElementById("change-car").addEventListener("click", () => go("#/car"));
+      document.getElementById("wheel-back").addEventListener("click", () => go("#/car"));
+
+      const tiles = [...document.querySelectorAll(".sample-tile")];
+      tiles.forEach((tile, index) => {
+        tile.addEventListener("click", () => {
+          const scenario = SCENARIOS.find((item) => item.id === tile.dataset.scenario);
+          setSampleWheel(scenario);
+          renderWheels();
+        });
+
+        tile.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+          event.preventDefault();
+          const delta = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+          const nextIndex = (index + delta + tiles.length) % tiles.length;
+          const nextScenario = SCENARIOS.find((item) => item.id === tiles[nextIndex].dataset.scenario);
+          setSampleWheel(nextScenario);
+          renderWheels();
+          requestAnimationFrame(() => {
+            const nextTile = document.querySelector(`[data-scenario="${nextScenario.id}"]`);
+            if (nextTile) nextTile.focus();
+          });
+        });
+      });
+
+      document.getElementById("wheel-generate").addEventListener("click", () => {
+        if (!state.wheel || !state.scenario) return;
+        state.completed = false;
+        go("#/processing");
+      });
+    }
+
+    /* =========================================================
+       PROCESSING
+       ========================================================= */
+    function renderProcessing() {
+      const simulation = state.simulate;
+      state.simulate = "none";
+
+      app.innerHTML = processingMarkup(0, simulation);
+      setupImageFallbacks(app);
+      startProcessing(simulation);
+    }
+
+    function processingMarkup(stageIndex) {
+      const statuses = [0, 1, 2].map((index) => {
+        if (index < stageIndex) return "complete";
+        if (index === stageIndex) return "active";
+        return "pending";
+      });
+
+      const statusIcon = (status) => {
+        if (status === "complete") return icon("check", "stage-complete");
+        if (status === "active") return `<span class="stage-spinner" aria-hidden="true"></span>`;
+        return `<span class="stage-pending" aria-hidden="true"></span>`;
+      };
+
+      return `
+        <section class="screen screen-narrow">
+          <h1>Creating your preview</h1>
+
+          <div class="processing-photo">
+            ${mediaFrame(state.car.src, "Your car photo")}
+          </div>
+
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="processing-progress"></div>
+          </div>
+
+          <div class="visually-hidden" aria-live="polite" id="processing-announcer">${stageIndex === 0 ? "Detecting car" : stageIndex === 1 ? "Placing wheels" : "Analyzing colors"}</div>
+          <div class="stage-list" id="processing-stages">
+            <div class="stage-row">
+              <span class="stage-status">${statusIcon(statuses[0])}</span>
+              <span>Detecting car</span>
+            </div>
+            <div class="stage-row">
+              <span class="stage-status">${statusIcon(statuses[1])}</span>
+              <span>Placing wheels</span>
+            </div>
+            <div class="stage-row">
+              <span class="stage-status">${statusIcon(statuses[2])}</span>
+              <span>Analyzing colors</span>
+            </div>
+          </div>
+
+          <div class="processing-bottom">
+            <p class="small muted">This takes a few seconds.</p>
+            <button class="text-link" type="button" id="processing-cancel">Cancel</button>
+          </div>
+        </section>
+      `;
+    }
+
+    function startProcessing(simulation) {
+      const progress = document.getElementById("processing-progress");
+      const cancel = document.getElementById("processing-cancel");
+
+      cancel.addEventListener("click", () => {
+        clearProcessingTimers();
+        go("#/wheels");
+      });
+
+      if (progress) {
+        requestAnimationFrame(() => {
+          progress.style.transition = prefersReducedMotion() ? "none" : "width 6500ms linear";
+          progress.style.width = "100%";
+        });
+      }
+
+      const updateStage = (index) => {
+        app.innerHTML = processingMarkup(index);
+        setupImageFallbacks(app);
+
+        const nextProgress = document.getElementById("processing-progress");
+        if (nextProgress) {
+          const elapsed = index === 1 ? 2000 : index === 2 ? 4500 : 0;
+          nextProgress.style.width = `${(elapsed / 6500) * 100}%`;
+          requestAnimationFrame(() => {
+            nextProgress.style.transition = prefersReducedMotion() ? "none" : `width ${6500 - elapsed}ms linear`;
+            nextProgress.style.width = "100%";
+          });
+        }
+
+        document.getElementById("processing-cancel").addEventListener("click", () => {
+          clearProcessingTimers();
+          go("#/wheels");
+        });
+      };
+
+      state.processingTimers.push(setTimeout(() => {
+        if (simulation === "car") {
+          clearProcessingTimers();
+          renderCarNotDetected();
+          return;
+        }
+        updateStage(1);
+      }, 2000));
+
+      state.processingTimers.push(setTimeout(() => {
+        if (simulation === "generation") {
+          clearProcessingTimers();
+          renderGenerationFailed();
+          return;
+        }
+        updateStage(2);
+      }, 4500));
+
+      state.processingTimers.push(setTimeout(() => {
+        state.completed = true;
+        state.shownScenarios.add(state.scenario.id);
+        clearProcessingTimers();
+        go("#/result");
+      }, 6500));
+    }
+
+    function renderCarNotDetected() {
+      app.innerHTML = `
+        <section class="screen screen-narrow error-state">
+          ${icon("alert", "error-icon")}
+          <h1>We couldn't find a car in this photo</h1>
+          <p>Try a photo where the whole car is visible and well lit.</p>
+          <div class="actions">
+            <button class="button button-primary" type="button" id="choose-another-car">Choose another car photo</button>
+          </div>
+        </section>
+      `;
+
+      document.getElementById("choose-another-car").addEventListener("click", () => {
+        revokeObjectUrl(state.car);
+        state.car = null;
+        state.completed = false;
+        go("#/car");
+      });
+    }
+
+    function renderGenerationFailed() {
+      app.innerHTML = `
+        <section class="screen screen-narrow error-state">
+          ${icon("alert", "error-icon")}
+          <h1>Something went wrong while creating your preview</h1>
+          <p>Your photos are still here. Try again.</p>
+          <div class="actions">
+            <button class="button button-primary" type="button" id="try-again">Try again</button>
+            <button class="text-link" type="button" id="generation-back">${icon("back")}Back</button>
+          </div>
+        </section>
+      `;
+
+      document.getElementById("try-again").addEventListener("click", () => renderProcessing());
+      document.getElementById("generation-back").addEventListener("click", () => go("#/wheels"));
+    }
+
+    /* =========================================================
+       RESULT
+       ========================================================= */
+    function renderResult() {
+      const scenario = state.scenario;
+      const resultImage = scenario.resultImage;
+
+      app.innerHTML = `
+        <section class="screen">
+          <h1 class="visually-hidden">Your preview</h1>
+
+          <div class="result-grid">
+            <div class="result-media">
+              <div class="segmented" role="radiogroup" aria-label="Before or After" id="before-after">
+                <button class="segment-button" type="button" role="radio" aria-checked="false" tabindex="-1" data-view="before">Before</button>
+                <button class="segment-button" type="button" role="radio" aria-checked="true" tabindex="0" data-view="after">After</button>
+              </div>
+
+              <div class="media-frame result-photo" id="result-photo">
+                <img src="${escapeHtml(resultImage)}" alt="Your car with ${escapeHtml(scenario.wheelLabel.toLowerCase())} wheels" class="after-reveal" data-fallback="${escapeHtml(resultImage.split("/").pop())}">
+                <div class="missing-image" hidden>${escapeHtml(resultImage.split("/").pop())}</div>
+                <div class="result-tag">Simulated result</div>
+              </div>
+            </div>
+
+            <div class="result-copy">
+              ${gaugeMarkup(scenario.score)}
+              <div class="scenario-copy">
+                <h2>${scenario.headline}</h2>
+                ${scenario.paragraphs.map(([label, text]) => `<p><strong>${label}:</strong> ${text}</p>`).join("")}
+                <p><strong>Tip:</strong> ${scenario.tip}</p>
+                <p><strong>To push the score higher:</strong> ${scenario.next}</p>
+              </div>
+
+              <div class="actions result-actions">
+                <button class="button button-primary" type="button" id="try-wheel">${icon("rotate")}Try another wheel</button>
+                <button class="text-link" type="button" id="start-over">Start over</button>
+              </div>
+            </div>
+          </div>
+
+          ${feedbackMarkup()}
+        </section>
+      `;
+
+      setupImageFallbacks(app);
+      setupBeforeAfter();
+      setupFeedback();
+      revealResult();
+
+      document.getElementById("try-wheel").addEventListener("click", () => {
+        revokeObjectUrl(state.wheel);
+        state.wheel = null;
+        state.scenario = null;
+        state.completed = false;
+        resetFeedback();
+        go("#/wheels");
+      });
+
+      document.getElementById("start-over").addEventListener("click", () => {
+        clearAllState();
+        go("#/");
+      });
+    }
+
+    function gaugeMarkup(score) {
+      const circumference = Math.PI * 100;
+      const filled = (score / 10) * circumference;
+      const offset = circumference - filled;
+
+      const ticks = Array.from({ length: 11 }, (_, i) => {
+        const angle = -90 + (i * 18);
+        const length = i === 0 || i === 5 || i === 10 ? 12 : 7;
+        const x1 = 120;
+        const y1 = 20;
+        const y2 = 20 + length;
+        return `<line x1="${x1}" y1="${y1}" x2="${x1}" y2="${y2}" transform="rotate(${angle} 120 120)" stroke="var(--muted)" stroke-width="1.5"></line>`;
+      }).join("");
+
+      return `
+        <div class="gauge" role="img" aria-label="Harmony Score ${score.toFixed(1)} out of 10">
+          <svg viewBox="0 0 240 145" aria-hidden="true">
+            <path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round"></path>
+            <path
+              id="gauge-fill"
+              d="M20 120 A100 100 0 0 1 220 120"
+              fill="none"
+              stroke="var(--caliper)"
+              stroke-width="8"
+              stroke-linecap="round"
+              stroke-dasharray="${circumference}"
+              stroke-dashoffset="${circumference}">
+            </path>
+            ${ticks}
+            <text x="17" y="141" fill="var(--muted)" font-size="14" font-family="Instrument Sans, system-ui, sans-serif">0</text>
+            <text x="116" y="19" text-anchor="middle" fill="var(--muted)" font-size="14" font-family="Instrument Sans, system-ui, sans-serif">5</text>
+            <text x="211" y="141" fill="var(--muted)" font-size="14" font-family="Instrument Sans, system-ui, sans-serif">10</text>
+            <g id="gauge-needle" transform="rotate(-90 120 120)">
+              <line x1="120" y1="120" x2="120" y2="42" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"></line>
+              <circle cx="120" cy="120" r="7" fill="var(--ink)"></circle>
+            </g>
+          </svg>
+          <div class="gauge-number-row">
+            <span class="gauge-number" id="gauge-number">0.0</span>
+            <span class="gauge-outof">/ 10</span>
+          </div>
+          <div class="gauge-label">Harmony Score</div>
+        </div>
+      `;
+    }
+
+    function setupBeforeAfter() {
+      const controls = [...document.querySelectorAll(".segment-button")];
+
+      const setView = (view, focus = false) => {
+        controls.forEach((button) => {
+          const selected = button.dataset.view === view;
+          button.setAttribute("aria-checked", String(selected));
+          button.tabIndex = selected ? 0 : -1;
+        });
+
+        const frame = document.getElementById("result-photo");
+        const src = view === "before" ? "assets/car-sample.jpg" : state.scenario.resultImage;
+        const alt = view === "before"
+          ? "Your car before changing wheels"
+          : `Your car with ${state.scenario.wheelLabel.toLowerCase()} wheels`;
+        const filename = src.split("/").pop();
+
+        frame.innerHTML = `
+          <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" data-fallback="${escapeHtml(filename)}">
+          <div class="missing-image" hidden>${escapeHtml(filename)}</div>
+          <div class="result-tag">Simulated result</div>
+        `;
+
+        setupImageFallbacks(frame);
+        if (focus) {
+          const target = controls.find((button) => button.dataset.view === view);
+          if (target) target.focus();
+        }
+      };
+
+      controls.forEach((button, index) => {
+        button.addEventListener("click", () => setView(button.dataset.view));
+
+        button.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+          event.preventDefault();
+          const delta = event.key === "ArrowRight" || event.key === "ArrowDown" ? 1 : -1;
+          const nextIndex = (index + delta + controls.length) % controls.length;
+          setView(controls[nextIndex].dataset.view, true);
+        });
+      });
+    }
+
+    function revealResult() {
+      const image = document.querySelector(".result-photo img.after-reveal");
+      const fill = document.getElementById("gauge-fill");
+      const needle = document.getElementById("gauge-needle");
+      const number = document.getElementById("gauge-number");
+      const score = state.scenario.score;
+      const circumference = Math.PI * 100;
+      const finalOffset = circumference - ((score / 10) * circumference);
+      const finalAngle = -90 + (score / 10) * 180;
+
+      if (prefersReducedMotion()) {
+        if (image) {
+          image.style.opacity = "1";
+          image.classList.add("is-visible");
+        }
+        fill.style.strokeDashoffset = finalOffset;
+        needle.setAttribute("transform", `rotate(${finalAngle} 120 120)`);
+        number.textContent = score.toFixed(1);
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        if (image) image.classList.add("is-visible");
+      });
+
+      state.processingTimers.push(setTimeout(() => {
+        const start = performance.now();
+        const duration = 1200;
+
+        const animate = (now) => {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const currentScore = score * eased;
+          const currentAngle = -90 + (currentScore / 10) * 180;
+          const currentOffset = circumference - ((currentScore / 10) * circumference);
+
+          fill.style.strokeDashoffset = currentOffset;
+          needle.setAttribute("transform", `rotate(${currentAngle} 120 120)`);
+          number.textContent = currentScore.toFixed(1);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            number.textContent = score.toFixed(1);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }, 400));
+    }
+
+    function feedbackMarkup() {
+      const { choice, comment, sent } = state.feedback;
+      return `
+        <section class="panel feedback">
+          <h2>Did this help you decide?</h2>
+
+          <div class="feedback-choice">
+            <button class="button button-secondary ${choice === "yes" ? "is-selected" : ""}" type="button" id="feedback-yes" ${sent ? "disabled" : ""}>
+              ${icon("up")}Yes
+            </button>
+            <button class="button button-secondary ${choice === "no" ? "is-selected" : ""}" type="button" id="feedback-no" ${sent ? "disabled" : ""}>
+              ${icon("down")}No
+            </button>
+          </div>
+
+          <div class="feedback-extra ${choice ? "is-open" : ""}" id="feedback-extra">
+            <div class="feedback-extra-inner">
+              <div class="feedback-field">
+                <label for="feedback-comment">Anything to add? (optional)</label>
+                <textarea id="feedback-comment" ${sent ? "disabled" : ""}>${escapeHtml(comment)}</textarea>
+              </div>
+              <div class="actions">
+                <button class="button button-secondary" type="button" id="feedback-send" ${sent ? "disabled" : ""}>Send feedback</button>
+              </div>
+              ${sent ? `<p class="feedback-thanks">Thanks for your feedback.</p>` : ""}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function setupFeedback() {
+      const yes = document.getElementById("feedback-yes");
+      const no = document.getElementById("feedback-no");
+      const send = document.getElementById("feedback-send");
+      const comment = document.getElementById("feedback-comment");
+
+      const choose = (choice) => {
+        if (state.feedback.sent) return;
+        state.feedback.choice = choice;
+        renderFeedbackOnly();
+      };
+
+      yes.addEventListener("click", () => choose("yes"));
+      no.addEventListener("click", () => choose("no"));
+
+      if (comment) {
+        comment.addEventListener("input", () => {
+          state.feedback.comment = comment.value;
+        });
+      }
+
+      if (send) {
+        send.addEventListener("click", () => {
+          if (!state.feedback.choice || state.feedback.sent) return;
+          state.feedback.comment = comment ? comment.value : "";
+          state.feedback.sent = true;
+          renderFeedbackOnly();
+        });
+      }
+    }
+
+    function renderFeedbackOnly() {
+      const existing = document.querySelector(".feedback");
+      if (!existing) return;
+
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = feedbackMarkup();
+      const next = wrapper.firstElementChild;
+      existing.replaceWith(next);
+      setupFeedback();
+
+      requestAnimationFrame(() => {
+        const extra = document.getElementById("feedback-extra");
+        if (extra && state.feedback.choice) extra.classList.add("is-open");
+      });
+    }
+
+    /* =========================================================
+       TOOLBAR
+       ========================================================= */
+    function ensureStateFor(route) {
+      if (route === "#/wheels" || route === "#/processing" || route === "#/result") {
+        if (!state.car) setSampleCar();
+      }
+
+      if (route === "#/processing" || route === "#/result") {
+        if (!state.scenario) state.scenario = SCENARIOS[0];
+        if (!state.wheel) {
+          state.wheel = {
+            kind: "sample",
+            src: state.scenario.wheelImage,
+            name: state.scenario.wheelImage.split("/").pop(),
+            objectUrl: false
+          };
+        }
+      }
+
+      if (route === "#/result") {
+        state.completed = true;
+        state.shownScenarios.add(state.scenario.id);
+      } else if (route === "#/processing") {
+        state.completed = false;
+      }
+    }
+
+    function renderToolbar() {
+      const disabledByQuery = new URLSearchParams(location.search).get("toolbar") === "off";
+      if (disabledByQuery || state.toolbarHidden) {
+        toolbarRoot.innerHTML = "";
+        return;
+      }
+
+      if (!state.toolbarOpen) {
+        toolbarRoot.innerHTML = `
+          <div class="toolbar">
+            <button class="toolbar-toggle" type="button" id="toolbar-toggle" aria-expanded="false">Prototype</button>
+          </div>
+        `;
+        document.getElementById("toolbar-toggle").addEventListener("click", () => {
+          state.toolbarOpen = true;
+          renderToolbar();
+        });
+        return;
+      }
+
+      toolbarRoot.innerHTML = `
+        <div class="toolbar">
+          <div class="toolbar-panel">
+            <div class="toolbar-group">
+              <div class="toolbar-label">Go to</div>
+              <div class="toolbar-buttons">
+                <button type="button" data-go="#/">Landing</button>
+                <button type="button" data-go="#/car">Add car</button>
+                <button type="button" data-go="#/wheels">Add wheels</button>
+                <button type="button" data-go="#/processing">Processing</button>
+                <button type="button" data-go="#/result">Result</button>
+              </div>
+            </div>
+
+            <div class="toolbar-group">
+              <div class="toolbar-label">Scenario</div>
+              <div class="toolbar-buttons">
+                ${SCENARIOS.map((scenario) => `
+                  <button type="button" data-toolbar-scenario="${scenario.id}" aria-pressed="${state.scenario && state.scenario.id === scenario.id}">
+                    ${scenario.wheelLabel}
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+
+            <div class="toolbar-group">
+              <div class="toolbar-label">Simulate</div>
+              <div class="toolbar-buttons">
+                <button type="button" data-simulate="none" aria-pressed="${state.simulate === "none"}">None</button>
+                <button type="button" data-simulate="car" aria-pressed="${state.simulate === "car"}">Car not detected</button>
+                <button type="button" data-simulate="generation" aria-pressed="${state.simulate === "generation"}">Generation failed</button>
+              </div>
+            </div>
+
+            <div class="toolbar-group">
+              <div class="toolbar-buttons">
+                <button type="button" id="toolbar-reset">Reset</button>
+                <button type="button" id="toolbar-hide">Hide toolbar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      toolbarRoot.querySelectorAll("[data-go]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const route = button.dataset.go;
+          ensureStateFor(route);
+          state.toolbarOpen = false;
+          go(route);
+        });
+      });
+
+      toolbarRoot.querySelectorAll("[data-toolbar-scenario]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const scenario = SCENARIOS.find((item) => item.id === button.dataset.toolbarScenario);
+          state.scenario = scenario;
+          revokeObjectUrl(state.wheel);
+          state.wheel = {
+            kind: "sample",
+            src: scenario.wheelImage,
+            name: scenario.wheelImage.split("/").pop(),
+            objectUrl: false
+          };
+          state.completed = currentRoute() === "#/result";
+          resetFeedback();
+          renderRoute();
+        });
+      });
+
+      toolbarRoot.querySelectorAll("[data-simulate]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.simulate = button.dataset.simulate;
+          renderToolbar();
+        });
+      });
+
+      document.getElementById("toolbar-reset").addEventListener("click", () => {
+        clearAllState();
+        state.toolbarOpen = false;
+        go("#/");
+      });
+
+      document.getElementById("toolbar-hide").addEventListener("click", () => {
+        state.toolbarHidden = true;
+        toolbarRoot.innerHTML = "";
+      });
+    }
+
+    /* =========================================================
+       START
+       ========================================================= */
+    if (!location.hash) {
+      location.hash = "#/";
+    } else {
+      renderRoute();
+    }
+  </script>
+</body>
+</html>
